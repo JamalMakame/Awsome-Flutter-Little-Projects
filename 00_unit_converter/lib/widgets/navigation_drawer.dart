@@ -10,7 +10,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         child: ListView(
           children: [
             Container(
@@ -21,7 +21,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                     'CONVERSION',
                     style: TextStyle(
                       fontSize: 26,
-                      color: Colors.white.withOpacity(0.5),
+                      color: Colors.black.withOpacity(0.5),
                     ),
                   ),
                   const MyTile(
@@ -58,7 +58,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                     height: 10,
                   ),
                   const Divider(
-                    color: Colors.white70,
+                    color: Colors.black,
                   ),
                   const SizedBox(
                     height: 10,
@@ -67,7 +67,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                     'CALCULATOR',
                     style: TextStyle(
                       fontSize: 26,
-                      color: Colors.white.withOpacity(0.5),
+                      color: Colors.black.withOpacity(0.5),
                     ),
                   ),
                   const MyTile(

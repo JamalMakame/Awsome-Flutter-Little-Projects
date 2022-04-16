@@ -19,7 +19,7 @@ class MyTile extends StatelessWidget {
     final isSelected = item == currentItem;
 
     // ignore: prefer_const_declarations
-    final color = isSelected ?  Colors.orange : Colors.white;
+    final color = isSelected ?  Colors.orange : Colors.black.withOpacity(0.7);
 
     void selectItem(context, NavigationItem item) {
       

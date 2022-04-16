@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unit_converter/model/navigation_item.dart';
-import 'package:unit_converter/pages/basic_page.dart';
-import 'package:unit_converter/pages/currency_page.dart';
-import 'package:unit_converter/pages/length_page.dart';
-import 'package:unit_converter/pages/scientific_page.dart';
-import 'package:unit_converter/pages/speed_page.dart';
-import 'package:unit_converter/pages/temp_page.dart';
-import 'package:unit_converter/pages/time_page.dart';
-import 'package:unit_converter/pages/weight_page.dart';
+import 'package:unit_converter/pages/basic_page/basic_page.dart';
+import 'package:unit_converter/pages/currency_page/currency_page.dart';
+import 'package:unit_converter/pages/currency_page/providers.dart';
+import 'package:unit_converter/pages/length_page/length_page.dart';
+import 'package:unit_converter/pages/scientific_page/scientific_page.dart';
+import 'package:unit_converter/pages/speed_page/speed_page.dart';
+import 'package:unit_converter/pages/temp_page/temp_page.dart';
+import 'package:unit_converter/pages/time_page/time_page.dart';
+import 'package:unit_converter/pages/weight_page/weight_page.dart';
 import 'package:unit_converter/provider/navigation_provider.dart';
 import 'package:unit_converter/widgets/navigation_drawer.dart';
 
@@ -21,8 +22,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: ((context) => NavigationProvider()),
+    return MultiProvider(
+      providers: [
+        ListenableProvider(create: (context) => NavigationProvider()), 
+        ListenableProvider(create: (context) => CurrencyProvider()),
+      ],
+      
       child: MaterialApp(
         theme: ThemeData().copyWith(
           appBarTheme: AppBarTheme(
