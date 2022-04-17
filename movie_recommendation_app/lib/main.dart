@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:movie_recommendation_app/movieList.dart';
 import 'package:movie_recommendation_app/services/http_helper.dart';
 
-void main() {
-  HttpHelper helper = HttpHelper();
-  helper.getUpcoming();
+void setupLocator() {
+  GetIt.I.registerLazySingleton(() => HttpHelper());
+}
 
+void main() {
+  setupLocator();
   runApp(const MyMovies());
 }
 
