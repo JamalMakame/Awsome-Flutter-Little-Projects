@@ -22,7 +22,7 @@ class TimerHomePage extends StatelessWidget {
       )),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Work Timer'.toUpperCase(),
+          title: Text('Study Timer'.toUpperCase(),
               style: Theme.of(context).textTheme.headline4),
         ),
         body: ChangeNotifierProvider(
@@ -40,7 +40,7 @@ class TimerHomePage extends StatelessWidget {
                               Expanded(
                                 child: customButton(
                                   const Color(0xff009688),
-                                  'Work',
+                                  'Study',
                                   (() => data.setTime(60)),
                                 ),
                               ),
