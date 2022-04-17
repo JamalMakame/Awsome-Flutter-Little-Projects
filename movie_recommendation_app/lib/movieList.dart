@@ -1,8 +1,9 @@
+
+
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movie_recommendation_app/models/movie_model.dart';
 import 'package:movie_recommendation_app/movie_detail.dart';
 import 'package:movie_recommendation_app/services/http_helper.dart';
 

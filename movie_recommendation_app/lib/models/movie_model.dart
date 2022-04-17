@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class MovieModel {
   int id;
@@ -7,6 +6,8 @@ class MovieModel {
   String releaseDate;
   String overview;
   String posterPath;
+
+  
   MovieModel({
     required this.id,
     required this.title,
