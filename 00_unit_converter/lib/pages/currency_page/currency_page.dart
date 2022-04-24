@@ -17,9 +17,8 @@ class CurrencyPage extends StatefulWidget {
 
 class _CurrencyPageState extends State<CurrencyPage> {
   ApiClient client = ApiClient();
-  String result = '';
-
   String from = 'USD';
+  String result = '';
   String to = 'TZS';
 
   @override

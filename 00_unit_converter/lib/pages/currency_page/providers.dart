@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:unit_converter/pages/currency_page/services.dart';
 
 class CurrencyProvider extends ChangeNotifier {
+  ApiClient client = ApiClient();
+  late String from;
+  late String to;
 
   String _result='';
-  get result => _result;
 
-  ApiClient client = ApiClient();
+  get result => _result;
 
   setRate(String from, String to, TextEditingController amountController) {
     (() async {
@@ -16,13 +18,11 @@ class CurrencyProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  late String from;
   setFrom(value) {
     from = value;
     notifyListeners();
   }
 
-  late String to;
   setTo(value) {
     to = value;
     notifyListeners();
@@ -35,3 +35,4 @@ class CurrencyProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+

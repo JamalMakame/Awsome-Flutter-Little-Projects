@@ -56,11 +56,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  @override
-  Widget build(BuildContext context) {
-    return buildPages();
-  }
-
   Widget buildPages() {
     final provider = Provider.of<NavigationProvider>(context);
     final navigationItem = provider.navigationItem;
@@ -86,5 +81,10 @@ class _MainPageState extends State<MainPage> {
       default:
         return const MainPage();
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return buildPages();
   }
 }

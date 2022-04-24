@@ -44,7 +44,7 @@ Widget customTextField(
   TextEditingController amountController,
   Function onPress(value),
 ) =>
-    TextField(  
+    TextField(
       onSubmitted: (value) => onPress(value),
       decoration: InputDecoration(
         labelText: 'Enter Amount to Convert',
@@ -60,7 +60,6 @@ Widget customTextField(
               color: Colors.orange,
               width: 2,
             )),
-        
       ),
       textInputAction: TextInputAction.done,
       keyboardType: const TextInputType.numberWithOptions(decimal: true),

@@ -4,8 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:productivity_timer/timer_model.dart';
 
 class CountDownProvider extends ChangeNotifier {
-  int _remainingTime = 0;
   Timer? timer;
+
+  int _remainingTime = 0;
 
   int get time => _remainingTime;
 
