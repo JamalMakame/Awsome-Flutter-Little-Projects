@@ -6,11 +6,15 @@ class CurrencyProvider extends ChangeNotifier {
   late String from;
   late String to;
 
-  String _result='';
+  String _result = '';
 
   get result => _result;
 
-  setRate(String from, String to, TextEditingController amountController) {
+  setRate(
+    String from,
+    String to,
+    TextEditingController amountController,
+  ) {
     (() async {
       var rate = await client.getRate(from, to);
       _result = (rate * double.parse(amountController.text)).toStringAsFixed(2);
@@ -35,4 +39,3 @@ class CurrencyProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
-
