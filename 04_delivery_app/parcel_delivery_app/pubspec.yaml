@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.1
+  google_fonts: ^2.3.2
   svg_icon: ^0.0.1
 
 dev_dependencies:
@@ -52,7 +53,7 @@ flutter:
   assets:
     - assets/svgIcons/SvgPics/
     - assets/svgIcons/Icon/
-    - assets/image/
+    - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

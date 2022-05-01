@@ -1,7 +1,5 @@
 import 'package:parcel_delivery_app/utils/component.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -11,9 +9,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return  GetMaterialApp(
       title: 'Parcel Delivery App',
-      theme: ParcelTheme.theme(),
+      theme: ParcelTheme.theme,
       home: const Scaffold(
         backgroundColor: kWhiteColor,
         body: HomePage(),

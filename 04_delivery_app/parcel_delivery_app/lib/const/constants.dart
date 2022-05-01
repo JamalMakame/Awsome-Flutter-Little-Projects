@@ -10,3 +10,9 @@ const Color kGreyLightColor = Color(0xffD5D5D5);
 const Color kLinearYellowGradientColor = Color(0xffFFCF0F);
 const Color kLinearBlackGradientColor = Color(0xff000000);
 
+const TextStyle kTextStyle = TextStyle(
+  fontFamily: 'Poppins',
+  color: kBlackColor,
+  fontSize: 27,
+  fontWeight: FontWeight.bold,
+);
