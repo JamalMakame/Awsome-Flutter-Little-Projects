@@ -7,5 +7,6 @@ export 'package:parcel_delivery_app/const/text_theme.dart';
 export 'package:parcel_delivery_app/views/pages/app.dart';
 export 'package:parcel_delivery_app/views/pages/home_page.dart';
 export 'package:parcel_delivery_app/views/pages/parcel_size_screen.dart';
-
-// lib\views\widgets\navigation_bar_widget.dart
+export 'package:parcel_delivery_app/views/pages/delivery_method_screen.dart';
+export 'package:parcel_delivery_app/views/pages/checkout_screen.dart';
+export 'package:parcel_delivery_app/views/pages/parcel_center_screen.dart';

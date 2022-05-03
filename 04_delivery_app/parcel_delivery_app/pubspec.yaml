@@ -14,6 +14,8 @@ dependencies:
     sdk: flutter
   get: ^4.6.1
   google_fonts: ^2.3.2
+  google_maps_flutter: ^2.1.4
+  http: ^0.13.4
   svg_icon: ^0.0.1
 
 dev_dependencies:
@@ -40,3 +42,7 @@ flutter:
     - assets/illustration/Envelope.png
     - assets/illustration/Ski/Asset/illustration/Custom parcel.png
     - assets/illustration/Ski/Asset/illustration/Big box.png
+    - assets/illustration/Parcel center.png
+    - assets/illustration/Door delivery.png
+    - assets/Element/Credit Card/Yellow.png
+    - assets/Element/Link/Active.png

@@ -12,10 +12,10 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   static List<Widget> pages = [
     const HomePage(),
-    const SendParcelScreen(),
-    Container(
-      color: Colors.amber.shade700,
-    )
+    //const SendParcelScreen(),
+    //const SendParcelDetailScreen(),
+    //const SendParcelCheckOutScreen(),
+    //const ParcelCenterScreen(),
   ];
 
   int _selectedItem = 0;
@@ -28,6 +28,7 @@ class _AppState extends State<App> {
       home: Scaffold(
         body: pages[_selectedItem],
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: kWhiteColor,
           selectedIconTheme: const IconThemeData(
             size: 32,
           ),
