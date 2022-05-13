@@ -7,9 +7,11 @@ class MyColors {
   static const Color whiteButtonTextClr = Color(0xffffffff);
   static const Color buttonBackgroundClr = Color(0xff343434);
   static const Color cBackgroundClr = Color(0xffff5959);
+  static const Color dividerClr = Color(0xff4e4d4d);
   static const TextStyle buttonText = TextStyle(
     color: whiteButtonTextClr,
     fontSize: 36,
     fontFamily: 'Inter',
+    fontWeight: FontWeight.w500,
   );
 }

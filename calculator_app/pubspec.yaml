@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_simple_calculator: ^2.2.0
+  font_awesome_flutter: ^10.1.0
   get: ^4.6.1
 
 dev_dependencies:
