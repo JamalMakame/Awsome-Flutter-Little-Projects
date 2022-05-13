@@ -1,6 +1,7 @@
 import 'package:calculator_app/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -16,9 +17,9 @@ class _MyAppState extends State<MyApp> {
       children: [
         Row(
           textDirection: TextDirection.rtl,
-          children: const [
+          children: [
             Text(
-              'Equation',
+              userQuestion,
               style: MyColors.buttonText,
             ),
           ],
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp> {
           textDirection: TextDirection.rtl,
           children: [
             Text(
-              'Answers',
+              userAnswer,
               style: MyColors.buttonText.copyWith(
                 color: MyColors.resultClr,
               ),
@@ -69,7 +70,14 @@ class _MyAppState extends State<MyApp> {
             ),
             const Spacer(),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  if (userQuestion.isNotEmpty) {
+                    userQuestion =
+                        userQuestion.substring(0, userQuestion.length - 1);
+                  }
+                });
+              },
               icon: const FaIcon(
                 FontAwesomeIcons.deleteLeft,
                 color: MyColors.whiteButtonTextClr,
@@ -88,7 +96,7 @@ class _MyAppState extends State<MyApp> {
     required Color textClr,
   }) {
     return GestureDetector(
-      onTap: () => callback,
+      onTap: () => callback(),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(9),
         child: Container(
@@ -148,7 +156,41 @@ class _MyAppState extends State<MyApp> {
                         ? MyColors.greenButtonTextClr
                         : MyColors.buttonBackgroundClr,
                 buttonText: buttons[index],
-                callback: () {},
+                callback: () {
+                  if (buttons[index] == 'C') {
+                    setState(() {
+                      if (userQuestion.isNotEmpty) {
+                        userQuestion = '';
+                        userAnswer = '';
+                      }
+                    });
+                  } else if (buttons[index] == '()') {
+                    setState(() {
+                      if (userQuestion.isNotEmpty) {
+                        userQuestion = '($userQuestion)';
+                      }
+                    });
+                  } else if (buttons[index] == '+/-') {
+                    setState(() {
+                      debugPrint('The feature is yet to be implemented');
+                    });
+                  } else if (buttons[index] == '=') {
+                    setState(() {
+                      if (userQuestion.isNotEmpty) {
+                        Parser p = Parser();
+                        Expression exp =
+                            p.parse(userQuestion.replaceAll('x', '*'));
+                        ContextModel cm = ContextModel();
+                        double eval = exp.evaluate(EvaluationType.REAL, cm);
+                        userAnswer = eval.toString();
+                      }
+                    });
+                  } else {
+                    setState(() {
+                      userQuestion += buttons[index];
+                    });
+                  }
+                },
                 textClr: buttons[index] == 'C' || buttons[index] == '='
                     ? MyColors.buttonBackgroundClr
                     : buttons[index] == '()' ||
@@ -161,12 +203,15 @@ class _MyAppState extends State<MyApp> {
                         : MyColors.whiteButtonTextClr,
               );
             },
-            childCount: 20,
+            childCount: buttons.length,
           ),
         )
       ],
     );
   }
+
+  var userQuestion = '';
+  var userAnswer = '';
 
   @override
   Widget build(BuildContext context) {

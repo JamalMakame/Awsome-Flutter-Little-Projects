@@ -33,6 +33,7 @@ dependencies:
   flutter_simple_calculator: ^2.2.0
   font_awesome_flutter: ^10.1.0
   get: ^4.6.1
+  math_expressions: ^2.3.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0
