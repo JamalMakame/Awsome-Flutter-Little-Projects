@@ -4,7 +4,7 @@ import 'package:calculator_app/theme_data.dart';
 import 'my_app.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
     GetMaterialApp(
@@ -12,7 +12,7 @@ void main() {
         scaffoldBackgroundColor: MyColors.pageBackgroundClr,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const MyApp(),
+      home: MyApp(),
     ),
   );
 }
