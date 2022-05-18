@@ -5,6 +5,8 @@ import 'package:task_it/views/widgets/card_widget.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  // TODO 1: Create a json file and add projectCard details
+
   @override
   Widget build(BuildContext context) {
     GestureDetector customFloatingButton({
@@ -120,6 +122,10 @@ class HomePage extends StatelessWidget {
                 child: customCards(),
               ),
             ),
+            // TODO 2:  Add scroll indicator
+
+            // TODO 3: Add ListView Builder for Progress of the Tasks
+
           ],
         ),
       ),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-Widget customCards() {
+Widget customCards({
+  required String projectNumber,
+  required String projectTitle,
+  required String projectDate,
+}) {
   return SizedBox(
     width: 341,
     height: 339,
@@ -46,13 +50,13 @@ Widget customCards() {
                               width: 341,
                               height: 338.8391418457031,
                               child: null)),
-                  const Positioned(
+                  Positioned(
                       top: 126,
                       left: 37,
                       child: Text(
-                        'Front-End \nDevelopment',
+                        projectTitle,
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Color.fromRGBO(255, 255, 255, 1),
                             fontFamily: 'Poppins',
                             fontSize: 33,
@@ -62,13 +66,13 @@ Widget customCards() {
                             ),
                       )),
                 ]))),
-        const Positioned(
+        Positioned(
           top: 272,
           left: 37,
           child: Text(
-            'October 20, 2020',
+            projectDate,
             textAlign: TextAlign.left,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color.fromRGBO(255, 255, 255, 1),
               fontFamily: 'Poppins',
               fontSize: 20,
@@ -93,21 +97,22 @@ Widget customCards() {
                     width: 203,
                     height: 33.99208450317383,
                     child: Stack(
-                      children: const <Widget>[
+                      children: <Widget>[
                         Positioned(
                           top: 0,
                           left: 0,
                           child: Text(
-                            'Project 1',
+                            'Project $projectNumber',
                             textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                                fontFamily: 'Poppins',
-                                fontSize: 22.422956466674805,
-                                letterSpacing:
-                                    0 /*percentages not used in flutter. defaulting to zero*/,
-                                fontWeight: FontWeight.normal,
-                                height: 1),
+                            style: const TextStyle(
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                              fontFamily: 'Poppins',
+                              fontSize: 22.422956466674805,
+                              letterSpacing:
+                                  0 /*percentages not used in flutter. defaulting to zero*/,
+                              fontWeight: FontWeight.normal,
+                              height: 1,
+                            ),
                           ),
                         ),
                       ],
@@ -127,16 +132,20 @@ Widget customCards() {
             child: Stack(
               children: <Widget>[
                 Positioned(
-                    top: 0,
-                    left: 0,
-                    child: SvgPicture.asset('assets/svg/vector.svg',
-                        semanticsLabel: 'vector')),
+                  top: 0,
+                  left: 0,
+                  child: SvgPicture.asset(
+                    'assets/svg/vector.svg',
+                    semanticsLabel: 'vector',
+                  ),
+                ),
                 Positioned(
                   top: 6.687644004821777,
                   left: 6.68764591217041,
                   child: SvgPicture.asset(
-                      'assets/svg/projectmanagement1traced.svg',
-                      semanticsLabel: 'projectmanagement1traced'),
+                    'assets/svg/projectmanagement1traced.svg',
+                    semanticsLabel: 'projectmanagement1traced',
+                  ),
                 ),
               ],
             ),
