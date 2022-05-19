@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List showData = [];
+  List showProgressData = [];
   final _pageController = PageController(viewportFraction: 0.88);
 
   @override
@@ -29,6 +32,14 @@ class _HomePageState extends State<HomePage> {
         .then((value) {
       setState(() {
         showData = jsonDecode(value);
+      });
+    });
+
+    await DefaultAssetBundle.of(context)
+        .loadString('assets/json/task_progress.json')
+        .then((value) {
+      setState(() {
+        showProgressData = jsonDecode(value);
       });
     });
   }
@@ -119,8 +130,8 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 40,
-                bottom: 32,
+                top: 25,
+                bottom: 25,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -142,41 +153,56 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               height: 240,
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: showData.length,
-                itemBuilder: (context, index) {
-                  return customCards(
-                    projectNumber: (index + 1).toString(),
-                    projectTitle: showData[index]['title'],
-                    projectDate: showData[index]['date'],
-                  );
-                },
+              child: MediaQuery.removeViewPadding(
+                context: context, 
+                removeLeft: true,
+                removeRight: true,
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: showData.length,
+                  itemBuilder: (context, index) {
+                    return customCards(
+                      projectNumber: (index + 1).toString(),
+                      projectTitle: showData[index]['title'],
+                      projectDate: showData[index]['date'],
+                    );
+                  },
+                ),
               ),
             ),
-
             indicator(
               count: showData.length,
               pageController: _pageController,
             ),
-
-            // TODO 3: Add ListView Builder for Progress of the Tasks
             Padding(
               padding: const EdgeInsets.only(
-                top: 48,
+                top: 25,
               ),
               child: Text(
                 'Progress',
                 style: Theme.of(context).primaryTextTheme.bodyText1,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 30,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                ),
+                child: MediaQuery.removeViewPadding(
+                  context: context,
+                  removeTop: true,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: showProgressData.length,
+                    itemBuilder: (context, index) {
+                      return customTile(
+                        projectTitle: showProgressData[index]['project title'],
+                        lastChangedTime: showProgressData[index]['time'],
+                      );
+                    },
+                  ),
+                ),
               ),
-              child: SingleChildScrollView(
-                child: customTile(),
-              )
             ),
           ],
         ),
