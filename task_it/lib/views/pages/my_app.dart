@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_it/const/app_colors.dart';
 import 'package:task_it/const/app_theme.dart';
-import 'package:task_it/views/home_page.dart';
+import 'package:task_it/views/pages/home_page.dart';
 
 class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
