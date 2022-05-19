@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:task_it/const/app_colors.dart';
 import 'package:task_it/views/widgets/card_widget.dart';
+import 'package:task_it/views/widgets/indicator_widget.dart';
+import 'package:task_it/views/widgets/list_tile_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List showData = [];
+  final _pageController = PageController(viewportFraction: 0.88);
 
   @override
   void initState() {
@@ -138,12 +141,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              height: 400,
-              // padding: const EdgeInsets.only(
-              //   left: 10, 
-              // ),
+              height: 240,
               child: PageView.builder(
-                controller: PageController(viewportFraction: 0.88),
+                controller: _pageController,
                 itemCount: showData.length,
                 itemBuilder: (context, index) {
                   return customCards(
@@ -155,33 +155,32 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            // TODO 2:  Add scroll indicator
+            indicator(
+              count: showData.length,
+              pageController: _pageController,
+            ),
 
             // TODO 3: Add ListView Builder for Progress of the Tasks
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 48,
+              ),
+              child: Text(
+                'Progress',
+                style: Theme.of(context).primaryTextTheme.bodyText1,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 30,
+              ),
+              child: SingleChildScrollView(
+                child: customTile(),
+              )
+            ),
           ],
         ),
       ),
     );
   }
 }
-// FutureBuilder(
-//                 future: DefaultAssetBundle.of(context)
-//                     .loadString('assets/json/project_card.json'),
-//                 builder: (context, snapshot) {
-//                   if (snapshot.hasError) {
-//                     print(snapshot);
-//                     return Container(
-//                       color: Colors.red,
-//                     );
-//                   } else if (snapshot.hasData) {
-//                     print(snapshot);
-//                     var showData = jsonDecode(snapshot.data.toString());
-//                     return PageView.builder(
-                      
-//                     );
-//                   }
-//                   return Container(
-//                     color: Colors.red,
-//                   );
-//                 },
-//               ),

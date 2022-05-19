@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 Widget customCards({
   required String projectNumber,
   required String projectTitle,
   required String projectDate,
 }) {
+  
   return SizedBox(
-    width: 341,
-    height: 339,
+    width: 430,
+    height: 230,
     child: Stack(
       fit: StackFit.expand,
       children: <Widget>[
@@ -16,15 +16,15 @@ Widget customCards({
             top: 0,
             left: 0,
             child: SizedBox(
-                width: 341,
-                height: 339,
+                width: 430,
+                height: 230,
                 child: Stack(children: <Widget>[
                   Positioned(
                     top: 0,
                     left: 0,
                     child: Container(
-                      width: 341,
-                      height: 338.35491943359375,
+                      width: 430,
+                      height: 230,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(
                           Radius.circular(20),
@@ -47,27 +47,36 @@ Widget customCards({
                       left: 0,
                       child: //Mask holder Template
                           SizedBox(
-                              width: 341,
+                              width: 430,
                               height: 338.8391418457031,
                               child: null)),
                   Positioned(
-                      top: 126,
-                      left: 37,
-                      child: Text(
-                        projectTitle,
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            fontFamily: 'Poppins',
-                            fontSize: 33,
-                            letterSpacing: 0,
-                            fontWeight: FontWeight.normal,
-                            height: 1.5 /*PERCENT not supported*/
-                            ),
-                      )),
+                    top: 100,
+                    left: 37,
+                    child: SizedBox(
+                      width: 400,
+                      child: Flexible(
+                        child: Text(
+                          projectTitle,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                              fontFamily: 'Poppins',
+                              fontSize: 33,
+                              letterSpacing: 0,
+                              fontWeight: FontWeight.normal,
+                              height: 1.5 /*PERCENT not supported*/
+                              ),
+                              maxLines: 1, 
+                              softWrap: false, 
+                              overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ),
                 ]))),
         Positioned(
-          top: 272,
+          top: 180,
           left: 37,
           child: Text(
             projectDate,
@@ -123,31 +132,14 @@ Widget customCards({
             ),
           ),
         ),
-        Positioned(
+        const Positioned(
           top: 37,
           left: 37,
           child: SizedBox(
             width: 50.95914840698242,
             height: 50.959129333496094,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: SvgPicture.asset(
-                    'assets/svg/vector.svg',
-                    semanticsLabel: 'vector',
-                  ),
-                ),
-                Positioned(
-                  top: 6.687644004821777,
-                  left: 6.68764591217041,
-                  child: SvgPicture.asset(
-                    'assets/svg/projectmanagement1traced.svg',
-                    semanticsLabel: 'projectmanagement1traced',
-                  ),
-                ),
-              ],
+            child: Image(
+              image: AssetImage('assets/svg/Group 36.png'),
             ),
           ),
         ),
