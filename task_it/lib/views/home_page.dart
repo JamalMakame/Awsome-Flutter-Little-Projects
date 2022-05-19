@@ -1,11 +1,34 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:task_it/const/app_colors.dart';
 import 'package:task_it/views/widgets/card_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  // TODO 1: Create a json file and add projectCard details
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List showData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _readData();
+  }
+
+  _readData() async {
+    await DefaultAssetBundle.of(context)
+        .loadString('assets/json/project_card.json')
+        .then((value) {
+      setState(() {
+        showData = jsonDecode(value);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,22 +137,51 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(
-                left: 10,
-              ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                //child: customCards(),
+            Container(
+              height: 400,
+              // padding: const EdgeInsets.only(
+              //   left: 10, 
+              // ),
+              child: PageView.builder(
+                controller: PageController(viewportFraction: 0.88),
+                itemCount: showData.length,
+                itemBuilder: (context, index) {
+                  return customCards(
+                    projectNumber: (index + 1).toString(),
+                    projectTitle: showData[index]['title'],
+                    projectDate: showData[index]['date'],
+                  );
+                },
               ),
             ),
+
             // TODO 2:  Add scroll indicator
 
             // TODO 3: Add ListView Builder for Progress of the Tasks
-
           ],
         ),
       ),
     );
   }
 }
+// FutureBuilder(
+//                 future: DefaultAssetBundle.of(context)
+//                     .loadString('assets/json/project_card.json'),
+//                 builder: (context, snapshot) {
+//                   if (snapshot.hasError) {
+//                     print(snapshot);
+//                     return Container(
+//                       color: Colors.red,
+//                     );
+//                   } else if (snapshot.hasData) {
+//                     print(snapshot);
+//                     var showData = jsonDecode(snapshot.data.toString());
+//                     return PageView.builder(
+                      
+//                     );
+//                   }
+//                   return Container(
+//                     color: Colors.red,
+//                   );
+//                 },
+//               ),
