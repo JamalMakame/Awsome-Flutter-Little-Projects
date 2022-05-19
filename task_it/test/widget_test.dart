@@ -7,12 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-<<<<<<< HEAD:taskt/test/widget_test.dart
-import 'package:taskt/views/my_app.dart';
-=======
 import 'package:task_it/views/my_app.dart';
->>>>>>> aaeeaddbfb9755e60c2daf9bdf1d0ad153f67a0b:task_it/test/widget_test.dart
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

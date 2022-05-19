@@ -39,6 +39,7 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: TodoColors.backGroundClr,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -113,13 +114,13 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 left: 10,
               ),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: customCards(),
+                //child: customCards(),
               ),
             ),
             // TODO 2:  Add scroll indicator
