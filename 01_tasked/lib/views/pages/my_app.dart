@@ -1,9 +1,11 @@
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-//import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/const/app_theme.dart';
+import 'package:tasked/views/pages/create_task.dart';
 import 'package:tasked/views/pages/home_page.dart';
+import 'package:tasked/views/pages/task_calendar.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,11 +19,25 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      getPages: [
+        GetPage(
+          name: '/HomePage',
+          page: () => const HomePage(),
+        ),
+        GetPage(
+          name: '/TaskCalendarPage',
+          page: () => const TaskCalendarPage(),
+        ),
+        GetPage(
+          name: '/CreateTask',
+          page: () => CreateTask(),
+        ),
+      ],
       theme: TodoTheme.blueTheme,
       home: Scaffold(
         backgroundColor: TodoColors.backGroundClr,
-        body: const HomePage(),
+        body: const TaskCalendarPage(),
         bottomNavigationBar: FloatingNavbar(
           currentIndex: index,
           backgroundColor: TodoColors.backGroundClr,

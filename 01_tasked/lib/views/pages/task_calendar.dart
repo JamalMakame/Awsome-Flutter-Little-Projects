@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/views/widgets/list_tile_widget.dart';
 
@@ -45,7 +46,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 400,
+              height: 302,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                 color: TodoColors.lightTextClr,
@@ -63,73 +64,54 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                   children: [
                     Row(
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            color: TodoColors.iconClr,
-                            size: 37,
-                          ),
-                        ),
-                        const Spacer(),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.search,
-                            color: TodoColors.iconClr,
-                            size: 37,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 51,
-                    ),
-                    Row(
-                      children: [
                         Text(
                           'Oct, 2022',
                           style: Theme.of(context).primaryTextTheme.headline1,
                         ),
                         const Spacer(),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 23,
-                          ),
-                          height: 70,
-                          width: 171,
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Color(0xff9c2cf3),
-                                Color(0xff3a49f9),
+                        GestureDetector(
+                          onTap: (() {
+                            Get.toNamed("CreateTask");
+                          }),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 32,
+                              vertical: 23,
+                            ),
+                            height: 70,
+                            width: 171,
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Color(0xff9c2cf3),
+                                  Color(0xff3a49f9),
+                                ],
+                              ),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(75),
+                              ),
+                            ),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  Icons.add,
+                                  color: TodoColors.lightTextClr,
+                                  size: 23,
+                                ),
+                                Spacer(),
+                                Text(
+                                  'Add Task',
+                                  style: TextStyle(
+                                    color: TodoColors.lightTextClr,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ],
                             ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(75),
-                            ),
-                          ),
-                          child: Row(
-                            children: const [
-                              Icon(
-                                Icons.add,
-                                color: TodoColors.lightTextClr,
-                                size: 23,
-                              ),
-                              Spacer(),
-                              Text(
-                                'Add Task',
-                                style: TextStyle(
-                                  color: TodoColors.lightTextClr,
-                                  fontFamily: 'Poppins',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
                           ),
                         ),
                       ],
@@ -144,7 +126,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                           DateTime.now(),
                           controller: _controller,
                           initialSelectedDate: DateTime.now(),
-                          selectionColor: Colors.deepPurple.shade100,
+                          selectionColor: Colors.deepPurple.shade500,
                           selectedTextColor: Colors.white,
                           inactiveDates: [
                             DateTime.now().add(const Duration(days: 3)),
@@ -192,7 +174,8 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                               return customTile(
                                 projectTitle: showProgressData[index]
                                     ['project title'],
-                                lastChangedTime: showProgressData[index]['time'],
+                                lastChangedTime: showProgressData[index]
+                                    ['time'],
                               );
                             },
                           ),
