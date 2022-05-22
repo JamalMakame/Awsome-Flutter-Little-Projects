@@ -4,8 +4,10 @@ import 'package:tasked/const/app_colors.dart';
 
 Widget customCategory({
   required String tileName,
+  required Function onPress,
 }) {
   return GestureDetector(
+    onTap: onPress(),
     child: Container(
       height: 70,
       width: 156,

@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               height: 240,
               child: MediaQuery.removeViewPadding(
                 context: context, 

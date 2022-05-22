@@ -14,11 +14,17 @@ class CreateTask extends StatefulWidget {
 class _CreateTaskState extends State<CreateTask> {
   final TextEditingController _dateController =
       TextEditingController(text: DateTime.now().toString());
+  final TextEditingController _endTimeController = TextEditingController();
 
   final TextEditingController _nameController =
       TextEditingController(text: 'Jamal Makame');
   String _selectedDate = '';
- 
+  String _selectedEndTime = '';
+  String _selectedStartTime = '';
+  final TextEditingController _startTimeController = TextEditingController(
+      text:
+          '${TimeOfDay.now().hour.toString().padLeft(2, '0')}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

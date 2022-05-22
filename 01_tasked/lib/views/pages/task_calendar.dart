@@ -71,7 +71,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                         const Spacer(),
                         GestureDetector(
                           onTap: (() {
-                            Get.toNamed("CreateTask");
+                            Get.toNamed("/CreateTask");
                           }),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
@@ -126,7 +126,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                           DateTime.now(),
                           controller: _controller,
                           initialSelectedDate: DateTime.now(),
-                          selectionColor: Colors.deepPurple.shade500,
+                          selectionColor: TodoColors.backGroundClr,
                           selectedTextColor: Colors.white,
                           inactiveDates: [
                             DateTime.now().add(const Duration(days: 3)),

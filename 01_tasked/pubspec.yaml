@@ -39,6 +39,7 @@ dependencies:
   date_picker_timeline: ^1.2.3
   get: ^4.6.3
   date_time_picker: ^2.1.0
+  circular_countdown_timer: ^0.2.1
 
 dev_dependencies:
   flutter_test:

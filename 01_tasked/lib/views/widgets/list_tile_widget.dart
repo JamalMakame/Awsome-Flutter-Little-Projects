@@ -106,7 +106,7 @@ Widget customTile({
             left: 478.00006103515625,
             child: GestureDetector(
                 onTap: () {
-                  print('Tapped');
+                  debugPrint('Tapped');
                 },
                 child: const Image(
                   image: AssetImage('assets/svg/Group 40.png'),
