@@ -2,6 +2,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
+import 'package:tasked/views/widgets/custom_category_tile.dart';
 
 class CreateTask extends StatefulWidget {
   const CreateTask({Key? key}) : super(key: key);
@@ -226,54 +227,32 @@ class _CreateTaskState extends State<CreateTask> {
                               style:
                                   Theme.of(context).primaryTextTheme.headline2,
                             ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            SizedBox(
-                              height: 205,
-                              width: MediaQuery.of(context).size.width,
-                              child: GridView.builder(
-                                itemCount: 6,
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 16,
-                                  mainAxisSpacing: 19,
-                                ),
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: (() {}),
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            Color(0xff9c2cf3),
-                                            Color(0xff3a49f9),
-                                          ],
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Color.fromRGBO(
-                                                226, 226, 226, 0.25),
-                                            offset: Offset(17, 26),
-                                            blurRadius: 25,
-                                          ),
-                                        ],
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(75),
-                                        ),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Box $index',
-                                          style: Theme.of(context)
-                                              .primaryTextTheme
-                                              .headline4,
-                                        ),
-                                      ),
+                            Padding(
+                              padding: const EdgeInsets.only(top:27),
+                              child: SizedBox(
+                                height: 170,
+                                width: MediaQuery.of(context).size.width,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        customCategory(tileName: 'Design'),
+                                        customCategory(tileName: 'Meeting'),
+                                        customCategory(tileName: 'Coding'),
+                                      ],
                                     ),
-                                  );
-                                },
+                                    const Spacer(),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        customCategory(tileName: 'BDE'),
+                                        customCategory(tileName: 'Testing'),
+                                        customCategory(tileName: 'Quick call'),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             Padding(
@@ -326,3 +305,4 @@ class _CreateTaskState extends State<CreateTask> {
     );
   }
 }
+

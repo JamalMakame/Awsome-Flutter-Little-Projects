@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/const/app_theme.dart';
-import 'package:tasked/views/pages/create_task.dart';
+import 'package:tasked/views/widgets/create_task.dart';
 import 'package:tasked/views/pages/home_page.dart';
 import 'package:tasked/views/pages/task_calendar.dart';
 
