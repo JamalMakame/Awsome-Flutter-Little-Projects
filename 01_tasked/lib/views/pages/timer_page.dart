@@ -104,7 +104,7 @@ class _TimerPageState extends State<TimerPage> {
                                   child: const Text(
                                     '25',
                                     style: TextStyle(
-                                      color: TodoColors.darkTextClr,
+                                      color: TodoColors.iconClr,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 93,
                                       fontFamily: 'Poppins',
@@ -131,7 +131,7 @@ class _TimerPageState extends State<TimerPage> {
                                   child: const Text(
                                     '5',
                                     style: TextStyle(
-                                      color: TodoColors.darkTextClr,
+                                      color: TodoColors.iconClr,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 93,
                                       fontFamily: 'Poppins',

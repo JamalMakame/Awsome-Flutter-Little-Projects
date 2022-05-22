@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/const/app_theme.dart';
+import 'package:tasked/views/pages/alarm_page.dart';
 import 'package:tasked/views/pages/create_task.dart';
 import 'package:tasked/views/pages/home_page.dart';
 import 'package:tasked/views/pages/task_calendar.dart';
@@ -17,6 +18,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int index = 0;
+  List list = [
+    const HomePage(),
+    const TaskCalendarPage(),
+    const TimerPage(),
+    const AlarmPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +49,7 @@ class _MyAppState extends State<MyApp> {
       theme: TodoTheme.blueTheme,
       home: Scaffold(
         backgroundColor: TodoColors.backGroundClr,
-        body: const TimerPage(),
+        body: list[index],
         bottomNavigationBar: FloatingNavbar(
           currentIndex: index,
           backgroundColor: TodoColors.backGroundClr,
