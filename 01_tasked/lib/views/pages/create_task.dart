@@ -18,7 +18,7 @@ class _CreateTaskState extends State<CreateTask> {
   final TextEditingController _nameController =
       TextEditingController(text: 'Jamal Makame');
   String _selectedDate = '';
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +28,11 @@ class _CreateTaskState extends State<CreateTask> {
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            //begin: Alignment(0.0374455489218235, 0.7739855647087097),
+            //end: Alignment(-0.7739855647087097, 0.06429413706064224),
             colors: [
-              Color(0xff9c2cf3),
-              Color(0xff3a49f9),
+              Color.fromRGBO(156, 44, 243, 1),
+              Color.fromRGBO(58, 72, 248, 1)
             ],
           ),
         ),
@@ -222,27 +222,38 @@ class _CreateTaskState extends State<CreateTask> {
                                   Theme.of(context).primaryTextTheme.headline2,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top:27),
+                              padding: const EdgeInsets.only(top: 27),
                               child: SizedBox(
                                 height: 170,
                                 width: MediaQuery.of(context).size.width,
                                 child: Column(
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        customCategory(tileName: 'Design',onPress: (){}),
-                                        customCategory(tileName: 'Meeting',onPress: (){}),
-                                        customCategory(tileName: 'Coding',onPress: (){}),
+                                        customCategory(
+                                            tileName: 'Design', onPress: () {}),
+                                        customCategory(
+                                            tileName: 'Meeting',
+                                            onPress: () {}),
+                                        customCategory(
+                                            tileName: 'Coding', onPress: () {}),
                                       ],
                                     ),
                                     const Spacer(),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        customCategory(tileName: 'BDE',onPress: (){}),
-                                        customCategory(tileName: 'Testing',onPress: (){}),
-                                        customCategory(tileName: 'Quick call',onPress: (){}),
+                                        customCategory(
+                                            tileName: 'BDE', onPress: () {}),
+                                        customCategory(
+                                            tileName: 'Testing',
+                                            onPress: () {}),
+                                        customCategory(
+                                            tileName: 'Quick call',
+                                            onPress: () {}),
                                       ],
                                     ),
                                   ],
@@ -258,9 +269,17 @@ class _CreateTaskState extends State<CreateTask> {
                                 height: 92,
                                 decoration: const BoxDecoration(
                                   gradient: LinearGradient(
+                                    // begin: Alignment(
+                                    //   0.0374455489218235,
+                                    //   0.7739855647087097,
+                                    // ),
+                                    // end: Alignment(
+                                    //   -0.7739855647087097,
+                                    //   0.06429413706064224,
+                                    // ),
                                     colors: [
-                                      Color(0xff9c2cf3),
-                                      Color(0xff3a49f9),
+                                      Color.fromRGBO(156, 44, 243, 1),
+                                      Color.fromRGBO(58, 72, 248, 1)
                                     ],
                                   ),
                                   boxShadow: [
@@ -299,4 +318,3 @@ class _CreateTaskState extends State<CreateTask> {
     );
   }
 }
-
