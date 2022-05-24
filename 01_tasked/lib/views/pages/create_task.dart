@@ -1,7 +1,10 @@
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:tasked/const/app_colors.dart';
+import 'package:tasked/controllers/task_controller.dart';
+import 'package:tasked/model/task_model.dart';
 import 'package:tasked/views/widgets/custom_category_tile.dart';
 
 class CreateTask extends StatefulWidget {
@@ -12,12 +15,77 @@ class CreateTask extends StatefulWidget {
 }
 
 class _CreateTaskState extends State<CreateTask> {
-  final TextEditingController _dateController =
-      TextEditingController(text: DateTime.now().toString());
+  final TaskController _taskController = Get.put(TaskController());
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  String _endTime = '9:30 PM';
+  final TextEditingController _endTimeController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  String _selectedDate =
+      DateFormat('MMM d, yyy').format(DateTime.now()).toString();
 
-  final TextEditingController _nameController =
-      TextEditingController(text: 'Jamal Makame');
-  String _selectedDate = '';
+  final String _startTime =
+      DateFormat('hh:mm a').format(DateTime.now()).toString();
+
+  final TextEditingController _startTimeController = TextEditingController();
+
+  int _selectedColor = 0;
+
+  List<String> categoryList = [
+    'School',
+    'Discussion',
+    'Preps',
+    'Shopping',
+    'Praying',
+    'Darsa',
+  ];
+
+  _addTaskToDB() async {
+    int value = await _taskController.addTask(
+      taskModel: TaskModel(
+        color: _selectedColor,
+        date: _dateController.text,
+        description: _descriptionController.text,
+        endTime: _endTimeController.text,
+        isCompleted: 0,
+        name: _nameController.text,
+        startTime: _startTimeController.text,
+      ),
+    );
+    debugPrint('My id is $value');
+  }
+
+  _validateData() {
+    if (_nameController.text.isNotEmpty &&
+        _descriptionController.text.isNotEmpty &&
+        _dateController.text.isNotEmpty &&
+        _startTimeController.text.isNotEmpty &&
+        _endTimeController.text.isNotEmpty) {
+      _addTaskToDB();
+      Get.back();
+    } else if (_nameController.text.isEmpty ||
+        _descriptionController.text.isEmpty ||
+        _dateController.text.isEmpty ||
+        _endTimeController.text.isEmpty ||
+        _startTimeController.text.isEmpty) {
+      Get.snackbar(
+        'Required',
+        'All fields are required !',
+        colorText: Colors.red,
+        duration: const Duration(
+          seconds: 7,
+        ),
+        isDismissible: true,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.white,
+        icon: const Icon(
+          Icons.warning_amber_rounded,
+          color: Colors.red,
+          size: 32,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +96,6 @@ class _CreateTaskState extends State<CreateTask> {
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            //begin: Alignment(0.0374455489218235, 0.7739855647087097),
-            //end: Alignment(-0.7739855647087097, 0.06429413706064224),
             colors: [
               Color.fromRGBO(156, 44, 243, 1),
               Color.fromRGBO(58, 72, 248, 1)
@@ -40,7 +106,7 @@ class _CreateTaskState extends State<CreateTask> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -72,50 +138,51 @@ class _CreateTaskState extends State<CreateTask> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                        top: 30,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 30.0,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Name',
-                            style: Theme.of(context).primaryTextTheme.headline4,
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          TextField(
+                          TextFormField(
+                            autofocus: false,
+                            cursorColor: Colors.grey,
                             controller: _nameController,
-                            textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.name,
-                            cursorColor: TodoColors.lightTextClr,
-                            style: Theme.of(context).primaryTextTheme.headline4,
+                            style: const TextStyle(
+                              color: TodoColors.darkTextClr,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 24,
+                              fontFamily: 'Poppins',
+                            ),
+                            decoration: const InputDecoration(
+                              labelText: 'Name',
+                              labelStyle: TextStyle(
+                                color: TodoColors.darkTextClr,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 32,
+                                fontFamily: 'Poppins',
+                              ),
+                            ),
                           ),
                           const SizedBox(
                             height: 40,
                           ),
-                          Text(
-                            'Date',
-                            style: Theme.of(context).primaryTextTheme.headline4,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
                           DateTimePicker(
                             type: DateTimePickerType.date,
                             controller: _dateController,
+                            dateLabelText: 'Date',
                             firstDate: DateTime.now().subtract(
                               const Duration(days: 3),
                             ),
                             lastDate: DateTime.now().add(
                               const Duration(days: 30),
                             ),
-                            style: Theme.of(context).primaryTextTheme.headline4,
-                            icon: const Icon(
-                              Icons.event,
-                              color: TodoColors.lightTextClr,
-                              size: 37,
+                            style: const TextStyle(
+                              color: TodoColors.darkTextClr,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 32,
+                              fontFamily: 'Poppins',
                             ),
                             dateMask: 'MMM d, yyy',
                             onChanged: (date) =>
@@ -154,66 +221,74 @@ class _CreateTaskState extends State<CreateTask> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  'Start time',
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .headline2,
+                                Expanded(
+                                  child: DateTimePicker(
+                                    type: DateTimePickerType.time,
+                                    controller: _startTimeController,
+                                    timeHintText: _startTime,
+                                    timeLabelText: 'Start time',
+                                    onChanged: (startTime) =>
+                                        setState((() => _endTime = startTime)),
+                                    style: const TextStyle(
+                                      color: TodoColors.darkTextClr,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 32,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
                                 ),
-                                Text(
-                                  'End time',
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .headline2,
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: DateTimePicker(
+                                    type: DateTimePickerType.time,
+                                    controller: _endTimeController,
+                                    timeHintText: _endTime,
+                                    timeLabelText: 'End time',
+                                    onChanged: (endTime) =>
+                                        setState((() => _endTime = endTime)),
+                                    style: const TextStyle(
+                                      color: TodoColors.darkTextClr,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 32,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '01:22pm',
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .headline2,
+                            const SizedBox(height: 10),
+                            Expanded(
+                              child: TextFormField(
+                                keyboardType: TextInputType.multiline,
+                                maxLines: 6,
+                                autofocus: false,
+                                cursorColor: Colors.grey,
+                                controller: _descriptionController,
+                                style: const TextStyle(
+                                  color: TodoColors.darkTextClr,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 24,
+                                  fontFamily: 'Poppins',
                                 ),
-                                Text(
-                                  '03:20pm',
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .headline2,
+                                decoration: const InputDecoration(
+                                  labelText: 'Description',
+                                  labelStyle: TextStyle(
+                                    color: TodoColors.darkTextClr,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 32,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.grey,
+                                      width: 0,
+                                    ),
+                                  ),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 50,
-                              child: Divider(
-                                color: TodoColors.darkTextClr,
-                                height: 3,
-                                indent: 20,
                               ),
-                            ),
-                            const SizedBox(height: 20),
-                            Text(
-                              'Description',
-                              style:
-                                  Theme.of(context).primaryTextTheme.headline2,
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            TextField(
-                              controller: TextEditingController(
-                                text: 'sed dianummy',
-                              ),
-                              style:
-                                  Theme.of(context).primaryTextTheme.headline3,
-                              keyboardType: TextInputType.multiline,
                             ),
                             const SizedBox(height: 20),
                             Text(
@@ -222,84 +297,82 @@ class _CreateTaskState extends State<CreateTask> {
                                   Theme.of(context).primaryTextTheme.headline2,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 27),
+                              padding: const EdgeInsets.only(
+                                top: 20,
+                              ),
                               child: SizedBox(
-                                height: 170,
+                                height: 190,
                                 width: MediaQuery.of(context).size.width,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        customCategory(
-                                            tileName: 'Design', onPress: () {}),
-                                        customCategory(
-                                            tileName: 'Meeting',
-                                            onPress: () {}),
-                                        customCategory(
-                                            tileName: 'Coding', onPress: () {}),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        customCategory(
-                                            tileName: 'BDE', onPress: () {}),
-                                        customCategory(
-                                            tileName: 'Testing',
-                                            onPress: () {}),
-                                        customCategory(
-                                            tileName: 'Quick call',
-                                            onPress: () {}),
-                                      ],
-                                    ),
-                                  ],
+                                child: Wrap(
+                                  spacing: 13,
+                                  runSpacing: 16,
+                                  children: List.generate(
+                                    categoryList.length,
+                                    (index) {
+                                      return customCategory(
+                                        tileName: categoryList[index],
+                                        onPress: () {
+                                          setState(() {
+                                            _selectedColor = index;
+                                            debugPrint(
+                                                'Index : $_selectedColor');
+                                          });
+                                        },
+                                        categoryClr: index == 0
+                                            ? TodoColors.bluishClr
+                                            : index == 1
+                                                ? Colors.lime
+                                                : index == 2
+                                                    ? TodoColors.darkTextClr
+                                                    : index == 3
+                                                        ? TodoColors.pinkClr
+                                                        : index == 4
+                                                            ? TodoColors
+                                                                .yellowClr
+                                                            : index == 5
+                                                                ? Colors.red
+                                                                : Colors.green,
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 38.0,
-                              ),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 92,
-                                decoration: const BoxDecoration(
-                                  gradient: LinearGradient(
-                                    // begin: Alignment(
-                                    //   0.0374455489218235,
-                                    //   0.7739855647087097,
-                                    // ),
-                                    // end: Alignment(
-                                    //   -0.7739855647087097,
-                                    //   0.06429413706064224,
-                                    // ),
-                                    colors: [
-                                      Color.fromRGBO(156, 44, 243, 1),
-                                      Color.fromRGBO(58, 72, 248, 1)
-                                    ],
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          Color.fromRGBO(226, 226, 226, 0.25),
-                                      offset: Offset(17, 26),
-                                      blurRadius: 25,
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(75),
-                                  ),
+                            GestureDetector(
+                              onTap: (() => _validateData()),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 38.0,
                                 ),
-                                child: Center(
-                                  child: Text(
-                                    'Create Task',
-                                    style: Theme.of(context)
-                                        .primaryTextTheme
-                                        .headline5,
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 92,
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color.fromRGBO(156, 44, 243, 1),
+                                        Color.fromRGBO(58, 72, 248, 1)
+                                      ],
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color:
+                                            Color.fromRGBO(226, 226, 226, 0.25),
+                                        offset: Offset(17, 26),
+                                        blurRadius: 25,
+                                      ),
+                                    ],
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(75),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Create Task',
+                                      style: Theme.of(context)
+                                          .primaryTextTheme
+                                          .headline5,
+                                    ),
                                   ),
                                 ),
                               ),

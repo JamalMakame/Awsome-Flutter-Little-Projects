@@ -55,9 +55,9 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           height: 70,
           width: 156,
-          decoration: BoxDecoration(
-            color: buttonClr,
-            borderRadius: const BorderRadius.all(
+          decoration: const BoxDecoration(
+            color: Color(0xffe5eafc),
+            borderRadius: BorderRadius.all(
               Radius.circular(75),
             ),
           ),
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               buttonText,
               style: const TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 16,
+                fontSize: 21,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 240,
               child: MediaQuery.removeViewPadding(
-                context: context, 
+                context: context,
                 removeLeft: true,
                 removeRight: true,
                 child: PageView.builder(
