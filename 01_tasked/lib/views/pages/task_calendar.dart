@@ -2,11 +2,14 @@ import 'dart:convert';
 
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/controllers/task_controller.dart';
+import 'package:tasked/model/task_model.dart';
 import 'package:tasked/views/widgets/list_tile_widget.dart';
+import 'package:tasked/views/widgets/task_tile.dart';
 
 class TaskCalendarPage extends StatefulWidget {
   const TaskCalendarPage({Key? key}) : super(key: key);
@@ -17,6 +20,7 @@ class TaskCalendarPage extends StatefulWidget {
 
 class _TaskCalendarPageState extends State<TaskCalendarPage> {
   List showProgressData = [];
+  final TaskModel taskModel = TaskModel();
 
   final DatePickerController _controller = DatePickerController();
   DateTime _selectedValue = DateTime.now();
@@ -25,17 +29,116 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
   @override
   void initState() {
     super.initState();
-    _readData();
+    _taskController.getTasks();
   }
 
-  _readData() async {
-    await DefaultAssetBundle.of(context)
-        .loadString('assets/json/task_progress.json')
-        .then((value) {
-      setState(() {
-        showProgressData = jsonDecode(value);
-      });
-    });
+  Future<dynamic> customBottomSheet() {
+    return Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.only(top: 4),
+        height: taskModel.isCompleted == 1
+            ? MediaQuery.of(context).size.height * 0.24
+            : MediaQuery.of(context).size.height * 0.32,
+        child: Column(
+          children: [
+            Container(
+              height: 6,
+              width: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: TodoColors.darkTextClr,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            taskModel.isCompleted == 1
+                ? Container()
+                : customBottomSheetButton(
+                    isClosed: false,
+                    context: context,
+                    onTap: () {
+                      Get.back();
+                    },
+                    title: 'Task Completed',
+                    buttonClr: Colors.blueAccent,
+                  ),
+            const SizedBox(
+              height: 20,
+            ),
+            customBottomSheetButton(
+              isClosed: false,
+              onTap: () {
+                Get.back();
+              },
+              context: context,
+              title: 'Delete Task',
+              buttonClr: Colors.red,
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            customBottomSheetButton(
+              onTap: () {
+                Get.back();
+              },
+              isClosed: true,
+              context: context,
+              title: 'Close',
+              buttonClr: Colors.white,
+            ),
+          ],
+        ),
+      ),
+      backgroundColor: Colors.white,
+    );
+  }
+
+  GestureDetector customBottomSheetButton({
+    required Function() onTap,
+    required BuildContext context,
+    required String title,
+    required Color buttonClr,
+    required bool isClosed,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          // vertical: 40.0,
+          horizontal: 30,
+        ),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 82,
+          decoration: BoxDecoration(
+            color: buttonClr,
+            border: Border.all(
+              width: 2,
+              color: isClosed == true ? Colors.grey : buttonClr,
+            ),
+            boxShadow: const [
+              BoxShadow(
+                color: Color.fromRGBO(226, 226, 226, 0.25),
+                offset: Offset(17, 26),
+                blurRadius: 25,
+              ),
+            ],
+            borderRadius: const BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+          child: Center(
+            child: Text(
+              title,
+              style: isClosed == true
+                  ? Theme.of(context).primaryTextTheme.headline6
+                  : Theme.of(context).primaryTextTheme.headline5,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -127,15 +230,29 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                       height: 123,
                       child: DatePicker(
                         DateTime.now(),
+                        width: 80,
+                        monthTextStyle: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                          color: TodoColors.darkTextClr,
+                        ),
+                        dayTextStyle: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                          color: TodoColors.darkTextClr,
+                        ),
+                        dateTextStyle: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: TodoColors.darkTextClr,
+                        ),
                         controller: _controller,
                         initialSelectedDate: DateTime.now(),
-                        selectionColor: TodoColors.backGroundClr,
+                        selectionColor: Colors.deepPurpleAccent,
                         selectedTextColor: Colors.white,
-                        inactiveDates: [
-                          DateTime.now().add(const Duration(days: 3)),
-                          DateTime.now().add(const Duration(days: 4)),
-                          DateTime.now().add(const Duration(days: 7)),
-                        ],
                         daysCount: 60,
                         onDateChange: (date) {
                           setState(() {
@@ -151,20 +268,29 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(
-                top: 30,
+              padding: const EdgeInsets.symmetric(
+                vertical: 15,
+                //horizontal: 30,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Tasks',
-                    style: Theme.of(context).primaryTextTheme.bodyText1,
+                  const Padding(
+                    padding: EdgeInsets.only(left: 30.0),
+                    child: Text(
+                      'Tasks',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: TodoColors.darkTextClr,
+                      ),
+                    ),
                   ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(
-                        top: 20,
+                        top: 10,
                       ),
                       child: MediaQuery.removeViewPadding(
                         context: context,
@@ -174,22 +300,27 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                             shrinkWrap: true,
                             itemCount: _taskController.taskModelList.length,
                             itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  _taskController.delete(
-                                    _taskController.taskModelList[index],
-                                  );
-                                  _taskController.getTasks();
-                                },
-                                child: Container(
-                                  height: 200,
-                                  width: MediaQuery.of(context).size.width,
-                                  margin: const EdgeInsets.only(bottom: 20.0),
-                                  color: Colors.green,
-                                  child: Center(
-                                    child: Text(
-                                      _taskController.taskModelList[index]
-                                          .name.toString(),
+                              return AnimationConfiguration.staggeredList(
+                                duration: const Duration(
+                                  milliseconds: 600,
+                                ),
+                                position: index,
+                                child: SlideAnimation(
+                                  child: FadeInAnimation(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              customBottomSheet();
+                                            },
+                                            child: TaskTile(
+                                              _taskController
+                                                  .taskModelList[index],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),

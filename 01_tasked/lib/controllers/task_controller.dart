@@ -1,15 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasked/db/task_db_helper.dart';
 import 'package:tasked/model/task_model.dart';
 
 class TaskController extends GetxController {
   var taskModelList = <TaskModel>[].obs;
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   Future addTask({
     TaskModel? taskModel,

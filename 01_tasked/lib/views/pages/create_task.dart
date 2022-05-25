@@ -15,22 +15,6 @@ class CreateTask extends StatefulWidget {
 }
 
 class _CreateTaskState extends State<CreateTask> {
-  final TaskController _taskController = Get.put(TaskController());
-  final TextEditingController _dateController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  String _endTime = '9:30 PM';
-  final TextEditingController _endTimeController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
-  String _selectedDate =
-      DateFormat('MMM d, yyy').format(DateTime.now()).toString();
-
-  final String _startTime =
-      DateFormat('hh:mm a').format(DateTime.now()).toString();
-
-  final TextEditingController _startTimeController = TextEditingController();
-
-  int _selectedColor = 0;
-
   List<String> categoryList = [
     'School',
     'Discussion',
@@ -39,6 +23,21 @@ class _CreateTaskState extends State<CreateTask> {
     'Praying',
     'Darsa',
   ];
+
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  String _endTime = '9:30 PM';
+  final TextEditingController _endTimeController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  int _selectedColor = 0;
+  String _selectedDate =
+      DateFormat('MMM d, yyy').format(DateTime.now()).toString();
+
+  final String _startTime =
+      DateFormat('hh:mm a').format(DateTime.now()).toString();
+
+  final TextEditingController _startTimeController = TextEditingController();
+  final TaskController _taskController = Get.put(TaskController());
 
   _addTaskToDB() async {
     int value = await _taskController.addTask(
