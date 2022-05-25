@@ -1,7 +1,6 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:tasked/const/app_colors.dart';
-import 'package:tasked/views/widgets/custom_category_tile.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({Key? key}) : super(key: key);
