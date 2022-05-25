@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:tasked/const/app_colors.dart';
+import 'package:tasked/controllers/task_controller.dart';
 import 'package:tasked/views/widgets/list_tile_widget.dart';
 
 class TaskCalendarPage extends StatefulWidget {
@@ -15,9 +16,11 @@ class TaskCalendarPage extends StatefulWidget {
 }
 
 class _TaskCalendarPageState extends State<TaskCalendarPage> {
-  final DatePickerController _controller = DatePickerController();
-
   List showProgressData = [];
+
+  final DatePickerController _controller = DatePickerController();
+  DateTime _selectedValue = DateTime.now();
+  final TaskController _taskController = Get.put(TaskController());
 
   @override
   void initState() {
@@ -35,162 +38,173 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
     });
   }
 
-  DateTime _selectedValue = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TodoColors.backGroundClr,
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 302,
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                color: TodoColors.lightTextClr,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 45,
-                  vertical: 30,
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          DateFormat.yMMM().format(DateTime.now()),
-                          style: Theme.of(context).primaryTextTheme.headline1,
-                        ),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: (() {
-                            Get.toNamed("/CreateTask");
-                          }),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 32,
-                              vertical: 23,
-                            ),
-                            height: 70,
-                            width: 171,
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment(
-                                    0.0374455489218235, 0.7739855647087097),
-                                end: Alignment(
-                                    -0.7739855647087097, 0.06429413706064224),
-                                colors: [
-                                  Color.fromRGBO(156, 44, 243, 1),
-                                  Color.fromRGBO(58, 72, 248, 1)
-                                ],
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(75),
-                              ),
-                            ),
-                            child: Row(
-                              children: const [
-                                Icon(
-                                  Icons.add,
-                                  color: TodoColors.lightTextClr,
-                                  size: 23,
-                                ),
-                                Spacer(),
-                                Text(
-                                  'Add Task',
-                                  style: TextStyle(
-                                    color: TodoColors.lightTextClr,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 40,
-                      ),
-                      child: SizedBox(
-                        height: 123,
-                        child: DatePicker(
-                          DateTime.now(),
-                          controller: _controller,
-                          initialSelectedDate: DateTime.now(),
-                          selectionColor: TodoColors.backGroundClr,
-                          selectedTextColor: Colors.white,
-                          inactiveDates: [
-                            DateTime.now().add(const Duration(days: 3)),
-                            DateTime.now().add(const Duration(days: 4)),
-                            DateTime.now().add(const Duration(days: 7)),
-                          ],
-                          daysCount: 60,
-                          onDateChange: (date) {
-                            setState(() {
-                              _selectedValue = date;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 302,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              color: TodoColors.lightTextClr,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
               ),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 30,
-                  left: 45,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Tasks',
-                      style: Theme.of(context).primaryTextTheme.bodyText1,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 20,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 45,
+                vertical: 30,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        DateFormat.yMMM().format(DateTime.now()),
+                        style: Theme.of(context).primaryTextTheme.headline1,
+                      ),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: (() async {
+                          await Get.toNamed("/CreateTask");
+                          _taskController.getTasks();
+                        }),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32,
+                            vertical: 23,
+                          ),
+                          height: 70,
+                          width: 171,
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment(
+                                  0.0374455489218235, 0.7739855647087097),
+                              end: Alignment(
+                                  -0.7739855647087097, 0.06429413706064224),
+                              colors: [
+                                Color.fromRGBO(156, 44, 243, 1),
+                                Color.fromRGBO(58, 72, 248, 1)
+                              ],
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(75),
+                            ),
+                          ),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.add,
+                                color: TodoColors.lightTextClr,
+                                size: 23,
+                              ),
+                              Spacer(),
+                              Text(
+                                'Add Task',
+                                style: TextStyle(
+                                  color: TodoColors.lightTextClr,
+                                  fontFamily: 'Poppins',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        child: MediaQuery.removeViewPadding(
-                          context: context,
-                          removeTop: true,
-                          child: ListView.builder(
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 40,
+                    ),
+                    child: SizedBox(
+                      height: 123,
+                      child: DatePicker(
+                        DateTime.now(),
+                        controller: _controller,
+                        initialSelectedDate: DateTime.now(),
+                        selectionColor: TodoColors.backGroundClr,
+                        selectedTextColor: Colors.white,
+                        inactiveDates: [
+                          DateTime.now().add(const Duration(days: 3)),
+                          DateTime.now().add(const Duration(days: 4)),
+                          DateTime.now().add(const Duration(days: 7)),
+                        ],
+                        daysCount: 60,
+                        onDateChange: (date) {
+                          setState(() {
+                            _selectedValue = date;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 30,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Tasks',
+                    style: Theme.of(context).primaryTextTheme.bodyText1,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: 20,
+                      ),
+                      child: MediaQuery.removeViewPadding(
+                        context: context,
+                        removeTop: true,
+                        child: Obx(
+                          () => ListView.builder(
                             shrinkWrap: true,
-                            itemCount: showProgressData.length,
+                            itemCount: _taskController.taskModelList.length,
                             itemBuilder: (context, index) {
-                              return customTile(
-                                projectTitle: showProgressData[index]
-                                    ['project title'],
-                                lastChangedTime: showProgressData[index]
-                                    ['time'],
+                              return GestureDetector(
+                                onTap: () {
+                                  _taskController.delete(
+                                    _taskController.taskModelList[index],
+                                  );
+                                  _taskController.getTasks();
+                                },
+                                child: Container(
+                                  height: 200,
+                                  width: MediaQuery.of(context).size.width,
+                                  margin: const EdgeInsets.only(bottom: 20.0),
+                                  color: Colors.green,
+                                  child: Center(
+                                    child: Text(
+                                      _taskController.taskModelList[index]
+                                          .name.toString(),
+                                    ),
+                                  ),
+                                ),
                               );
                             },
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

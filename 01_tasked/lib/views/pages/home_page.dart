@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 25,
+                top: 20,
               ),
               child: Text(
                 'Progress',
