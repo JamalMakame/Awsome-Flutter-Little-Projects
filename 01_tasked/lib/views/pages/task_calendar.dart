@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/controllers/task_controller.dart';
 import 'package:tasked/model/task_model.dart';
-import 'package:tasked/views/widgets/list_tile_widget.dart';
 import 'package:tasked/views/widgets/task_tile.dart';
 
 class TaskCalendarPage extends StatefulWidget {
@@ -22,8 +20,8 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
   List showProgressData = [];
   final TaskModel taskModel = TaskModel();
 
-  final DatePickerController _controller = DatePickerController();
-  DateTime _selectedValue = DateTime.now();
+  DatePickerController _controller = DatePickerController();
+  DateTime _selectedDate = DateTime.now();
   final TaskController _taskController = Get.put(TaskController());
 
   @override
@@ -32,7 +30,9 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
     _taskController.getTasks();
   }
 
-  Future<dynamic> customBottomSheet() {
+  Future<dynamic> customBottomSheet({
+    required TaskModel taskModel,
+  }) {
     return Get.bottomSheet(
       Container(
         padding: const EdgeInsets.only(top: 4),
@@ -58,6 +58,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                     isClosed: false,
                     context: context,
                     onTap: () {
+                      _taskController.markTaskCompleted(taskModel.id!);
                       Get.back();
                     },
                     title: 'Task Completed',
@@ -69,6 +70,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
             customBottomSheetButton(
               isClosed: false,
               onTap: () {
+                _taskController.delete(taskModel);
                 Get.back();
               },
               context: context,
@@ -250,13 +252,14 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                           color: TodoColors.darkTextClr,
                         ),
                         controller: _controller,
-                        initialSelectedDate: DateTime.now(),
+                        initialSelectedDate: _selectedDate,
                         selectionColor: Colors.deepPurpleAccent,
                         selectedTextColor: Colors.white,
                         daysCount: 60,
                         onDateChange: (date) {
                           setState(() {
-                            _selectedValue = date;
+                            _selectedDate = date;
+                            
                           });
                         },
                       ),
@@ -300,31 +303,65 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                             shrinkWrap: true,
                             itemCount: _taskController.taskModelList.length,
                             itemBuilder: (context, index) {
-                              return AnimationConfiguration.staggeredList(
-                                duration: const Duration(
-                                  milliseconds: 600,
-                                ),
-                                position: index,
-                                child: SlideAnimation(
-                                  child: FadeInAnimation(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              customBottomSheet();
-                                            },
-                                            child: TaskTile(
-                                              _taskController
-                                                  .taskModelList[index],
+                              if (taskModel.date == _controller.toString()) {
+                                return AnimationConfiguration.staggeredList(
+                                  duration: const Duration(
+                                    milliseconds: 600,
+                                  ),
+                                  position: index,
+                                  child: SlideAnimation(
+                                    child: FadeInAnimation(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                customBottomSheet(
+                                                  taskModel: _taskController
+                                                      .taskModelList[index],
+                                                );
+                                              },
+                                              child: TaskTile(
+                                                _taskController
+                                                    .taskModelList[index],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              );
+                                );
+                              } else {
+                                return AnimationConfiguration.staggeredList(
+                                  duration: const Duration(
+                                    milliseconds: 600,
+                                  ),
+                                  position: index,
+                                  child: SlideAnimation(
+                                    child: FadeInAnimation(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                customBottomSheet(
+                                                  taskModel: _taskController
+                                                      .taskModelList[index],
+                                                );
+                                              },
+                                              child: TaskTile(
+                                                _taskController
+                                                    .taskModelList[index],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
                             },
                           ),
                         ),

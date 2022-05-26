@@ -171,6 +171,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             indicator(
+              context: context,
               count: showData.length,
               pageController: _pageController,
             ),

@@ -4,6 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 Widget indicator({
   required int count,
   required PageController pageController,
+  required BuildContext context,
 }) {
   return Padding(
     padding: const EdgeInsets.only(
