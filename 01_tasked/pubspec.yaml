@@ -22,19 +22,16 @@ dependencies:
   sqflite: ^2.0.2+1
   intl: ^0.17.0
   flutter_staggered_animations: ^1.0.0
+  flutter_local_notifications: ^9.5.3+1
+  timezone: ^0.8.0
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-  flutter_launcher_icons: ^0.9.2
 
-flutter_icons:
-  android: true
-  ios: true
-  image_path_ios: "assets/launcher_Icons/io_launcher_icon.png"
-  image_path_android: "assets/launcher_Icons/android_launcher_icon.png"
 
 flutter:
   uses-material-design: true

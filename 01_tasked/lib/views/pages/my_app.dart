@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/const/app_theme.dart';
+import 'package:tasked/services/notification_services.dart';
 import 'package:tasked/views/pages/create_task.dart';
 import 'package:tasked/views/pages/home_page.dart';
 import 'package:tasked/views/pages/task_calendar.dart';
@@ -23,27 +24,16 @@ class _MyAppState extends State<MyApp> {
     const TimerPage(),
   ];
 
+  
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      getPages: [
-        GetPage(
-          name: '/HomePage',
-          page: () => const HomePage(),
-        ),
-        GetPage(
-          name: '/TaskCalendarPage',
-          page: () => const TaskCalendarPage(),
-        ),
-        GetPage(
-          name: '/CreateTask',
-          page: () => const CreateTask(),
-        ),
-        GetPage(
-          name: '/TimerPage',
-          page: () => const TimerPage(),
-        ),
-      ],
       theme: TodoTheme.blueTheme,
       home: Scaffold(
         backgroundColor: TodoColors.backGroundClr,

@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:tasked/const/app_colors.dart';
+import 'package:tasked/services/notification_services.dart';
 import 'package:tasked/views/widgets/card_widget.dart';
 import 'package:tasked/views/widgets/indicator_widget.dart';
 import 'package:tasked/views/widgets/list_tile_widget.dart';
@@ -16,14 +17,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var notifyHelper;
   List showData = [];
   List showProgressData = [];
+
   final _pageController = PageController(viewportFraction: 0.88);
 
   @override
   void initState() {
     super.initState();
     _readData();
+    notifyHelper = NotifyHelper();
+    notifyHelper.initializeNotification();
+    notifyHelper.requestingIOSPermissions();
   }
 
   _readData() async {
@@ -85,7 +91,13 @@ class _HomePageState extends State<HomePage> {
             left: 30,
           ),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              notifyHelper.displayNotification(
+                title: '',
+                body: '',
+              );
+              notifyHelper.scheduledNotification();
+            },
             icon: const Icon(
               Icons.menu,
               color: TodoColors.iconClr,

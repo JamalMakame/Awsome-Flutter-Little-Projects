@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/controllers/task_controller.dart';
 import 'package:tasked/model/task_model.dart';
+import 'package:tasked/views/pages/create_task.dart';
 import 'package:tasked/views/widgets/task_tile.dart';
 
 class TaskCalendarPage extends StatefulWidget {
@@ -173,7 +174,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                       const Spacer(),
                       GestureDetector(
                         onTap: (() async {
-                          await Get.toNamed("/CreateTask");
+                          await Get.to(const CreateTask());
                           _taskController.getTasks();
                         }),
                         child: Container(
