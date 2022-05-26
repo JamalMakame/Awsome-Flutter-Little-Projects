@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/const/app_theme.dart';
-import 'package:tasked/views/pages/alarm_page.dart';
 import 'package:tasked/views/pages/create_task.dart';
 import 'package:tasked/views/pages/home_page.dart';
 import 'package:tasked/views/pages/task_calendar.dart';
@@ -22,7 +21,6 @@ class _MyAppState extends State<MyApp> {
     const HomePage(),
     const TaskCalendarPage(),
     const TimerPage(),
-    const AlarmPage(),
   ];
 
   @override
@@ -69,10 +67,6 @@ class _MyAppState extends State<MyApp> {
             FloatingNavbarItem(
               title: 'Timer',
               icon: (Icons.timer),
-            ),
-            FloatingNavbarItem(
-              title: 'Alarm',
-              icon: (Icons.alarm),
             ),
           ],
           onTap: (int val) {

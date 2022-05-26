@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -155,7 +157,7 @@ class _CreateTaskState extends State<CreateTask> {
                               fontFamily: 'Poppins',
                             ),
                             decoration: const InputDecoration(
-                              labelText: 'Name',
+                              labelText: 'Task Title',
                               labelStyle: TextStyle(
                                 color: TodoColors.darkTextClr,
                                 fontWeight: FontWeight.w500,
@@ -170,7 +172,7 @@ class _CreateTaskState extends State<CreateTask> {
                           DateTimePicker(
                             type: DateTimePickerType.date,
                             controller: _dateController,
-                            dateLabelText: 'Date',
+                            dateLabelText: 'Task Date',
                             firstDate: DateTime.now().subtract(
                               const Duration(days: 3),
                             ),
@@ -273,7 +275,7 @@ class _CreateTaskState extends State<CreateTask> {
                                   fontFamily: 'Poppins',
                                 ),
                                 decoration: const InputDecoration(
-                                  labelText: 'Description',
+                                  labelText: 'Task Description',
                                   labelStyle: TextStyle(
                                     color: TodoColors.darkTextClr,
                                     fontWeight: FontWeight.w500,

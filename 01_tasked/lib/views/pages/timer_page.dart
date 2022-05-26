@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:tasked/const/app_colors.dart';
@@ -11,7 +13,7 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage> {
   final CountDownController _controller = CountDownController();
-  int _duration = 75;
+  final int _duration = 75;
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,3 @@
-
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -19,8 +18,6 @@ class TaskCalendarPage extends StatefulWidget {
 class _TaskCalendarPageState extends State<TaskCalendarPage> {
   List showProgressData = [];
   final TaskModel taskModel = TaskModel();
-
-  DatePickerController _controller = DatePickerController();
   DateTime _selectedDate = DateTime.now();
   final TaskController _taskController = Get.put(TaskController());
 
@@ -251,7 +248,6 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                           fontWeight: FontWeight.bold,
                           color: TodoColors.darkTextClr,
                         ),
-                        controller: _controller,
                         initialSelectedDate: _selectedDate,
                         selectionColor: Colors.deepPurpleAccent,
                         selectedTextColor: Colors.white,
@@ -259,7 +255,6 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                         onDateChange: (date) {
                           setState(() {
                             _selectedDate = date;
-                            
                           });
                         },
                       ),
@@ -303,7 +298,11 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                             shrinkWrap: true,
                             itemCount: _taskController.taskModelList.length,
                             itemBuilder: (context, index) {
-                              if (taskModel.date == _controller.toString()) {
+                              TaskModel taskModel =
+                                  _taskController.taskModelList[index];
+                              if (taskModel.date ==
+                                  DateFormat('yyyy-MM-d')
+                                      .format(_selectedDate)) {
                                 return AnimationConfiguration.staggeredList(
                                   duration: const Duration(
                                     milliseconds: 600,
@@ -333,34 +332,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                                   ),
                                 );
                               } else {
-                                return AnimationConfiguration.staggeredList(
-                                  duration: const Duration(
-                                    milliseconds: 600,
-                                  ),
-                                  position: index,
-                                  child: SlideAnimation(
-                                    child: FadeInAnimation(
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                customBottomSheet(
-                                                  taskModel: _taskController
-                                                      .taskModelList[index],
-                                                );
-                                              },
-                                              child: TaskTile(
-                                                _taskController
-                                                    .taskModelList[index],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
+                                return Container();
                               }
                             },
                           ),
