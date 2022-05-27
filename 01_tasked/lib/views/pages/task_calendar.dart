@@ -174,7 +174,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                       const Spacer(),
                       GestureDetector(
                         onTap: (() async {
-                          await Get.to(const CreateTask());
+                          await Get.to(() => const CreateTask());
                           _taskController.getTasks();
                         }),
                         child: Container(
