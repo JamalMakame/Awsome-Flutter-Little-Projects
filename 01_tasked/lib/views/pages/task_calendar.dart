@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/controllers/task_controller.dart';
 import 'package:tasked/model/task_model.dart';
+import 'package:tasked/services/notification_services.dart';
 import 'package:tasked/views/pages/create_task.dart';
 import 'package:tasked/views/widgets/task_tile.dart';
 
@@ -17,8 +18,10 @@ class TaskCalendarPage extends StatefulWidget {
 }
 
 class _TaskCalendarPageState extends State<TaskCalendarPage> {
+  late NotifyHelper notifyHelper;
   List showProgressData = [];
   final TaskModel taskModel = TaskModel();
+
   DateTime _selectedDate = DateTime.now();
   final TaskController _taskController = Get.put(TaskController());
 
@@ -26,6 +29,9 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
   void initState() {
     super.initState();
     _taskController.getTasks();
+    notifyHelper = NotifyHelper();
+    notifyHelper.initializeNotification();
+    notifyHelper.requestingIOSPermissions();
   }
 
   Future<dynamic> customBottomSheet({
@@ -301,9 +307,18 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                             itemBuilder: (context, index) {
                               TaskModel taskModel =
                                   _taskController.taskModelList[index];
+                              debugPrint(taskModel.toJson());
                               if (taskModel.date ==
                                   DateFormat('yyyy-MM-d')
                                       .format(_selectedDate)) {
+                                notifyHelper.scheduledNotification(
+                                    hour: int.parse(taskModel.startTime
+                                        .toString()
+                                        .split(':')[0]),
+                                    minutes: int.parse(taskModel.startTime
+                                        .toString()
+                                        .split(':')[1]),
+                                    taskModel: taskModel);
                                 return AnimationConfiguration.staggeredList(
                                   duration: const Duration(
                                     milliseconds: 600,

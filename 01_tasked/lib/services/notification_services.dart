@@ -3,6 +3,7 @@ import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:get/get.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:tasked/model/task_model.dart';
+import 'package:tasked/views/pages/notified_page.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -37,13 +38,17 @@ class NotifyHelper {
     );
   }
 
-  scheduledNotification(int hour, int minutes, TaskModel taskModel) async {
+  scheduledNotification({
+    required int hour,
+    required int minutes,
+    required TaskModel taskModel,
+  }) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      0,
-      'scheduled title',
-      'scheduled body',
+      taskModel.id!.toInt(),
+      taskModel.name,
+      taskModel.description,
       _convertTime(hour: hour, minutes: minutes),
-      //tz.TZDateTime.now(tz.local).add(const Duration(seconds: 7)),
+      //tz.TZDateTime.now(tz.local).add(const Duration()),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'your channel id',
@@ -55,6 +60,8 @@ class NotifyHelper {
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
+      payload:
+          '${taskModel.name}|${taskModel.description}|${taskModel.startTime}-${taskModel.endTime}|',
     );
   }
 
@@ -70,12 +77,17 @@ class NotifyHelper {
   }
 
   void onSelectNotification(String? payload) async {
-    await Get.to(Container());
+    await Get.to(
+      () => NotifiedPage(
+        label: payload!,
+      ),
+    );
   }
 
   void onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) async {
     // display a dialog with the notification details, tap ok to go to another page
+
     await Get.dialog(
       const Text('Welcome to flutter'),
     );
@@ -103,10 +115,10 @@ class NotifyHelper {
     );
     await flutterLocalNotificationsPlugin.show(
       0,
-      'plain title',
-      'plain body',
+      title,
+      body,
       platformChannelSpecifics,
-      payload: 'Default_Sound',
+      payload: title,
     );
   }
 
@@ -120,7 +132,7 @@ class NotifyHelper {
     return scheduleDate;
   }
 
-  _configureLocalTimeZone() async {
+  Future<void> _configureLocalTimeZone() async {
     tz.initializeTimeZones();
     final String timezone = await FlutterNativeTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(timezone));

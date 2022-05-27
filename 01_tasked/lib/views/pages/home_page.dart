@@ -91,13 +91,7 @@ class _HomePageState extends State<HomePage> {
             left: 30,
           ),
           child: IconButton(
-            onPressed: () {
-              notifyHelper.displayNotification(
-                title: '',
-                body: '',
-              );
-              notifyHelper.scheduledNotification();
-            },
+            onPressed: () {},
             icon: const Icon(
               Icons.menu,
               color: TodoColors.iconClr,
