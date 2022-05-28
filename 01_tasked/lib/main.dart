@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tasked/db/task_db_helper.dart';
-import 'package:tasked/views/pages/my_app.dart';
+import 'package:tasked/views/pages/home_page.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DBHelper.initDB();
   runApp(
-    const MyApp(),
+    const GetMaterialApp(
+      home: MyHomePage(),
+    ),
   );
 }

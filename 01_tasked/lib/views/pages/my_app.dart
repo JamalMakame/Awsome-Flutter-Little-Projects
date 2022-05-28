@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/const/app_theme.dart';
-import 'package:tasked/services/notification_services.dart';
-import 'package:tasked/views/pages/create_task.dart';
-import 'package:tasked/views/pages/home_page.dart';
+import 'package:tasked/views/pages/content_page.dart';
 import 'package:tasked/views/pages/task_calendar.dart';
 import 'package:tasked/views/pages/timer_page.dart';
 
@@ -19,21 +17,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int index = 0;
   List list = [
-    const HomePage(),
+    const ContentPage(),
     const TaskCalendarPage(),
     const TimerPage(),
   ];
 
-  
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       theme: TodoTheme.blueTheme,
       home: Scaffold(
         backgroundColor: TodoColors.backGroundClr,

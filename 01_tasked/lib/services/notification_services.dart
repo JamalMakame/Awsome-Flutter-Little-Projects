@@ -48,7 +48,6 @@ class NotifyHelper {
       taskModel.name,
       taskModel.description,
       _convertTime(hour: hour, minutes: minutes),
-      //tz.TZDateTime.now(tz.local).add(const Duration()),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'your channel id',

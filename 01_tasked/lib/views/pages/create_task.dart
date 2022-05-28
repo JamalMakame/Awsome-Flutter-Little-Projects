@@ -292,53 +292,6 @@ class _CreateTaskState extends State<CreateTask> {
                               ),
                             ),
                             const SizedBox(height: 20),
-                            Text(
-                              'Category',
-                              style:
-                                  Theme.of(context).primaryTextTheme.headline2,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 20,
-                              ),
-                              child: SizedBox(
-                                height: 190,
-                                width: MediaQuery.of(context).size.width,
-                                child: Wrap(
-                                  spacing: 13,
-                                  runSpacing: 16,
-                                  children: List.generate(
-                                    categoryList.length,
-                                    (index) {
-                                      return customCategory(
-                                        tileName: categoryList[index],
-                                        onPress: () {
-                                          setState(() {
-                                            _selectedColor = index;
-                                            debugPrint(
-                                                'Index : $_selectedColor');
-                                          });
-                                        },
-                                        categoryClr: index == 0
-                                            ? TodoColors.bluishClr
-                                            : index == 1
-                                                ? Colors.lime
-                                                : index == 2
-                                                    ? TodoColors.darkTextClr
-                                                    : index == 3
-                                                        ? TodoColors.pinkClr
-                                                        : index == 4
-                                                            ? TodoColors
-                                                                .yellowClr
-                                                            : index == 5
-                                                                ? Colors.red
-                                                                : Colors.green,
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
                             GestureDetector(
                               onTap: (() => _validateData()),
                               child: Padding(

@@ -9,7 +9,7 @@ Widget indicator({
   return Padding(
     padding: const EdgeInsets.only(
       top: 10,
-      left: 200,
+      left: 100,
     ),
     child: SmoothPageIndicator(
       controller: pageController,

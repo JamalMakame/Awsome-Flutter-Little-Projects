@@ -23,7 +23,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
   final TaskModel taskModel = TaskModel();
 
   DateTime _selectedDate = DateTime.now();
-  final TaskController _taskController = Get.put(TaskController());
+  final TaskController _taskController = Get.find<TaskController>();
 
   @override
   void initState() {
@@ -307,7 +307,6 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                             itemBuilder: (context, index) {
                               TaskModel taskModel =
                                   _taskController.taskModelList[index];
-                              debugPrint(taskModel.toJson());
                               if (taskModel.date ==
                                   DateFormat('yyyy-MM-d')
                                       .format(_selectedDate)) {

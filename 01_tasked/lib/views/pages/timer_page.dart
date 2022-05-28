@@ -13,7 +13,9 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage> {
   final CountDownController _controller = CountDownController();
-  final int _duration = 75;
+  final int _duration = 0;
+  bool isRunning = false;
+  bool isStarted = true;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,8 @@ class _TimerPageState extends State<TimerPage> {
             padding: const EdgeInsets.only(top: 40.0),
             child: CircularCountDownTimer(
               duration: _duration,
+              initialDuration: _duration,
+              controller: _controller,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2.7,
               ringColor: TodoColors.lightTextClr,
@@ -103,7 +107,13 @@ class _TimerPageState extends State<TimerPage> {
                                   height: 20,
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    _controller.restart(duration: 1500);
+                                    setState(() {
+                                      isRunning = true;
+                                      isStarted = false;
+                                    });
+                                  },
                                   child: const Text(
                                     '25',
                                     style: TextStyle(
@@ -130,7 +140,13 @@ class _TimerPageState extends State<TimerPage> {
                                   height: 20,
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    _controller.restart(duration: 300);
+                                    setState(() {
+                                      isRunning = true;
+                                      isStarted = false;
+                                    });
+                                  },
                                   child: const Text(
                                     '5',
                                     style: TextStyle(
@@ -151,42 +167,97 @@ class _TimerPageState extends State<TimerPage> {
                       padding: const EdgeInsets.only(
                         top: 38.0,
                       ),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 2,
-                          height: 72,
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment(
-                                  0.0374455489218235, 0.7739855647087097),
-                              end: Alignment(
-                                  -0.7739855647087097, 0.06429413706064224),
-                              colors: [
-                                Color.fromRGBO(156, 44, 243, 1),
-                                Color.fromRGBO(58, 72, 248, 1)
-                              ],
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(226, 226, 226, 0.25),
-                                offset: Offset(17, 26),
-                                blurRadius: 25,
-                              ),
-                            ],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(75),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Start Studying',
-                              style:
-                                  Theme.of(context).primaryTextTheme.headline5,
-                            ),
-                          ),
-                        ),
-                      ),
+                      child: isStarted == true
+                          ? Container()
+                          : isRunning == true
+                              ? GestureDetector(
+                                  onTap: () {
+                                    _controller.pause();
+                                    setState(() {
+                                      isRunning = false;
+                                    });
+                                  },
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2,
+                                    height: 72,
+                                    decoration: const BoxDecoration(
+                                      gradient: LinearGradient(
+                                        begin: Alignment(0.0374455489218235,
+                                            0.7739855647087097),
+                                        end: Alignment(-0.7739855647087097,
+                                            0.06429413706064224),
+                                        colors: [
+                                          Color.fromRGBO(156, 44, 243, 1),
+                                          Color.fromRGBO(58, 72, 248, 1)
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color.fromRGBO(
+                                              226, 226, 226, 0.25),
+                                          offset: Offset(17, 26),
+                                          blurRadius: 25,
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(75),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Pause',
+                                        style: Theme.of(context)
+                                            .primaryTextTheme
+                                            .headline5,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : GestureDetector(
+                                  onTap: () {
+                                    _controller.resume();
+                                    setState(() {
+                                      isRunning = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2,
+                                    height: 72,
+                                    decoration: const BoxDecoration(
+                                      gradient: LinearGradient(
+                                        begin: Alignment(0.0374455489218235,
+                                            0.7739855647087097),
+                                        end: Alignment(-0.7739855647087097,
+                                            0.06429413706064224),
+                                        colors: [
+                                          Color.fromRGBO(156, 44, 243, 1),
+                                          Color.fromRGBO(58, 72, 248, 1),
+                                        ],
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color.fromRGBO(
+                                              226, 226, 226, 0.25),
+                                          offset: Offset(17, 26),
+                                          blurRadius: 25,
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(75),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Resume',
+                                        style: Theme.of(context)
+                                            .primaryTextTheme
+                                            .headline5,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                     ),
                   ],
                 ),
