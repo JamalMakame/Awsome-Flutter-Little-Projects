@@ -11,14 +11,20 @@ class TimerPage extends StatefulWidget {
   State<TimerPage> createState() => _TimerPageState();
 }
 
-class _TimerPageState extends State<TimerPage> {
-  final CountDownController _controller = CountDownController();
-  final int _duration = 0;
+class _TimerPageState extends State<TimerPage>
+    with AutomaticKeepAliveClientMixin<TimerPage> {
   bool isRunning = false;
   bool isStarted = true;
 
+  final CountDownController _controller = CountDownController();
+  final int _duration = 0;
+
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

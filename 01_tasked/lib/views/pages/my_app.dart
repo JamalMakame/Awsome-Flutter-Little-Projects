@@ -15,12 +15,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int index = 0;
-  List list = [
-    const ContentPage(),
-    const TaskCalendarPage(),
-    const TimerPage(),
-  ];
+  late int _index;
+  late PageController _pageController;
+
+  late List<Widget> _list;
+
+  @override
+  void initState() {
+    super.initState();
+    _index = 0;
+    _list = [
+      const ContentPage(),
+      const TaskCalendarPage(),
+      const TimerPage(),
+    ];
+    _pageController = PageController(initialPage: _index);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +44,13 @@ class _MyAppState extends State<MyApp> {
       theme: TodoTheme.blueTheme,
       home: Scaffold(
         backgroundColor: TodoColors.backGroundClr,
-        body: list[index],
+        body: PageView(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: _list,
+        ),
         bottomNavigationBar: FloatingNavbar(
-          currentIndex: index,
+          currentIndex: _index,
           backgroundColor: TodoColors.backGroundClr,
           selectedItemColor: TodoColors.iconClr,
           unselectedItemColor: Colors.deepPurple[200],
@@ -52,7 +72,8 @@ class _MyAppState extends State<MyApp> {
           ],
           onTap: (int val) {
             setState(() {
-              index = val;
+              _index = val;
+              _pageController.jumpToPage(_index);
             });
           },
         ),
