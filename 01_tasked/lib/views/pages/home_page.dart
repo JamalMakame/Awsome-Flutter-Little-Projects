@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Task Your Favorite",
+                  "Task Your Daily",
                   style: TextStyle(
                     fontSize: 32,
                     color: Colors.white,
@@ -74,22 +74,25 @@ class _MyHomePageState extends State<MyHomePage>
                   height: 40,
                 ),
                 Container(
-                  width: 200,
-                  height: 70,
+                  width: 150,
+                  height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: const Color(0xFffbc33e),
                   ),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      elevation: 0,
+                      elevation: 1,
                       primary: const Color(0xFFfbc33e),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
                     onPressed: () async {
-                      await Get.to(() => const MyApp());
+                      await Get.off(
+                        () => const MyApp(),
+                        transition: Transition.cupertino,
+                      );
                     },
                     child: const Text(
                       "Get started",

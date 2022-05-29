@@ -54,19 +54,16 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: TodoColors.backGroundClr,
           selectedItemColor: TodoColors.iconClr,
           unselectedItemColor: Colors.deepPurple[200],
-          iconSize: 42,
-          fontSize: 19,
+          iconSize: 23,
+          fontSize: 10,
           items: [
             FloatingNavbarItem(
-              title: 'Home',
               icon: (Icons.home),
             ),
             FloatingNavbarItem(
-              title: 'Calendar',
               icon: (Icons.calendar_month),
             ),
             FloatingNavbarItem(
-              title: 'Timer',
               icon: (Icons.timer),
             ),
           ],

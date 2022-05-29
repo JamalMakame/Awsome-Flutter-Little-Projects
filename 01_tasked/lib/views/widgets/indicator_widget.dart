@@ -8,8 +8,8 @@ Widget indicator({
 }) {
   return Padding(
     padding: const EdgeInsets.only(
-      top: 10,
-      left: 100,
+      top: 0,
+      left: 40,
     ),
     child: SmoothPageIndicator(
       controller: pageController,
@@ -17,7 +17,7 @@ Widget indicator({
       effect: ExpandingDotsEffect(
         activeDotColor: Colors.deepPurple,
         dotColor: Colors.deepPurple.shade100,
-        spacing: 20,
+        spacing: 10,
       ),
     ),
   );

@@ -10,15 +10,15 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       width: MediaQuery.of(context).size.width,
-      height: 160,
-      margin: const EdgeInsets.only(bottom: 12),
+      height: 110,
+      margin: const EdgeInsets.only(bottom: 5),
       child: Container(
         padding: const EdgeInsets.all(16),
         //  width: SizeConfig.screenWidth * 0.78,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
           color: TodoColors.lightTextClr,
         ),
         child: Row(
@@ -27,8 +27,8 @@ class TaskTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 90.96,
-                  width: 90.96,
+                  height: 60.96,
+                  width: 60.96,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(20.0),
@@ -49,7 +49,7 @@ class TaskTile extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              width: 30,
+              width: 15,
             ),
             Expanded(
               child: Column(
@@ -66,7 +66,7 @@ class TaskTile extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 12,
+                    height: 5,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,12 +88,12 @@ class TaskTile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 4),
                   Text(
                     taskModel!.description ?? "",
                     style: const TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: TodoColors.darkTextClr,
                     ),

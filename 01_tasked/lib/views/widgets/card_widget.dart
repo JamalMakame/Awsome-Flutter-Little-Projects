@@ -11,11 +11,10 @@ Widget customCards({
   return GestureDetector(
     child: Container(
       padding: const EdgeInsets.only(left: 20, top: 20),
-      height: 220,
       width: MediaQuery.of(context).size.width - 20,
       margin: const EdgeInsets.only(right: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(20),
         color: projectClr,
         gradient: const LinearGradient(
           begin: Alignment(0.0374455489218235, 0.7739855647087097),
@@ -32,6 +31,7 @@ Widget customCards({
           Row(
             children: [
               const Image(
+                height: 40,
                 image: AssetImage(
                   'assets/svg/Group 36.png',
                 ),
@@ -43,7 +43,7 @@ Widget customCards({
                 'Project $projectNumber',
                 style: const TextStyle(
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 33,
+                  fontSize: 20,
                   height: 1.5,
                 ),
                 maxLines: 1,
@@ -59,7 +59,7 @@ Widget customCards({
             'Project $projectTitle',
             style: const TextStyle(
               color: Color.fromRGBO(255, 255, 255, 1),
-              fontSize: 27,
+              fontSize: 20,
               height: 1.5,
             ),
             maxLines: 1,
@@ -67,13 +67,13 @@ Widget customCards({
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Text(
             'Project $projectDate',
             style: const TextStyle(
               color: Color.fromRGBO(255, 255, 255, 1),
-              fontSize: 24,
+              fontSize: 20,
               height: 1,
             ),
             maxLines: 1,

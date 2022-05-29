@@ -41,8 +41,8 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
       Container(
         padding: const EdgeInsets.only(top: 4),
         height: taskModel.isCompleted == 1
-            ? MediaQuery.of(context).size.height * 0.24
-            : MediaQuery.of(context).size.height * 0.32,
+            ? MediaQuery.of(context).size.height * 0.30
+            : MediaQuery.of(context).size.height * 0.40,
         child: Column(
           children: [
             Container(
@@ -116,7 +116,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
         ),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 82,
+          height: 62,
           decoration: BoxDecoration(
             color: buttonClr,
             border: Border.all(
@@ -155,7 +155,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 302,
+            height: MediaQuery.of(context).size.height / 3.5,
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
               color: TodoColors.lightTextClr,
@@ -166,7 +166,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 45,
+                horizontal: 15,
                 vertical: 30,
               ),
               child: Column(
@@ -175,7 +175,11 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                     children: [
                       Text(
                         DateFormat.yMMM().format(DateTime.now()),
-                        style: Theme.of(context).primaryTextTheme.headline1,
+                        style: const TextStyle(
+                          color: TodoColors.darkTextClr,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 30,
+                        ),
                       ),
                       const Spacer(),
                       GestureDetector(
@@ -185,11 +189,11 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                         }),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 23,
+                            horizontal: 13,
+                            vertical: 13,
                           ),
-                          height: 70,
-                          width: 171,
+                          height: 40,
+                          width: 100,
                           decoration: const BoxDecoration(
                             gradient: LinearGradient(
                               begin: Alignment(
@@ -210,15 +214,17 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                               Icon(
                                 Icons.add,
                                 color: TodoColors.lightTextClr,
-                                size: 23,
+                                size: 13,
                               ),
-                              Spacer(),
+                              SizedBox(
+                                width: 5,
+                              ),
                               Text(
                                 'Add Task',
                                 style: TextStyle(
                                   color: TodoColors.lightTextClr,
                                   fontFamily: 'Poppins',
-                                  fontSize: 20,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -230,34 +236,34 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                      top: 40,
+                      top: 20,
                     ),
                     child: SizedBox(
-                      height: 123,
+                      height: 90,
                       child: DatePicker(
                         DateTime.now(),
-                        width: 80,
+                        width: 60,
                         monthTextStyle: const TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 19,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
                           color: TodoColors.darkTextClr,
                         ),
                         dayTextStyle: const TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 19,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
                           color: TodoColors.darkTextClr,
                         ),
                         dateTextStyle: const TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w400,
                           color: TodoColors.darkTextClr,
                         ),
                         initialSelectedDate: _selectedDate,
                         selectionColor: Colors.deepPurpleAccent,
-                        selectedTextColor: Colors.white,
+                        selectedTextColor: Colors.white60,
                         daysCount: 60,
                         onDateChange: (date) {
                           setState(() {
@@ -286,7 +292,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                       'Tasks',
                       style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 32,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: TodoColors.darkTextClr,
                       ),

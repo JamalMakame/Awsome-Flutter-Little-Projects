@@ -257,6 +257,16 @@ class _ContentPageState extends State<ContentPage>
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: TodoColors.iconClr,
+                        gradient: const LinearGradient(
+                          begin:
+                              Alignment(0.0374455489218235, 0.7739855647087097),
+                          end: Alignment(
+                              -0.7739855647087097, 0.06429413706064224),
+                          colors: [
+                            Color.fromRGBO(156, 44, 243, 1),
+                            Color.fromRGBO(58, 72, 248, 1)
+                          ],
+                        ),
                       ),
                       child: GestureDetector(
                         onTap: () {},
@@ -264,7 +274,7 @@ class _ContentPageState extends State<ContentPage>
                           child: Icon(
                             Icons.arrow_forward_ios,
                             color: TodoColors.lightTextClr,
-                            size: 23,
+                            size: 13,
                           ),
                         ),
                       ),
@@ -275,9 +285,8 @@ class _ContentPageState extends State<ContentPage>
               const SizedBox(
                 height: 10,
               ),
-              // TODO 1: TO BE IMPLEMENTED FROM HERE
               SizedBox(
-                height: 220,
+                height: 140,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: 4,
@@ -304,9 +313,9 @@ class _ContentPageState extends State<ContentPage>
               ),
               Container(
                 padding: const EdgeInsets.only(
-                  left: 25,
-                  right: 25,
-                  top: 25,
+                  left: 15,
+                  right: 15,
+                  top: 5,
                 ),
                 child: Row(
                   children: [
@@ -314,7 +323,7 @@ class _ContentPageState extends State<ContentPage>
                       "Recent Tasks",
                       style: TextStyle(
                         color: Color(0xFF1f2326),
-                        fontSize: 24,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         decoration: TextDecoration.none,
                       ),
@@ -324,7 +333,7 @@ class _ContentPageState extends State<ContentPage>
                       "Show all",
                       style: TextStyle(
                         color: TodoColors.darkTextClr,
-                        fontSize: 20,
+                        fontSize: 14,
                         decoration: TextDecoration.none,
                       ),
                     ),
@@ -332,11 +341,21 @@ class _ContentPageState extends State<ContentPage>
                       width: 7,
                     ),
                     Container(
-                      width: 50,
-                      height: 50,
+                      width: 30,
+                      height: 30,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: TodoColors.iconClr,
+                        gradient: const LinearGradient(
+                          begin:
+                              Alignment(0.0374455489218235, 0.7739855647087097),
+                          end: Alignment(
+                              -0.7739855647087097, 0.06429413706064224),
+                          colors: [
+                            Color.fromRGBO(156, 44, 243, 1),
+                            Color.fromRGBO(58, 72, 248, 1)
+                          ],
+                        ),
                       ),
                       child: GestureDetector(
                         onTap: () {},
@@ -344,7 +363,7 @@ class _ContentPageState extends State<ContentPage>
                           child: Icon(
                             Icons.arrow_forward_ios,
                             color: TodoColors.lightTextClr,
-                            size: 30,
+                            size: 13,
                           ),
                         ),
                       ),
@@ -353,12 +372,12 @@ class _ContentPageState extends State<ContentPage>
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                    top: 10,
+                    top: 0,
                   ),
                   child: MediaQuery.removeViewPadding(
                     context: context,
@@ -374,10 +393,12 @@ class _ContentPageState extends State<ContentPage>
                           if (taskModel.date ==
                               DateFormat('yyyy-MM-d').format(_selectedDate)) {
                             notifyHelper.scheduledNotification(
-                                hour: int.parse(
-                                    taskModel.startTime.toString().split(':')[0]),
-                                minutes: int.parse(
-                                    taskModel.startTime.toString().split(':')[1]),
+                                hour: int.parse(taskModel.startTime
+                                    .toString()
+                                    .split(':')[0]),
+                                minutes: int.parse(taskModel.startTime
+                                    .toString()
+                                    .split(':')[1]),
                                 taskModel: taskModel);
                             return AnimationConfiguration.staggeredList(
                               duration: const Duration(
@@ -397,7 +418,8 @@ class _ContentPageState extends State<ContentPage>
                                             );
                                           },
                                           child: TaskTile(
-                                            _taskController.taskModelList[index],
+                                            _taskController
+                                                .taskModelList[index],
                                           ),
                                         ),
                                       ),
