@@ -29,28 +29,36 @@ class NotifiedPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 top: 20,
               ),
               child: Text(
                 'Hello, Jamal',
-                style: Theme.of(context).primaryTextTheme.headline6,
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.w400,
+                  color: TodoColors.lightTextClr,
+                ),
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
-            Text(
+            const Text(
               'You have a new reminder',
-              style: Theme.of(context).primaryTextTheme.headline2,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: TodoColors.lightTextClr,
+              ),
             ),
             const SizedBox(
               height: 30,
             ),
             Container(
-              height: 700,
-              width: 470,
+              height: MediaQuery.of(context).size.height * 0.62,
+              width: MediaQuery.of(context).size.width * 0.85,
               decoration: BoxDecoration(
                 color: Colors.deepPurple,
                 borderRadius: BorderRadius.circular(40),

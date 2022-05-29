@@ -33,12 +33,7 @@ class TaskTile extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(20.0),
                     ),
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromRGBO(156, 44, 243, 1),
-                        Color.fromRGBO(58, 72, 248, 1)
-                      ],
-                    ),
+                    color: Colors.deepPurple,
                   ),
                   child: const Center(
                     child: Image(

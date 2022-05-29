@@ -195,16 +195,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                           height: 40,
                           width: 100,
                           decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment(
-                                  0.0374455489218235, 0.7739855647087097),
-                              end: Alignment(
-                                  -0.7739855647087097, 0.06429413706064224),
-                              colors: [
-                                Color.fromRGBO(156, 44, 243, 1),
-                                Color.fromRGBO(58, 72, 248, 1)
-                              ],
-                            ),
+                            color: Colors.deepPurple,
                             borderRadius: BorderRadius.all(
                               Radius.circular(75),
                             ),
@@ -262,8 +253,8 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                           color: TodoColors.darkTextClr,
                         ),
                         initialSelectedDate: _selectedDate,
-                        selectionColor: Colors.deepPurpleAccent,
-                        selectedTextColor: Colors.white60,
+                        selectionColor: Colors.deepPurple,
+                        selectedTextColor: Colors.white70,
                         daysCount: 60,
                         onDateChange: (date) {
                           setState(() {

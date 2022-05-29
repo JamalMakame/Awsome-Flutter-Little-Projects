@@ -166,7 +166,7 @@ class _ContentPageState extends State<ContentPage>
             children: [
               Container(
                 width: width,
-                height: 60,
+                height: 70,
                 margin: const EdgeInsets.only(left: 15, right: 15),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -257,16 +257,6 @@ class _ContentPageState extends State<ContentPage>
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: TodoColors.iconClr,
-                        gradient: const LinearGradient(
-                          begin:
-                              Alignment(0.0374455489218235, 0.7739855647087097),
-                          end: Alignment(
-                              -0.7739855647087097, 0.06429413706064224),
-                          colors: [
-                            Color.fromRGBO(156, 44, 243, 1),
-                            Color.fromRGBO(58, 72, 248, 1)
-                          ],
-                        ),
                       ),
                       child: GestureDetector(
                         onTap: () {},
@@ -286,7 +276,7 @@ class _ContentPageState extends State<ContentPage>
                 height: 10,
               ),
               SizedBox(
-                height: 140,
+                height: 160,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: 4,
@@ -346,16 +336,6 @@ class _ContentPageState extends State<ContentPage>
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: TodoColors.iconClr,
-                        gradient: const LinearGradient(
-                          begin:
-                              Alignment(0.0374455489218235, 0.7739855647087097),
-                          end: Alignment(
-                              -0.7739855647087097, 0.06429413706064224),
-                          colors: [
-                            Color.fromRGBO(156, 44, 243, 1),
-                            Color.fromRGBO(58, 72, 248, 1)
-                          ],
-                        ),
                       ),
                       child: GestureDetector(
                         onTap: () {},

@@ -16,14 +16,6 @@ Widget customCards({
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: projectClr,
-        gradient: const LinearGradient(
-          begin: Alignment(0.0374455489218235, 0.7739855647087097),
-          end: Alignment(-0.7739855647087097, 0.06429413706064224),
-          colors: [
-            Color.fromRGBO(156, 44, 243, 1),
-            Color.fromRGBO(58, 72, 248, 1)
-          ],
-        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,16 +31,20 @@ Widget customCards({
               const SizedBox(
                 width: 20,
               ),
-              Text(
-                'Project $projectNumber',
-                style: const TextStyle(
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 20,
-                  height: 1.5,
-                ),
-                maxLines: 1,
-                softWrap: false,
-                overflow: TextOverflow.ellipsis,
+              Column(
+                children: [
+                  Text(
+                    'Project $projectNumber',
+                    style: const TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontSize: 20,
+                      height: 1.5,
+                    ),
+                    maxLines: 1,
+                    softWrap: false,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
             ],
           ),

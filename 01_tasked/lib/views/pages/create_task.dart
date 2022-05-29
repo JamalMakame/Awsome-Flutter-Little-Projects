@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/controllers/task_controller.dart';
 import 'package:tasked/model/task_model.dart';
-import 'package:tasked/views/widgets/custom_category_tile.dart';
 
 class CreateTask extends StatefulWidget {
   const CreateTask({Key? key}) : super(key: key);
