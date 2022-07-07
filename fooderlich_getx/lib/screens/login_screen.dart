@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/api/on_board_service.dart';
 import 'package:fooderlich/screens/onboarding_screen.dart';
 import 'package:get/get.dart';
+
+import 'screens.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
@@ -29,7 +32,9 @@ class LoginScreen extends StatelessWidget {
         ),
         onPressed: () async {
           Get.offAll(
-           () => OnboardingScreen(),
+            () => OnBoardServices().loadOnBoardFromBox() != true
+                ? OnboardingScreen()
+                : const Home(),
           );
         },
       ),
