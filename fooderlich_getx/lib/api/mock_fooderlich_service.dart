@@ -74,36 +74,38 @@ class MockFooderlichService {
           'X-RapidAPI-Host': 'mycookbook-io1.p.rapidapi.com',
         },
         body:
-            'https://www.jamieoliver.com/recipes/vegetables-recipes/superfood-salad/',
+            'https://www.jamieoliver.com/recipes/Smoked-Salmon/',
       );
       final recipes = <ExploreRecipe0>[];
       //recipes.add(response.body);
       debugPrint(response.body);
-      final List json = jsonDecode(response.body);
-      for (var element in json[0]) {
-        List ingredients = [];
-        List instructions = [];
+      //final List<dynamic> decodedJsonArray = jsonDecode(response.body);
+      //debugPrint(decodedJsonArray.toString());
+      // final json = decodedJson.map((e) => decodedJson);
+      // for (i = 0; i = ) {
+      //   List ingredients = [];
+      //   List instructions = [];
 
-        if (element['ingredients'] != null) {
-          element['ingredients'].forEach((v) {
-            ingredients.add(v);
-          });
-        }
+      //   if (value['ingredients'] != null) {
+      //     value['ingredients'].forEach((v) {
+      //       ingredients.add(v);
+      //     });
+      //   }
 
-        if (element['instructions']['steps'] != null) {
-          element['instructions']['steps'].forEach((v) {
-            instructions.add(v);
-          });
-        }
-        recipes.add(ExploreRecipe0(
-          description: element['description'] ?? '',
-          images: element['images'] ?? '',
-          ingredients: ingredients,
-          instructions: instructions,
-          name: element['name'] ?? '',
-          uuid: element['uuid'] ?? '',
-        ));
-      }
+      //   if (value['instructions']['steps'] != null) {
+      //     value['instructions']['steps'].forEach((v) {
+      //       instructions.add(v);
+      //     });
+      //   }
+      //   recipes.add(ExploreRecipe0(
+      //     description: value['description'] ?? '',
+      //     images: value['images'] ?? '',
+      //     ingredients: ingredients,
+      //     instructions: instructions,
+      //     name: value['name'] ?? '',
+      //     uuid: value['uuid'] ?? '',
+      //   ));
+      // });
 
       // if (json != null) {
       //   final recipes = <ExploreRecipe0>[];
