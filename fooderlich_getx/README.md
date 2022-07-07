@@ -1,4 +1,4 @@
-# fooderlich1
+# fooderlich_getx
 
 A new Flutter project.
 
