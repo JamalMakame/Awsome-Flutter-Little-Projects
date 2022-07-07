@@ -70,7 +70,7 @@ Widget buildActionButtons() {
       MaterialButton(
         child: const Text('Skip'),
         onPressed: () {
-          OnBoardServices().saveIsView();
+         // OnBoardServices().saveIsView();
           Get.offAll(() => const Home());
         },
       ),
