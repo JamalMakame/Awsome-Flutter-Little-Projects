@@ -4,6 +4,7 @@ class Instruction {
   String imageUrl;
   String description;
   int durationInMinutes;
+  
 
   Instruction({
     required this.imageUrl,

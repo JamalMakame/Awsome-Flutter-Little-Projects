@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../models/onboard_page_model.dart';
 
 class OnboardingScreen extends StatelessWidget {
-  OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

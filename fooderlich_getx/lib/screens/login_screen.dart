@@ -31,11 +31,13 @@ class LoginScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () async {
-          Get.offAll(
-            () => OnBoardServices().loadOnBoardFromBox() != true
-                ? OnboardingScreen()
-                : const Home(),
-          );
+          // Get.offAll(
+          //   () => OnBoardServices().loadOnBoardFromBox() != true
+          //       ? OnboardingScreen()
+          //       : const Home(),
+          // );
+
+          Get.offAll(() => const OnboardingScreen());
         },
       ),
     );

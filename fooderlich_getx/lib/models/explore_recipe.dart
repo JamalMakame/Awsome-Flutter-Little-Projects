@@ -7,6 +7,51 @@ class RecipeCardType {
   static const card3 = 'card3';
 }
 
+class ExploreRecipe0 {
+  String description;
+  String images;
+  List ingredients;
+  List instructions;
+  String name;
+  String uuid;
+
+  ExploreRecipe0({
+    required this.description,
+    required this.images,
+    required this.ingredients,
+    required this.instructions,
+    required this.name,
+    required this.uuid,
+  });
+
+  factory ExploreRecipe0.fromJson(Map<String, dynamic> json) {
+    List ingredients = [];
+    List instructions = [];
+
+    if (json['ingredients'] != null) {
+      json['ingredients'].forEach((v) {
+        ingredients.add(v);
+      });
+    }
+
+    if (json['instructions']['steps'] != null) {
+      json['instructions']['steps'].forEach((v) {
+        instructions.add(v);
+      });
+    }
+
+    return ExploreRecipe0(
+      description: json['description'] ?? '',
+      images: json['images'] ?? '',
+      ingredients: ingredients,
+      instructions: instructions,
+      name: json['name'] ?? '',
+      uuid: json['uuid'] ?? '',
+    );
+  }
+}
+
+
 class ExploreRecipe {
   String id;
   String cardType;
