@@ -27,6 +27,7 @@ class WebViewScreenState extends State<WebViewScreen> {
     super.initState();
     // Enable hybrid composition.
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    
   }
 
   @override

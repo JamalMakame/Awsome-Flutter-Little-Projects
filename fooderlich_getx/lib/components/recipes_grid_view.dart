@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../components/components.dart';
 import '../models/models.dart';
+import 'more_info.dart';
 
 class RecipesGridView extends StatelessWidget {
   final List<SimpleRecipe> recipes;
@@ -22,10 +24,27 @@ class RecipesGridView extends StatelessWidget {
       child: GridView.builder(
         itemCount: recipes.length,
         gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
         itemBuilder: (context, index) {
           final simpleRecipe = recipes[index];
-          return RecipeThumbnail(recipe: simpleRecipe);
+          return GestureDetector(
+            onTap: () {
+              Get.to(
+                () => const MoreInfoScreen(),
+                arguments: {
+                  'DishImage' : simpleRecipe.dishImage,
+                  'Title' : simpleRecipe.title,
+                  'Course': simpleRecipe.information[0],
+                  'Price': simpleRecipe.information[1],
+                  'Cuisine': simpleRecipe.information[2],
+                  'Skill Level': simpleRecipe.information[3],
+                  'Prep Time': simpleRecipe.information[4],
+                  'Source' : simpleRecipe.source,
+                },
+              );
+            },
+            child: RecipeThumbnail(recipe: simpleRecipe),
+          );
         },
       ),
     );
