@@ -7,9 +7,10 @@ Widget primaryButton({
   required String buttonText,
   required double buttonWidth,
   required double buttonHeight,
+  required Function() onPressed,
 }) {
   return MaterialButton(
-    onPressed: () {},
+    onPressed: onPressed,
     child: Container(
       width: buttonWidth,
       height: buttonHeight,

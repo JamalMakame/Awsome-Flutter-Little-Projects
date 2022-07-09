@@ -1,14 +1,12 @@
 import 'package:custom_input_text/custom_input_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:recipe_getx/components/constants.dart';
 
-Widget customeTextInput({
+Widget customTextInput({
   required String placeholder,
   required TextEditingController textController,
   required IconData icon,
-  required TextInputType keyboardType,
-  required Function onChanged
+  required bool isPassword,
 }) {
   return CustomInputText(
     placeholder: placeholder,
@@ -17,9 +15,8 @@ Widget customeTextInput({
     borderRadius: 1,
     enabled: true,
     icon: icon,
-    keyboardType: keyboardType,
     validation: true,
     onfocusColor: kPrimaryClr,
-    onChanged: onChanged(),
+    isPassword: isPassword,
   );
 }
