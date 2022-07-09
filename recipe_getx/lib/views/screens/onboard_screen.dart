@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
-import 'package:recipe_getx/views/screens/login_Screen.dart';
+import 'package:recipe_getx/views/screens/login_screen.dart';
 import 'package:recipe_getx/views/widgets/buttons.dart';
 
 import '../../controllers/sign_in_manager.dart';

@@ -1,16 +1,11 @@
-import 'package:custom_input_text/custom_input_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
-import 'package:recipe_getx/views/widgets/buttons.dart';
 
 import '../../controllers/sign_in_manager.dart';
 
 import 'package:animated_login/animated_login.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:recipe_getx/components/constants.dart';
 
 class LoginScreen extends GetView<SingInManager> {
   const LoginScreen({Key? key}) : super(key: key);
