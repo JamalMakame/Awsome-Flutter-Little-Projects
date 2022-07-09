@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'views/screens/onboard_screen.dart';
 
 void main() {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
-import 'package:recipe_getx/views/screens/sign_in_screen.dart';
+import 'package:recipe_getx/views/screens/login_Screen.dart';
 import 'package:recipe_getx/views/widgets/buttons.dart';
 
 import '../../controllers/sign_in_manager.dart';
@@ -52,13 +52,13 @@ class OnBoardingScreen extends StatelessWidget {
                 buttonHeight: 56,
                 onPressed: () {
                   Get.to(
-                        const SignInScreen(),
-                        binding: BindingsBuilder(
-                          () {
-                            Get.lazyPut<SingInManager>(() => SingInManager());
-                          },
-                        ),
-                      );
+                    () => const LoginScreen(),
+                    binding: BindingsBuilder(
+                      () {
+                        Get.lazyPut<SingInManager>(() => SingInManager());
+                      },
+                    ),
+                  );
                 },
               ),
             ],
