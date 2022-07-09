@@ -1,11 +1,9 @@
 import 'package:custom_input_text/custom_input_text.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
 import 'package:recipe_getx/views/widgets/buttons.dart';
-import 'package:recipe_getx/views/widgets/text_input.dart';
 
 import '../../controllers/sign_in_manager.dart';
 
