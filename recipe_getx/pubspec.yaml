@@ -13,6 +13,7 @@ dependencies:
   custom_input_text: ^0.1.3
   animated_login: ^1.5.4
   fancy_password_field: ^1.0.4
+  avatars: ^3.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
