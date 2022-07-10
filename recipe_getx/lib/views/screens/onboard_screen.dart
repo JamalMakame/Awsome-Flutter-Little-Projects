@@ -21,7 +21,7 @@ class OnBoardingScreen extends StatelessWidget {
               const SizedBox(
                 child: Image(
                   width: 420,
-                  height: 606,
+                  height: 406,
                   fit: BoxFit.contain,
                   image: AssetImage(
                     'assets/Onboarding.png',
@@ -30,6 +30,7 @@ class OnBoardingScreen extends StatelessWidget {
               ),
               Text(
                 'Start Cooking',
+                textAlign: TextAlign.center,
                 style: GoogleFonts.inter(
                   fontSize: 32,
                   color: kMainTextClr,
@@ -37,7 +38,8 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                'Let\'s join our community to cook better food!',
+                'Let\'s join our community \nto cook better food!',
+                textAlign: TextAlign.center,
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w600,
                   fontSize: 23,

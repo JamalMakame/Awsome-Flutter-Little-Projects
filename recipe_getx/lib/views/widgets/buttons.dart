@@ -35,7 +35,7 @@ Widget primaryButton({
           buttonText,
           style: GoogleFonts.inter(
             color: textClr,
-            fontSize: 15,
+            fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
         ),

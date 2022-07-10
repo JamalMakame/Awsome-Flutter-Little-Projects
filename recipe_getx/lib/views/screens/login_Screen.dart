@@ -7,19 +7,24 @@ import '../../controllers/sign_in_manager.dart';
 
 import 'package:animated_login/animated_login.dart';
 
+import 'verification_screen.dart';
+
 class LoginScreen extends GetView<SingInManager> {
   const LoginScreen({Key? key}) : super(key: key);
 
   LoginViewTheme get _mobileTheme => LoginViewTheme(
-        // showLabelTexts: false,
+        backgroundColor: Colors.white,
+        loadingSocialButtonColor: kPrimaryClr,
+        formFieldBackgroundColor: Colors.white,
+        enabledBorderColor: kOutlineClr,
+        focusedBorderColor: kPrimaryClr,
+        useEmailStyle: GoogleFonts.inter(
+          color: kSecondaryTextClr,
+        ),
         welcomeTitleStyle: GoogleFonts.inter(
           color: kMainTextClr,
           fontWeight: FontWeight.bold,
         ),
-        textFormFieldDeco: const InputDecoration(
-          // border: InputBorder(borderSide: )
-        ),
-        socialHighlightColor: kMainTextClr,
         changeActionTextStyle: GoogleFonts.inter(
           color: kSecondaryTextClr,
         ),
@@ -32,14 +37,6 @@ class LoginScreen extends GetView<SingInManager> {
         forgotPasswordStyle: GoogleFonts.inter(
           color: kMainTextClr,
         ),
-        socialLoginBorder: const BorderSide(
-          color: kMainTextClr,
-        ),
-        backgroundColor: Colors.deepPurple[500], // const Color(0xFF6666FF),
-        formFieldBackgroundColor: Colors.white,
-        formFieldShadowColor: kMainTextClr,
-        formWidthRatio: 60,
-        textFormStyle: GoogleFonts.inter(),
         actionButtonStyle: ButtonStyle(
           side: MaterialStateProperty.all(const BorderSide(color: kPrimaryClr)),
           foregroundColor: MaterialStateProperty.all(Colors.white),
@@ -50,12 +47,6 @@ class LoginScreen extends GetView<SingInManager> {
               fontSize: 27,
               fontWeight: FontWeight.bold,
               color: Colors.white,
-            ),
-          ),
-          maximumSize: MaterialStateProperty.all(
-            const Size(
-              327,
-              56,
             ),
           ),
         ),
@@ -84,31 +75,32 @@ class LoginScreen extends GetView<SingInManager> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        return AnimatedLogin(
-          emailController: controller.emailController,
-          emailValidator: ValidatorModel(
-            customValidator: (value) => controller.validateEmail(value!),
-          ),
-          passwordController: controller.passwordController,
-          passwordValidator: const ValidatorModel(
-            length: 8,
-            checkLowerCase: true,
-            checkNumber: true,
-            checkUpperCase: true,
-          ),
-          confirmPasswordController: controller.confirmPasswordController,
-          onLogin: ((value) => controller.onLogin(value)),
-          onSignup: ((value) => controller.onSignUp(value)),
-          onForgotPassword: ((email) => controller.onForgotPassword(email)),
-          socialLogins: _socialLogins(),
-          loginMobileTheme: _mobileTheme,
-          loginTexts: _loginTexts,
-          initialMode: controller.currentMode.value,
-          onAuthModeChange: (AuthMode newMode) => controller.authModeChange,
+    return AnimatedLogin(
+      emailController: controller.emailController,
+      emailValidator: ValidatorModel(
+        customValidator: (value) => controller.validateEmail(value!),
+      ),
+      passwordController: controller.passwordController,
+      passwordValidator: const ValidatorModel(
+        length: 6,
+        checkNumber: true,
+      ),
+      onLogin: ((value) => controller.onLogin(value)),
+      onSignup: ((value) {
+        return controller.onSignUp(value).then(
+          (_) {
+            Get.to(
+              () => const VerifyScreen(),
+            );
+          },
         );
-      },
+      }),
+      onForgotPassword: ((email) => controller.onForgotPassword(email)),
+      socialLogins: _socialLogins(),
+      loginMobileTheme: _mobileTheme,
+      loginTexts: _loginTexts,
+      initialMode: controller.currentMode.value,
+      onAuthModeChange: (AuthMode newMode) => controller.authModeChange,
     );
   }
 }
