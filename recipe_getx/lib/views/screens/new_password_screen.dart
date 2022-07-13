@@ -1,7 +1,9 @@
 import 'package:fancy_password_field/fancy_password_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
+import 'package:recipe_getx/views/screens/home_screen.dart';
 import 'package:recipe_getx/views/widgets/buttons.dart';
 
 class NewPasswordScreen extends StatelessWidget {
@@ -120,7 +122,9 @@ class NewPasswordScreen extends StatelessWidget {
                   buttonWidth: 327,
                   buttonHeight: 56,
                   onPressed: () {
-                    debugPrint('Done is pressed');
+                    Get.offAll(
+                      () => const HomeScreen(),
+                    );
                   },
                 )
               ],
