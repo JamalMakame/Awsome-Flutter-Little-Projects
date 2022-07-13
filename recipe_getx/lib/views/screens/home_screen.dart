@@ -1,9 +1,13 @@
+import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 import 'package:recipe_getx/components/constants.dart';
+import 'package:recipe_getx/controllers/home_manager.dart';
+import 'package:tab_container/tab_container.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<HomeScreenManager> {
   const HomeScreen({
     Key? key,
   }) : super(
@@ -25,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         decoration: BoxDecoration(
           color: tileClr,
           borderRadius: const BorderRadius.all(
-            Radius.circular(30),
+            Radius.circular(20),
           ),
         ),
         child: Center(
@@ -47,6 +51,7 @@ class HomeScreen extends StatelessWidget {
   ) {
     return OutlineSearchBar(
       hideSearchButton: true,
+      borderColor: Colors.transparent,
       textEditingController: searchController,
       backgroundColor: kOutlineClr,
       borderRadius: const BorderRadius.all(
@@ -60,7 +65,7 @@ class HomeScreen extends StatelessWidget {
       elevation: 4,
       hintStyle: GoogleFonts.inter(
         color: kMainTextClr,
-        fontSize: 15,
+        fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
       hintText: 'Search',
@@ -79,7 +84,7 @@ class HomeScreen extends StatelessWidget {
       searchButtonPosition: SearchButtonPosition.leading,
       textStyle: GoogleFonts.inter(
         color: kMainTextClr,
-        fontSize: 15,
+        fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -87,17 +92,139 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController textEditingController = TextEditingController();
+    Get.put(HomeScreenManager());
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Text(
-            'Home Page',
-            style: GoogleFonts.inter(
-              fontSize: 42,
-            ),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _customSearchBar(
+                      textEditingController,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Category',
+                          style: GoogleFonts.inter(
+                            fontSize: 27,
+                            color: kMainTextClr,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _customTile(
+                              text: 'All',
+                              tileClr: kPrimaryClr,
+                              textClr: Colors.white,
+                              textWeight: FontWeight.bold,
+                              onPress: () {},
+                            ),
+                            _customTile(
+                              text: 'All',
+                              tileClr: kPrimaryClr,
+                              textClr: Colors.white,
+                              textWeight: FontWeight.bold,
+                              onPress: () {},
+                            ),
+                            _customTile(
+                              text: 'All',
+                              tileClr: kPrimaryClr,
+                              textClr: Colors.white,
+                              textWeight: FontWeight.bold,
+                              onPress: () {},
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 23,
+              ),
+              const Divider(
+                color: kOutlineClr,
+                thickness: 8,
+              ),
+              const SizedBox(
+                height: 17,
+              ),
+              Obx(
+                () {
+                  return SizedBox(
+                    height: 200,
+                    child: ContainedTabBarView(
+                      initialIndex: controller.tabIndex.value,
+                      tabs: const [
+                        Text('Left'),
+                        Text('Right'),
+                      ],
+                      tabBarProperties: TabBarProperties(
+                        height: 27.0,
+                        labelStyle: GoogleFonts.inter(
+                          fontSize: 24,
+                        ),
+                        indicatorColor: kPrimaryClr,
+                        indicatorWeight: 3.0,
+                        labelColor: kPrimaryClr,
+                        unselectedLabelColor: kOutlineClr,
+                      ),
+                      views: [
+                        Container(color: Colors.red),
+                        Container(color: Colors.green),
+                      ],
+                      onChange: (index) => controller.changeTabIndex(index),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
+
+
+
+// ContainedTabBarView(
+//                       initialIndex: controller.tabIndex.value,
+//                       
+//                       tabBarProperties: const TabBarProperties(
+//                         height: 37.0,
+//                         isScrollable: true,
+//                         indicatorColor: kPrimaryClr,
+//                         indicatorWeight: 3.0,
+//                         labelColor: kPrimaryClr,
+//                         unselectedLabelColor: kOutlineClr,
+//                       ),
+//                       views: [
+//                         Container(color: Colors.red),
+//                         Container(color: Colors.green),
+//                       ],
+//                       onChange: (index) => controller.changeTabIndex(index),
+//                     ),
+
