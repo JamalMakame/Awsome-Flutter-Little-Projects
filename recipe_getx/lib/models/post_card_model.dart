@@ -1,13 +1,6 @@
 import 'dart:convert';
 
 class PostCardModel {
-  final String profilePic;
-  final String profileName;
-  final String postPic;
-  final String postName;
-  final String category;
-  final String postTime;
-  final bool? isLiked;
   PostCardModel({
     required this.profilePic,
     required this.profileName,
@@ -17,6 +10,30 @@ class PostCardModel {
     required this.postTime,
     this.isLiked = false,
   });
+
+  factory PostCardModel.fromJson(String source) => PostCardModel.fromMap(
+        json.decode(source),
+      );
+
+  factory PostCardModel.fromMap(Map<String, dynamic> map) {
+    return PostCardModel(
+      profilePic: map['profilePic'] ?? '',
+      profileName: map['profileName'] ?? '',
+      postPic: map['postPic'] ?? '',
+      postName: map['postName'] ?? '',
+      category: map['category'] ?? '',
+      postTime: map['postTime'] ?? '',
+      isLiked: map['isLiked'],
+    );
+  }
+
+  final String category;
+  final bool? isLiked;
+  final String postName;
+  final String postPic;
+  final String postTime;
+  final String profileName;
+  final String profilePic;
 
   PostCardModel copyWith({
     String? profilePic,
@@ -54,51 +71,5 @@ class PostCardModel {
     return result;
   }
 
-  factory PostCardModel.fromMap(Map<String, dynamic> map) {
-    return PostCardModel(
-      profilePic: map['profilePic'] ?? '',
-      profileName: map['profileName'] ?? '',
-      postPic: map['postPic'] ?? '',
-      postName: map['postName'] ?? '',
-      category: map['category'] ?? '',
-      postTime: map['postTime'] ?? '',
-      isLiked: map['isLiked'],
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory PostCardModel.fromJson(String source) => PostCardModel.fromMap(
-        json.decode(source),
-      );
-
-  @override
-  String toString() {
-    return 'PostCardModel(profilePic: $profilePic, profileName: $profileName, postPic: $postPic, postName: $postName, category: $category, postTime: $postTime, isLiked: $isLiked)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is PostCardModel &&
-        other.profilePic == profilePic &&
-        other.profileName == profileName &&
-        other.postPic == postPic &&
-        other.postName == postName &&
-        other.category == category &&
-        other.postTime == postTime &&
-        other.isLiked == isLiked;
-  }
-
-  @override
-  int get hashCode {
-    return profilePic.hashCode ^
-        profileName.hashCode ^
-        postPic.hashCode ^
-        postName.hashCode ^
-        category.hashCode ^
-        postTime.hashCode ^
-        isLiked.hashCode;
-  }
 }

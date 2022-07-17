@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
+
 import 'package:recipe_getx/components/constants.dart';
+import 'package:recipe_getx/components/post_card.dart';
 import 'package:recipe_getx/controllers/home_manager.dart';
-import 'package:tab_container/tab_container.dart';
 
 class HomeScreen extends GetView<HomeScreenManager> {
   const HomeScreen({
@@ -174,7 +175,7 @@ class HomeScreen extends GetView<HomeScreenManager> {
               Obx(
                 () {
                   return SizedBox(
-                    height: 200,
+                    height: 750,
                     child: ContainedTabBarView(
                       initialIndex: controller.tabIndex.value,
                       tabs: const [
@@ -192,7 +193,23 @@ class HomeScreen extends GetView<HomeScreenManager> {
                         unselectedLabelColor: kOutlineClr,
                       ),
                       views: [
-                        Container(color: Colors.red),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 24,
+                          ),
+                          child: GridView.builder(
+                            itemCount: 9,
+                            itemBuilder: ((context, index) {
+                              return const PostCard();
+                            }),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                            ),
+                          ),
+                        ),
                         Container(color: Colors.green),
                       ],
                       onChange: (index) => controller.changeTabIndex(index),
@@ -207,24 +224,3 @@ class HomeScreen extends GetView<HomeScreenManager> {
     );
   }
 }
-
-
-
-// ContainedTabBarView(
-//                       initialIndex: controller.tabIndex.value,
-//                       
-//                       tabBarProperties: const TabBarProperties(
-//                         height: 37.0,
-//                         isScrollable: true,
-//                         indicatorColor: kPrimaryClr,
-//                         indicatorWeight: 3.0,
-//                         labelColor: kPrimaryClr,
-//                         unselectedLabelColor: kOutlineClr,
-//                       ),
-//                       views: [
-//                         Container(color: Colors.red),
-//                         Container(color: Colors.green),
-//                       ],
-//                       onChange: (index) => controller.changeTabIndex(index),
-//                     ),
-
