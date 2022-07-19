@@ -6,7 +6,7 @@ import 'package:recipe_getx/views/screens/home_screen.dart';
 import 'views/screens/my_profile_screen.dart';
 import 'views/screens/notification_screen.dart';
 import 'views/screens/scan_screen.dart';
-import 'views/screens/up_load_screen.dart';
+import 'views/screens/upload_step_1.dart';
 
 void main() {
   runApp(
