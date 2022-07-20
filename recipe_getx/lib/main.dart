@@ -46,12 +46,12 @@ class MyApp extends GetView<MyAppManager> {
           backgroundColor: Colors.white,
           body: IndexedStack(
             index: controller.activeIndex.value,
-            children: const [
-              HomeScreen(),
-              UploadScreen(),
-              ScanScreen(),
-              NotificationScreen(),
-              MyProfileScreen(),
+            children: [
+              const HomeScreen(),
+              const UploadScreen(),
+              Container(),
+              const NotificationScreen(),
+              const MyProfileScreen(),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
@@ -80,7 +80,7 @@ class MyApp extends GetView<MyAppManager> {
                   Icons.noise_control_off_outlined,
                   color: Colors.transparent,
                 ),
-                label: '',
+                label: 'Scan',
               ),
               BottomNavigationBarItem(
                 icon: Icon(

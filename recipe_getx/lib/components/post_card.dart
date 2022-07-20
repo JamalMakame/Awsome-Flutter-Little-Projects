@@ -49,6 +49,10 @@ class _PostCardState extends State<PostCard> {
           Expanded(
             child: Container(
               decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/pancake.jpg'),
+                ),
                 color: Colors.deepPurple,
                 borderRadius: BorderRadius.all(
                   Radius.circular(16),
@@ -56,18 +60,6 @@ class _PostCardState extends State<PostCard> {
               ),
               child: Stack(
                 children: [
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Container(
-
-                        // image: DecorationImage(
-                        //   image: AssetImage(
-                        //     'assets/images/Rectangle88.png',
-                        //   ),
-                        // ),
-                        ),
-                  ),
                   Positioned(
                     top: 22,
                     right: 22,

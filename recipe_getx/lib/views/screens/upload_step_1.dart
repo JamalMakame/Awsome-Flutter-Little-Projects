@@ -1,8 +1,10 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_input_field/flutter_input_field.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
+import 'package:recipe_getx/views/screens/upload_step_2.dart';
 import 'package:recipe_getx/views/widgets/buttons.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -117,7 +119,6 @@ class _UploadScreenState extends State<UploadScreen> {
                   hintText: 'Enter food name',
                   onChange: () {},
                   filledColor: Colors.white,
-                  borderColor: kOutlineClr,
                   hintFontSize: 12,
                   labelFontSize: 17,
                   lineHeight: 1,
@@ -136,7 +137,6 @@ class _UploadScreenState extends State<UploadScreen> {
                   hintText: 'Tell a little about your food',
                   onChange: () {},
                   filledColor: Colors.white,
-                  borderColor: kOutlineClr,
                   hintFontSize: 12,
                   labelFontSize: 17,
                   lineHeight: 7,
@@ -222,7 +222,11 @@ class _UploadScreenState extends State<UploadScreen> {
                 buttonText: 'Next',
                 buttonWidth: double.maxFinite,
                 buttonHeight: 56,
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(
+                    () => const UploadStep2(),
+                  );
+                },
               ),
             ],
           ),

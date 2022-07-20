@@ -183,12 +183,12 @@ class HomeScreen extends GetView<HomeScreenManager> {
                         Text('Right'),
                       ],
                       tabBarProperties: TabBarProperties(
-                        height: 27.0,
+                        height: 33.0,
                         labelStyle: GoogleFonts.inter(
                           fontSize: 24,
                         ),
                         indicatorColor: kPrimaryClr,
-                        indicatorWeight: 3.0,
+                        indicatorWeight: 1.0,
                         labelColor: kPrimaryClr,
                         unselectedLabelColor: kOutlineClr,
                       ),
@@ -206,7 +206,7 @@ class HomeScreen extends GetView<HomeScreenManager> {
                             }),
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
+                              crossAxisCount: 1,
                             ),
                           ),
                         ),
