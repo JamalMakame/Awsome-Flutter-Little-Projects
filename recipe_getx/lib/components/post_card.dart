@@ -10,9 +10,9 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
+  bool isLiked = false;
   @override
   Widget build(BuildContext context) {
-    bool isLiked = false;
     return Container(
       padding: const EdgeInsets.all(8),
       child: Column(
@@ -21,10 +21,16 @@ class _PostCardState extends State<PostCard> {
           Row(
             children: [
               Container(
-                width: 31,
-                height: 31,
+                width: 41,
+                height: 41,
                 decoration: const BoxDecoration(
-                  color: kSecondaryClr,
+                  image: DecorationImage(
+                    fit: BoxFit.contain,
+                    image: AssetImage(
+                      'assets/loading/chefs-hat-23436_1280.png',
+                    ),
+                  ),
+                  color: Colors.white,
                   borderRadius: BorderRadius.all(
                     Radius.circular(11),
                   ),
@@ -78,14 +84,17 @@ class _PostCardState extends State<PostCard> {
                         ),
                       ),
                       child: GestureDetector(
-                        child: Icon(
-                          isLiked == false
-                              ? Icons.favorite_outline
-                              : Icons.favorite,
-                          color:
-                              isLiked == false ? Colors.white : kSecondaryClr,
-                          size: 20,
-                        ),
+                        child: isLiked == false
+                            ? const Icon(
+                                Icons.favorite_outline,
+                                color: Colors.white,
+                                size: 20,
+                              )
+                            : const Icon(
+                                Icons.favorite,
+                                color: kSecondaryClr,
+                                size: 20,
+                              ),
                         onTap: () {
                           if (isLiked == false) {
                             setState(() {
