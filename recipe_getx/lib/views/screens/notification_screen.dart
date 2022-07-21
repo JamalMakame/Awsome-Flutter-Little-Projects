@@ -6,57 +6,6 @@ import 'package:recipe_getx/views/widgets/buttons.dart';
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                'New',
-                style: GoogleFonts.inter(
-                  fontSize: 27,
-                  color: kMainTextClr,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              _singlePic(),
-              Text(
-                'Today',
-                style: GoogleFonts.inter(
-                  fontSize: 27,
-                  color: kMainTextClr,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              _multiPics(),
-              _singlePic(),
-              _multiPics(),
-              Text(
-                'Yesterday',
-                style: GoogleFonts.inter(
-                  fontSize: 27,
-                  color: kMainTextClr,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              _multiPics(),
-              _singlePic(),
-              _multiPics(),
-            ],
-          ),
-        ),
-      ),
-    );
-    ;
-  }
-
   SizedBox _singlePic() {
     return SizedBox(
       width: double.maxFinite,
@@ -193,5 +142,56 @@ class NotificationScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 24,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'New',
+                style: GoogleFonts.inter(
+                  fontSize: 27,
+                  color: kMainTextClr,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              _singlePic(),
+              Text(
+                'Today',
+                style: GoogleFonts.inter(
+                  fontSize: 27,
+                  color: kMainTextClr,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              _multiPics(),
+              _singlePic(),
+              _multiPics(),
+              Text(
+                'Yesterday',
+                style: GoogleFonts.inter(
+                  fontSize: 27,
+                  color: kMainTextClr,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              _multiPics(),
+              _singlePic(),
+              _multiPics(),
+            ],
+          ),
+        ),
+      ),
+    );
+    ;
   }
 }
