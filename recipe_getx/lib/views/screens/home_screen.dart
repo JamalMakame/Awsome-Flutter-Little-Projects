@@ -102,7 +102,7 @@ class HomeScreen extends GetView<HomeScreenManager> {
           child: Column(
             children: [
               SizedBox(
-                height: 16.h,
+                height: 60.h,
               ),
               Padding(
                 padding:  EdgeInsets.symmetric(

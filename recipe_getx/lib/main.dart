@@ -40,6 +40,7 @@ class MyApp extends GetView<MyAppManager> {
         child,
       ) =>
           GetMaterialApp(
+            debugShowCheckedModeBanner: false,
         home: Obx(
           () => Scaffold(
             floatingActionButtonLocation:
