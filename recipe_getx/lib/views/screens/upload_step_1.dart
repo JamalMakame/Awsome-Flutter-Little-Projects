@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_input_field/flutter_input_field.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
@@ -21,9 +22,9 @@ class _UploadScreenState extends State<UploadScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 12,
+          padding: EdgeInsets.symmetric(
+            horizontal: 24.w,
+            vertical: 12.h,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,7 @@ class _UploadScreenState extends State<UploadScreen> {
                       'Cancel',
                       style: GoogleFonts.inter(
                         color: kSecondaryClr,
-                        fontSize: 17,
+                        fontSize: 17.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -48,7 +49,7 @@ class _UploadScreenState extends State<UploadScreen> {
                       text: '1/',
                       style: GoogleFonts.inter(
                         color: kMainTextClr,
-                        fontSize: 17,
+                        fontSize: 17.sp,
                         fontWeight: FontWeight.bold,
                       ),
                       children: [
@@ -56,7 +57,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           text: '2',
                           style: GoogleFonts.inter(
                             color: kOutlineClr,
-                            fontSize: 17,
+                            fontSize: 17.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -74,23 +75,23 @@ class _UploadScreenState extends State<UploadScreen> {
                     Radius.circular(16),
                   ),
                   child: SizedBox(
-                    height: 161,
+                    height: 161.h,
                     width: double.maxFinite,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 22, bottom: 16),
+                      padding:  EdgeInsets.only(top: 22.h, bottom: 16.h),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Icon(
+                           Icon(
                             Icons.image,
-                            size: 64,
+                            size: 64.sp,
                             color: kOutlineClr,
                           ),
                           Text(
                             'Add Cover Photo',
                             style: GoogleFonts.inter(
                               color: kMainTextClr,
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -98,7 +99,7 @@ class _UploadScreenState extends State<UploadScreen> {
                             '(up to 12 Mb)',
                             style: GoogleFonts.inter(
                               color: kOutlineClr,
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -109,36 +110,36 @@ class _UploadScreenState extends State<UploadScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 24),
+                padding:  EdgeInsets.only(top: 10.h, bottom: 24.h),
                 child: FlutterInputField(
                   labelTextStyle: GoogleFonts.inter(
                     color: kMainTextClr,
-                    fontSize: 17,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.bold,
                   ),
                   hintText: 'Enter food name',
                   onChange: () {},
                   filledColor: Colors.white,
-                  hintFontSize: 12,
-                  labelFontSize: 17,
+                  hintFontSize: 12.sp,
+                  labelFontSize: 17.sp,
                   lineHeight: 1,
                   onDone: () {},
                   labelText: 'Food Name',
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 24),
+                padding: EdgeInsets.only(top: 10.h, bottom: 24.h),
                 child: FlutterInputField(
                   labelTextStyle: GoogleFonts.inter(
                     color: kMainTextClr,
-                    fontSize: 17,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.bold,
                   ),
                   hintText: 'Tell a little about your food',
                   onChange: () {},
                   filledColor: Colors.white,
-                  hintFontSize: 12,
-                  labelFontSize: 17,
+                  hintFontSize: 12.sp,
+                  labelFontSize: 17.sp,
                   lineHeight: 7,
                   onDone: () {},
                   labelText: 'Description',
@@ -149,7 +150,7 @@ class _UploadScreenState extends State<UploadScreen> {
                   text: 'Cooking Duration',
                   style: GoogleFonts.inter(
                     color: kMainTextClr,
-                    fontSize: 17,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.bold,
                   ),
                   children: [
@@ -157,7 +158,7 @@ class _UploadScreenState extends State<UploadScreen> {
                       text: ' (in minutes)',
                       style: GoogleFonts.inter(
                         color: kOutlineClr,
-                        fontSize: 17,
+                        fontSize: 17.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -165,7 +166,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16),
+                padding: EdgeInsets.only(top: 16.h),
                 child: SizedBox(
                   //height: 70,
                   child: Column(
@@ -177,7 +178,7 @@ class _UploadScreenState extends State<UploadScreen> {
                             '<10',
                             style: GoogleFonts.inter(
                               color: kPrimaryClr,
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -185,7 +186,7 @@ class _UploadScreenState extends State<UploadScreen> {
                             '30',
                             style: GoogleFonts.inter(
                               color: kPrimaryClr,
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -193,7 +194,7 @@ class _UploadScreenState extends State<UploadScreen> {
                             '>60',
                             style: GoogleFonts.inter(
                               color: kPrimaryClr,
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -221,7 +222,7 @@ class _UploadScreenState extends State<UploadScreen> {
                 textClr: Colors.white,
                 buttonText: 'Next',
                 buttonWidth: double.maxFinite,
-                buttonHeight: 56,
+                buttonHeight: 56.h,
                 onPressed: () {
                   Get.to(
                     () => const UploadStep2(),

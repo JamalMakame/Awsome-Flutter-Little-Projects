@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget primaryButton({
@@ -16,7 +17,7 @@ Widget primaryButton({
       height: buttonHeight,
       decoration: BoxDecoration(
         color: buttonClr,
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(32.r),
         boxShadow: const [
           BoxShadow(
             color: Colors.black12,
@@ -35,7 +36,7 @@ Widget primaryButton({
           buttonText,
           style: GoogleFonts.inter(
             color: textClr,
-            fontSize: 25,
+            fontSize: 15.sp,
             fontWeight: FontWeight.bold,
           ),
         ),

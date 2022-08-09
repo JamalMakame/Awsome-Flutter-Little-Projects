@@ -1,5 +1,6 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
@@ -25,12 +26,12 @@ class HomeScreen extends GetView<HomeScreenManager> {
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        width: 68,
-        height: 48,
+        width: 68.w,
+        height: 48.h,
         decoration: BoxDecoration(
           color: tileClr,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.r),
           ),
         ),
         child: Center(
@@ -39,7 +40,7 @@ class HomeScreen extends GetView<HomeScreenManager> {
             style: GoogleFonts.inter(
               color: textClr,
               fontWeight: textWeight,
-              fontSize: 15,
+              fontSize: 15.sp,
             ),
           ),
         ),
@@ -55,18 +56,18 @@ class HomeScreen extends GetView<HomeScreenManager> {
       borderColor: Colors.transparent,
       textEditingController: searchController,
       backgroundColor: kOutlineClr,
-      borderRadius: const BorderRadius.all(
-        Radius.circular(30),
+      borderRadius:  BorderRadius.all(
+        Radius.circular(30.r),
       ),
-      maxHeight: 56,
+      maxHeight: 56.h,
       enableSuggestions: true,
       clearButtonColor: kMainTextClr,
       clearButtonIconColor: Colors.white,
-      cursorHeight: 18,
-      elevation: 4,
+      cursorHeight: 18.h,
+      elevation: 0,
       hintStyle: GoogleFonts.inter(
         color: kMainTextClr,
-        fontSize: 20,
+        fontSize: 20.sp,
         fontWeight: FontWeight.w600,
       ),
       hintText: 'Search',
@@ -74,9 +75,9 @@ class HomeScreen extends GetView<HomeScreenManager> {
         Icons.search_outlined,
         size: 24,
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24,
-        vertical: 16,
+      padding: EdgeInsets.symmetric(
+        horizontal: 24.w,
+        vertical: 16.h,
       ),
       onClearButtonPressed: (value) {
         searchController.clear();
@@ -85,7 +86,7 @@ class HomeScreen extends GetView<HomeScreenManager> {
       searchButtonPosition: SearchButtonPosition.leading,
       textStyle: GoogleFonts.inter(
         color: kMainTextClr,
-        fontSize: 20,
+        fontSize: 20.sp,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -100,12 +101,12 @@ class HomeScreen extends GetView<HomeScreenManager> {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(
-                height: 16,
+              SizedBox(
+                height: 16.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
+                padding:  EdgeInsets.symmetric(
+                  horizontal: 24.w,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,8 +114,8 @@ class HomeScreen extends GetView<HomeScreenManager> {
                     _customSearchBar(
                       textEditingController,
                     ),
-                    const SizedBox(
-                      height: 24,
+                    SizedBox(
+                      height: 24.h,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,13 +123,13 @@ class HomeScreen extends GetView<HomeScreenManager> {
                         Text(
                           'Category',
                           style: GoogleFonts.inter(
-                            fontSize: 27,
+                            fontSize: 27.sp,
                             color: kMainTextClr,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(
-                          height: 16,
+                        SizedBox(
+                          height: 16.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -162,20 +163,20 @@ class HomeScreen extends GetView<HomeScreenManager> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 23,
+              SizedBox(
+                height: 23.h,
               ),
-              const Divider(
+              Divider(
                 color: kOutlineClr,
-                thickness: 8,
+                thickness: 8.h,
               ),
-              const SizedBox(
-                height: 17,
+              SizedBox(
+                height: 17.h,
               ),
               Obx(
                 () {
                   return SizedBox(
-                    height: 750,
+                    height: 750.h,
                     child: ContainedTabBarView(
                       initialIndex: controller.tabIndex.value,
                       tabs: const [
@@ -183,21 +184,21 @@ class HomeScreen extends GetView<HomeScreenManager> {
                         Text('Right'),
                       ],
                       tabBarProperties: TabBarProperties(
-                        height: 33.0,
+                        height: 33.h,
                         labelStyle: GoogleFonts.inter(
-                          fontSize: 24,
+                          fontSize: 24.sp,
                         ),
                         indicatorColor: kPrimaryClr,
-                        indicatorWeight: 1.0,
+                        indicatorWeight: 1.w,
                         labelColor: kPrimaryClr,
                         unselectedLabelColor: kOutlineClr,
                       ),
                       views: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                            left: 24,
-                            right: 24,
-                            top: 24,
+                          padding: EdgeInsets.only(
+                            left: 24.w,
+                            right: 24.w,
+                            top: 24.h,
                           ),
                           child: GridView.builder(
                             itemCount: 9,
