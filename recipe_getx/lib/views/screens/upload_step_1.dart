@@ -24,47 +24,53 @@ class _UploadScreenState extends State<UploadScreen> {
         body: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 24.w,
-            vertical: 12.h,
+            
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Text(
-                      'Cancel',
-                      style: GoogleFonts.inter(
-                        color: kSecondaryClr,
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      text: '1/',
-                      style: GoogleFonts.inter(
-                        color: kMainTextClr,
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: '2',
-                          style: GoogleFonts.inter(
-                            color: kOutlineClr,
-                            fontSize: 17.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 56.h,
+                  bottom: 32.h
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        'Cancel',
+                        style: GoogleFonts.inter(
+                          color: kSecondaryClr,
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
+                    RichText(
+                      text: TextSpan(
+                        text: '1/',
+                        style: GoogleFonts.inter(
+                          color: kMainTextClr,
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: '2',
+                            style: GoogleFonts.inter(
+                              color: kOutlineClr,
+                              fontSize: 17.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               DottedBorder(
                 borderType: BorderType.RRect,
@@ -78,11 +84,11 @@ class _UploadScreenState extends State<UploadScreen> {
                     height: 161.h,
                     width: double.maxFinite,
                     child: Padding(
-                      padding:  EdgeInsets.only(top: 22.h, bottom: 16.h),
+                      padding: EdgeInsets.only(top: 22.h, bottom: 16.h),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           Icon(
+                          Icon(
                             Icons.image,
                             size: 64.sp,
                             color: kOutlineClr,
@@ -91,7 +97,7 @@ class _UploadScreenState extends State<UploadScreen> {
                             'Add Cover Photo',
                             style: GoogleFonts.inter(
                               color: kMainTextClr,
-                              fontSize: 17.sp,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -99,7 +105,7 @@ class _UploadScreenState extends State<UploadScreen> {
                             '(up to 12 Mb)',
                             style: GoogleFonts.inter(
                               color: kOutlineClr,
-                              fontSize: 17.sp,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -109,41 +115,35 @@ class _UploadScreenState extends State<UploadScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding:  EdgeInsets.only(top: 10.h, bottom: 24.h),
-                child: FlutterInputField(
-                  labelTextStyle: GoogleFonts.inter(
-                    color: kMainTextClr,
-                    fontSize: 17.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  hintText: 'Enter food name',
-                  onChange: () {},
-                  filledColor: Colors.white,
-                  hintFontSize: 12.sp,
-                  labelFontSize: 17.sp,
-                  lineHeight: 1,
-                  onDone: () {},
-                  labelText: 'Food Name',
+              FlutterInputField(
+                labelTextStyle: GoogleFonts.inter(
+                  color: kMainTextClr,
+                  fontSize: 17.sp,
+                  fontWeight: FontWeight.bold,
                 ),
+                hintText: 'Enter food name',
+                onChange: () {},
+                filledColor: Colors.white,
+                hintFontSize: 15.sp,
+                labelFontSize: 17.sp,
+                lineHeight: 1,
+                onDone: () {},
+                labelText: 'Food Name',
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 10.h, bottom: 24.h),
-                child: FlutterInputField(
-                  labelTextStyle: GoogleFonts.inter(
-                    color: kMainTextClr,
-                    fontSize: 17.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  hintText: 'Tell a little about your food',
-                  onChange: () {},
-                  filledColor: Colors.white,
-                  hintFontSize: 12.sp,
-                  labelFontSize: 17.sp,
-                  lineHeight: 7,
-                  onDone: () {},
-                  labelText: 'Description',
+              FlutterInputField(
+                labelTextStyle: GoogleFonts.inter(
+                  color: kMainTextClr,
+                  fontSize: 17.sp,
+                  fontWeight: FontWeight.bold,
                 ),
+                hintText: 'Tell a little about your food',
+                onChange: () {},
+                filledColor: Colors.white,
+                hintFontSize: 12.sp,
+                labelFontSize: 17.sp,
+                lineHeight: 7,
+                onDone: () {},
+                labelText: 'Description',
               ),
               RichText(
                 text: TextSpan(

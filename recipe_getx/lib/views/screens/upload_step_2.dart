@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_input_field/flutter_input_field.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/views/screens/home_screen.dart';
@@ -12,17 +13,17 @@ class UploadStep2 extends StatelessWidget {
 
   SizedBox _customIngredientTile() {
     return SizedBox(
-      height: 56,
+      height: 46.h,
       width: double.maxFinite,
       child: TextFormField(
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 21.65,
-            vertical: 19,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 21.65.w,
+            vertical: 19.h,
           ),
           errorStyle: GoogleFonts.inter(
             color: kMainTextClr,
-            fontSize: 17,
+            fontSize: 17.sp,
             fontWeight: FontWeight.bold,
           ),
           hintText: 'Enter ingredient',
@@ -33,11 +34,11 @@ class UploadStep2 extends StatelessWidget {
           ),
           hintStyle: GoogleFonts.inter(
             color: kMainTextClr,
-            fontSize: 17,
+            fontSize: 17.sp,
             fontWeight: FontWeight.bold,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(32.0),
+            borderRadius: BorderRadius.circular(32.r),
             borderSide: const BorderSide(
               color: Color(0xff2e3e5c),
               width: 0.5,
@@ -45,7 +46,7 @@ class UploadStep2 extends StatelessWidget {
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(32.0),
+            borderRadius: BorderRadius.circular(32.r),
             borderSide: const BorderSide(
               width: 0.5,
               style: BorderStyle.solid,
@@ -62,9 +63,10 @@ class UploadStep2 extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 12,
+          padding: EdgeInsets.only(
+            left: 24.w,
+            top: 56.h,
+            right: 24.w,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -80,7 +82,7 @@ class UploadStep2 extends StatelessWidget {
                       'Cancel',
                       style: GoogleFonts.inter(
                         color: kSecondaryClr,
-                        fontSize: 17,
+                        fontSize: 17.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -90,7 +92,7 @@ class UploadStep2 extends StatelessWidget {
                       text: '2/',
                       style: GoogleFonts.inter(
                         color: kMainTextClr,
-                        fontSize: 17,
+                        fontSize: 17.sp,
                         fontWeight: FontWeight.bold,
                       ),
                       children: [
@@ -98,7 +100,7 @@ class UploadStep2 extends StatelessWidget {
                           text: '2',
                           style: GoogleFonts.inter(
                             color: kOutlineClr,
-                            fontSize: 17,
+                            fontSize: 17.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -107,6 +109,9 @@ class UploadStep2 extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 37.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -114,27 +119,27 @@ class UploadStep2 extends StatelessWidget {
                     'Ingredients',
                     style: GoogleFonts.inter(
                       color: kMainTextClr,
-                      fontSize: 17,
+                      fontSize: 17.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: SizedBox(
-                      height: 24,
+                      height: 24.h,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.add,
                             color: kMainTextClr,
-                            size: 24,
+                            size: 24.sp,
                           ),
                           Text(
                             'Group',
                             style: GoogleFonts.inter(
                               color: kMainTextClr,
-                              fontSize: 17,
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -144,8 +149,17 @@ class UploadStep2 extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 19.h,
+              ),
               _customIngredientTile(),
+              SizedBox(
+                height: 24.h,
+              ),
               _customIngredientTile(),
+              SizedBox(
+                height: 32.h,
+              ),
               primaryButton(
                 buttonClr: kPrimaryClr,
                 textClr: Colors.white,
@@ -154,12 +168,15 @@ class UploadStep2 extends StatelessWidget {
                 buttonHeight: 56,
                 onPressed: () {},
               ),
+              SizedBox(
+                height: 24.h,
+              ),
               const Divider(
                 color: kOutlineClr,
                 thickness: 8,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 24),
+                padding: EdgeInsets.only(top: 24.h),
                 child: FlutterInputField(
                   hintText: 'Tell a little about your food',
                   labelText: 'Steps',
@@ -169,30 +186,32 @@ class UploadStep2 extends StatelessWidget {
                   onDone: () {},
                   labelTextStyle: GoogleFonts.inter(
                     color: kMainTextClr,
-                    fontSize: 17,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.bold,
                   ),
                   icon: Column(
                     children: [
                       CircleAvatar(
-                        radius: 24,
+                        radius: 14.r,
                         backgroundColor: kMainTextClr,
                         child: Center(
                           child: Text(
                             '1',
                             style: GoogleFonts.inter(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: 16.h,
                       ),
-                      const Image(
-                        image: AssetImage(
+                      Image(
+                        width: 24.w,
+                        height: 24.h,
+                        image: const AssetImage(
                           'assets/images/Drag Icon.jpg',
                         ),
                       ),
@@ -200,12 +219,15 @@ class UploadStep2 extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 8.h,
+              ),
               Container(
-                height: 50,
+                height: 44.h,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
                   color: kOutlineClr,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: MaterialButton(
                   child: const Center(
@@ -219,7 +241,7 @@ class UploadStep2 extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 52),
+                padding: EdgeInsets.only(top: 22.h,bottom: 10.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -227,66 +249,69 @@ class UploadStep2 extends StatelessWidget {
                         buttonClr: kOutlineClr,
                         textClr: kMainTextClr,
                         buttonText: 'Back',
-                        buttonWidth: 156,
-                        buttonHeight: 56,
+                        buttonWidth: 156.w,
+                        buttonHeight: 56.h,
                         onPressed: () {
                           Get.back();
                         }),
+                    SizedBox(
+                      height: 8.w,
+                    ),
                     primaryButton(
                         buttonClr: kPrimaryClr,
                         textClr: Colors.white,
                         buttonText: 'Next',
-                        buttonWidth: 156,
-                        buttonHeight: 56,
+                        buttonWidth: 156.w,
+                        buttonHeight: 56.h,
                         onPressed: () {
                           Get.defaultDialog(
                             title: '',
                             middleText: "",
                             content: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 48,
-                                vertical: 48,
+                              padding:  EdgeInsets.symmetric(
+                                horizontal: 48.w,
+                                vertical: 48.h,
                               ),
                               child: Column(
                                 children: [
-                                  const Image(
-                                    height: 180,
-                                    width: 180,
-                                    image: AssetImage(
+                                   Image(
+                                    height: 180.h,
+                                    width: 180.w,
+                                    image: const AssetImage(
                                       'assets/images/upload_Success.jpg',
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 32,
+                                   SizedBox(
+                                    height: 32.h,
                                   ),
                                   Text(
                                     'Upload Success',
                                     style: GoogleFonts.inter(
                                       color: const Color(0xff3e5481),
-                                      fontSize: 20,
+                                      fontSize: 20.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 8,
+                                   SizedBox(
+                                    height: 8.h,
                                   ),
                                   Text(
                                     'Your recipe has been uploaded,\nyou can see it on your profile',
                                     style: GoogleFonts.inter(
                                       color: kMainTextClr,
-                                      fontSize: 17,
+                                      fontSize: 17.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 24,
+                                   SizedBox(
+                                    height: 24.h,
                                   ),
                                   primaryButton(
                                     buttonClr: kPrimaryClr,
                                     textClr: Colors.white,
                                     buttonText: 'Ok',
-                                    buttonWidth: 231,
-                                    buttonHeight: 56,
+                                    buttonWidth: 231.w,
+                                    buttonHeight: 56.h,
                                     onPressed: () {
                                       Get.back();
                                     },
