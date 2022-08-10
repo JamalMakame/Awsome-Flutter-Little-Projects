@@ -45,30 +45,14 @@ class MyApp extends GetView<MyAppManager> {
         debugShowCheckedModeBanner: false,
         home: Obx(
           () => Scaffold(
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Get.to(
-                  () => const ScanScreen(),
-                );
-              },
-              backgroundColor: kPrimaryClr,
-              child: const Icon(
-                Icons.qr_code_scanner,
-                size: 24,
-                semanticLabel: 'Scan',
-              ),
-            ),
             backgroundColor: Colors.white,
             body: IndexedStack(
               index: controller.activeIndex.value,
-              children: [
-                const HomeScreen(),
-                const UploadScreen(),
-                Container(),
-                const NotificationScreen(),
-                const MyProfileScreen(),
+              children: const [
+                HomeScreen(),
+                UploadScreen(),
+                NotificationScreen(),
+                MyProfileScreen(),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
@@ -92,13 +76,7 @@ class MyApp extends GetView<MyAppManager> {
                   ),
                   label: 'Upload',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.noise_control_off_outlined,
-                    color: Colors.transparent,
-                  ),
-                  label: 'Scan',
-                ),
+                
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.notifications,

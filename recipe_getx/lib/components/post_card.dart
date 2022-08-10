@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
+import 'package:recipe_getx/models/post_card_model.dart';
+import 'package:recipe_getx/services/card_scrapper.dart';
+import 'package:recipe_getx/services/http_sercive.dart';
+import 'package:recipe_getx/views/screens/detail_recipe.dart';
 
 class PostCard extends StatefulWidget {
   const PostCard({Key? key}) : super(key: key);
@@ -11,141 +17,178 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   bool isLiked = false;
+  bool isLoading = false;
+  List<PostCardModel> list = [];
+
+  Future<void> getPostCardData() async {
+    list.clear();
+    isLoading = true;
+    setState(() {});
+    final html = await HttpService.get();
+    if (html != null) {
+      list = PostCardScrapper.postCard(html);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 41,
-                height: 41,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.contain,
-                    image: AssetImage(
-                      'assets/loading/chefs-hat-23436_1280.png',
-                    ),
-                  ),
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(11),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                'Calcum Lewis',
-                style: GoogleFonts.inter(
-                  fontSize: 12,
-                  color: kMainTextClr,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/images/pancake.jpg'),
-                ),
-                color: Colors.deepPurple,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(16),
-                ),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 22,
-                    right: 22,
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8),
-                        ),
-                        color: Color.fromRGBO(
-                          255,
-                          255,
-                          255,
-                          0.2,
-                        ),
-                      ),
-                      child: GestureDetector(
-                        child: isLiked == false
-                            ? const Icon(
-                                Icons.favorite_outline,
-                                color: Colors.white,
-                                size: 20,
-                              )
-                            : const Icon(
-                                Icons.favorite,
-                                color: kSecondaryClr,
-                                size: 20,
+    return FutureBuilder(
+      future: getPostCardData(),
+      builder: (context, data) {
+        if (data.connectionState == ConnectionState.done) {
+          return GridView.builder(
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              return SizedBox(
+                height: 750.h,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 31.w,
+                          height: 31.h,
+                          decoration:  BoxDecoration(
+                            image: const DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage(
+                                'assets/loading/chefs-hat-23436_1280.png',
                               ),
-                        onTap: () {
-                          if (isLiked == false) {
-                            setState(() {
-                              isLiked = true;
-                            });
-                          } else {
-                            setState(() {
-                              isLiked = false;
-                            });
-                          }
-                        },
+                            ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(11.r),
+                            ),
+                          ),
+                        ),
+                         SizedBox(
+                          width: 8.w,
+                        ),
+                        Text(
+                          'Calcum Lewis',
+                          style: GoogleFonts.inter(
+                            fontSize: 12.sp,
+                            color: kMainTextClr,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                     SizedBox(
+                      height: 10.h,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(
+                          () => const DetailRecipe(),
+                        );
+                      },
+                      child: Expanded(
+                        flex: 1,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              height: 151.h,
+                              width: double.maxFinite,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(16.r),
+                                ),
+                                child: Image.network(
+                                  list[index].image,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            
+                            Positioned(
+                              top: 22.h,
+                              right: 22.w,
+                              child: Container(
+                                width: 32.w,
+                                height: 32.h,
+                                decoration:  BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8.r),
+                                  ),
+                                  color: const Color.fromRGBO(
+                                    255,
+                                    255,
+                                    255,
+                                    0.2,
+                                  ),
+                                ),
+                                child: GestureDetector(
+                                  child: isLiked == false
+                                      ?  Icon(
+                                          Icons.favorite_outline,
+                                          color: kMainTextClr,
+                                          size: 20.sp,
+                                        )
+                                      :  Icon(
+                                          Icons.favorite,
+                                          color: kSecondaryClr,
+                                          size: 20.sp,
+                                        ),
+                                  onTap: () {
+                                    if (isLiked == false) {
+                                      setState(() {
+                                        isLiked = true;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        isLiked = false;
+                                      });
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                     SizedBox(
+                      height: 16.h,
+                    ),
+                    Text(
+                      list[index].name,
+                      style: GoogleFonts.inter(
+                        color: kMainTextClr,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                     SizedBox(
+                      height: 8.h,
+                    ),
+                    Text(
+                      'Food >60 mins',
+                      style: GoogleFonts.inter(
+                        color: kSecondaryTextClr,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 25.w,
+              mainAxisSpacing: 32.h
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Text(
-            'Pancake',
-            style: GoogleFonts.inter(
-              color: kMainTextClr,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Text(
-            'Food >60 mins',
-            style: GoogleFonts.inter(
-              color: kSecondaryTextClr,
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }
 
 
-
-//  
-//           SizedBox(
-//             width: 151,
-//             height: 151,
-//             
-//           ),

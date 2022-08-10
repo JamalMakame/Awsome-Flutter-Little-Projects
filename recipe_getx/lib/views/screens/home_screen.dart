@@ -56,7 +56,7 @@ class HomeScreen extends GetView<HomeScreenManager> {
       borderColor: Colors.transparent,
       textEditingController: searchController,
       backgroundColor: kOutlineClr,
-      borderRadius:  BorderRadius.all(
+      borderRadius: BorderRadius.all(
         Radius.circular(30.r),
       ),
       maxHeight: 56.h,
@@ -105,7 +105,7 @@ class HomeScreen extends GetView<HomeScreenManager> {
                 height: 60.h,
               ),
               Padding(
-                padding:  EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 24.w,
                 ),
                 child: Column(
@@ -198,18 +198,9 @@ class HomeScreen extends GetView<HomeScreenManager> {
                           padding: EdgeInsets.only(
                             left: 24.w,
                             right: 24.w,
-                            top: 24.h,
+                            top: 10.h,
                           ),
-                          child: GridView.builder(
-                            itemCount: 9,
-                            itemBuilder: ((context, index) {
-                              return const PostCard();
-                            }),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                            ),
-                          ),
+                          child: const PostCard(),
                         ),
                         Container(color: Colors.green),
                       ],
