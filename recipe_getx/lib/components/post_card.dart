@@ -30,6 +30,141 @@ class _PostCardState extends State<PostCard> {
     }
   }
 
+  Column customGrillTile(int index) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 31.w,
+              height: 31.h,
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                  fit: BoxFit.contain,
+                  image: AssetImage(
+                    'assets/loading/chefs-hat-23436_1280.png',
+                  ),
+                ),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(11.r),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 8.w,
+            ),
+            Text(
+              'Calcum Lewis',
+              style: GoogleFonts.inter(
+                fontSize: 12.sp,
+                color: kMainTextClr,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        GestureDetector(
+          onTap: () {
+            Get.to(
+              () => const DetailRecipe(),
+            );
+          },
+          child: Stack(
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(16.r),
+                  ),
+                  child: Image.network(
+                    list[index].image,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 22.h,
+                right: 22.w,
+                child: Container(
+                  width: 32.w,
+                  height: 32.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8.r),
+                    ),
+                    color: const Color.fromRGBO(
+                      255,
+                      255,
+                      255,
+                      0.2,
+                    ),
+                  ),
+                  child: GestureDetector(
+                    child: isLiked == false
+                        ? Icon(
+                            Icons.favorite_outline,
+                            color: kMainTextClr,
+                            size: 20.sp,
+                          )
+                        : Icon(
+                            Icons.favorite,
+                            color: kSecondaryClr,
+                            size: 20.sp,
+                          ),
+                    onTap: () {
+                      if (isLiked == false) {
+                        setState(() {
+                          isLiked = true;
+                        });
+                      } else {
+                        setState(() {
+                          isLiked = false;
+                        });
+                      }
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 16.h,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              list[index].name,
+              style: GoogleFonts.inter(
+                color: kMainTextClr,
+                fontSize: 17.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 8.h,
+            ),
+            Text(
+              'Food >60 mins',
+              style: GoogleFonts.inter(
+                color: kSecondaryTextClr,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+        
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -37,148 +172,16 @@ class _PostCardState extends State<PostCard> {
       builder: (context, data) {
         if (data.connectionState == ConnectionState.done) {
           return GridView.builder(
-            itemCount: 1,
+            itemCount: list.length,
             itemBuilder: (context, index) {
-              return SizedBox(
-                height: 750.h,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 31.w,
-                          height: 31.h,
-                          decoration:  BoxDecoration(
-                            image: const DecorationImage(
-                              fit: BoxFit.contain,
-                              image: AssetImage(
-                                'assets/loading/chefs-hat-23436_1280.png',
-                              ),
-                            ),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(11.r),
-                            ),
-                          ),
-                        ),
-                         SizedBox(
-                          width: 8.w,
-                        ),
-                        Text(
-                          'Calcum Lewis',
-                          style: GoogleFonts.inter(
-                            fontSize: 12.sp,
-                            color: kMainTextClr,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                     SizedBox(
-                      height: 10.h,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(
-                          () => const DetailRecipe(),
-                        );
-                      },
-                      child: Expanded(
-                        flex: 1,
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              height: 151.h,
-                              width: double.maxFinite,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(16.r),
-                                ),
-                                child: Image.network(
-                                  list[index].image,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            
-                            Positioned(
-                              top: 22.h,
-                              right: 22.w,
-                              child: Container(
-                                width: 32.w,
-                                height: 32.h,
-                                decoration:  BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8.r),
-                                  ),
-                                  color: const Color.fromRGBO(
-                                    255,
-                                    255,
-                                    255,
-                                    0.2,
-                                  ),
-                                ),
-                                child: GestureDetector(
-                                  child: isLiked == false
-                                      ?  Icon(
-                                          Icons.favorite_outline,
-                                          color: kMainTextClr,
-                                          size: 20.sp,
-                                        )
-                                      :  Icon(
-                                          Icons.favorite,
-                                          color: kSecondaryClr,
-                                          size: 20.sp,
-                                        ),
-                                  onTap: () {
-                                    if (isLiked == false) {
-                                      setState(() {
-                                        isLiked = true;
-                                      });
-                                    } else {
-                                      setState(() {
-                                        isLiked = false;
-                                      });
-                                    }
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                     SizedBox(
-                      height: 16.h,
-                    ),
-                    Text(
-                      list[index].name,
-                      style: GoogleFonts.inter(
-                        color: kMainTextClr,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                     SizedBox(
-                      height: 8.h,
-                    ),
-                    Text(
-                      'Food >60 mins',
-                      style: GoogleFonts.inter(
-                        color: kSecondaryTextClr,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
+              return GridTile(
+                child: customGrillTile(index),
               );
             },
-            gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 25.w,
-              mainAxisSpacing: 32.h
+              childAspectRatio: 0.52,
             ),
           );
         } else {
