@@ -8,6 +8,8 @@ import 'package:recipe_getx/services/card_scrapper.dart';
 import 'package:recipe_getx/services/http_sercive.dart';
 import 'package:recipe_getx/views/screens/detail_recipe.dart';
 
+const String baseUrl = 'https://www.bonappetit.com/ingredient/rice';
+
 class PostCard extends StatefulWidget {
   const PostCard({Key? key}) : super(key: key);
 
@@ -21,10 +23,9 @@ class _PostCardState extends State<PostCard> {
   List<PostCardModel> list = [];
 
   Future<void> getPostCardData() async {
-    list.clear();
     isLoading = true;
     setState(() {});
-    final html = await HttpService.get();
+    final html = await HttpService.get(baseUrl);
     if (html != null) {
       list = PostCardScrapper.postCard(html);
     }
@@ -72,6 +73,11 @@ class _PostCardState extends State<PostCard> {
           onTap: () {
             Get.to(
               () => const DetailRecipe(),
+              arguments: {
+                'dishPicture': list[index].image,
+                'dishName': list[index].name,
+                'recipeUrl': list[index].recipeUrl,
+              },
             );
           },
           child: Stack(
@@ -146,6 +152,7 @@ class _PostCardState extends State<PostCard> {
                 fontSize: 17.sp,
                 fontWeight: FontWeight.bold,
               ),
+              overflow: TextOverflow.ellipsis,
             ),
             SizedBox(
               height: 8.h,
@@ -160,7 +167,6 @@ class _PostCardState extends State<PostCard> {
             ),
           ],
         ),
-        
       ],
     );
   }
@@ -193,5 +199,3 @@ class _PostCardState extends State<PostCard> {
     );
   }
 }
-
-
