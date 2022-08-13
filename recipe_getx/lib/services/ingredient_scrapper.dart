@@ -10,25 +10,29 @@ class IngredientScapper {
       List<Preparations> preparationPackages = [];
       late String description;
       final soup = BeautifulSoup(html);
-      final items = soup.findAll(
-        'div',
-        class_: 'recipe__main-content',
-      );
+
+      final items = soup
+          .find(
+            'div',
+            class_: 'recipe__main-content',
+          )!
+          .children;
 
       for (var item in items) {
         description = item
                 .find(
                   'div',
                   class_: 'container--body-inner',
-                )!
-                .find('p')
+                )
                 ?.text ??
             '';
 
-        var ingredientList = item.findAll(
-          'div',
-          class_: 'List-Xtjuf hIqrKk',
-        );
+        var ingredientList = item
+            .find(
+              'div',
+              class_: 'List-Xtjuf hIqrKk',
+            )!
+            .children;
 
         for (var ingredientz in ingredientList) {
           var value = IngredientLists(
@@ -52,10 +56,12 @@ class IngredientScapper {
           ingredientPackages.add(value);
         }
 
-        var preparationContents = item.findAll(
-          'div',
-          class_: 'InstructionStepWrapper-gatRTQ ldfkJy',
-        );
+        var preparationContents = item
+            .find(
+              'div',
+              class_: 'InstructionGroupWrapper-hmyafp bJfiL',
+            )!
+            .children;
         for (var preparation in preparationContents) {
           var value = Preparations(
             step: preparation
@@ -68,7 +74,9 @@ class IngredientScapper {
                 '',
             description: preparation
                     .find(
-                      'p',
+                      'div',
+                      class_:
+                          'BaseWrap-sc-UABmB BaseText-fETRLB InstructionBody-huDCkh hkSZSE hJquu eCKSnz',
                     )
                     ?.text ??
                 '',
@@ -103,11 +111,11 @@ class IngredientScapper {
         ),
       );
       for (var package in packages) {
-        debugPrint('$package');
+        debugPrint(package.toString());
       }
       return packages;
     } catch (error) {
-      debugPrint('IngredientService: $error');
+      debugPrint('IngredientService Error Message: $error');
     }
     return [];
   }

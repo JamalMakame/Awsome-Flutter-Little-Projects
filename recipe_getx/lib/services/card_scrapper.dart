@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import '../models/post_card_model.dart';
 
 class PostCardScrapper {
-  static Future<List<PostCardModel>> postCard(String html) async {
+  static List<PostCardModel> postCard(String html) {
     try {
       final soup = BeautifulSoup(html);
       final items = soup.findAll(

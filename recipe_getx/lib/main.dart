@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:recipe_getx/components/constants.dart';
 import 'package:recipe_getx/controllers/my_app_manager.dart';
 import 'package:recipe_getx/views/screens/home_screen.dart';
-import 'services/http_sercive.dart';
 import 'views/screens/my_profile_screen.dart';
 import 'views/screens/notification_screen.dart';
 import 'views/screens/upload_step_1.dart';
