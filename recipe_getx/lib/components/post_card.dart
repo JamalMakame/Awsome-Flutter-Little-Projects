@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,6 +9,9 @@ import 'package:recipe_getx/models/post_card_model.dart';
 import 'package:recipe_getx/services/card_scrapper.dart';
 import 'package:recipe_getx/services/http_sercive.dart';
 import 'package:recipe_getx/views/screens/detail_recipe.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 const String baseUrl = 'https://www.bonappetit.com/ingredient/rice';
 
@@ -70,7 +75,7 @@ class _PostCardState extends State<PostCard> {
           height: 10.h,
         ),
         GestureDetector(
-          onTap: () {
+          onTap: () async {
             Get.to(
               () => const DetailRecipe(),
               arguments: {
@@ -79,6 +84,8 @@ class _PostCardState extends State<PostCard> {
                 'recipeUrl': list[index].recipeUrl,
               },
             );
+            
+            
           },
           child: Stack(
             children: [
@@ -173,6 +180,14 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
+    @override
+    void initState() {
+      super.initState();
+      if (Platform.isAndroid) {
+        WebView.platform = AndroidWebView();
+      }
+    }
+
     return FutureBuilder(
       future: getPostCardData(),
       builder: (context, data) {
