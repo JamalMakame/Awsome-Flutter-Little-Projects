@@ -208,12 +208,8 @@ class LoginView extends GetView<LoginController> {
                                 height: 62.h,
                               ),
                               MaterialButton(
-                                onPressed: () {
-                                  controller.logIn(
-                                    email: controller.emailContr.value.text,
-                                    password:
-                                        controller.passcodeContr.value.text,
-                                  );
+                                onPressed: () async {
+                                  await controller.logIn();
                                 },
                                 splashColor: Colors.transparent,
                                 child: Container(
