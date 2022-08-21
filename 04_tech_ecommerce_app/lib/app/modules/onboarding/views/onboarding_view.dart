@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tech_ecommerce_app/app/constants/app_colors.dart';
+import 'package:tech_ecommerce_app/app/routes/app_pages.dart';
 
 import '../controllers/onboarding_controller.dart';
 
@@ -32,10 +33,16 @@ class OnboardingView extends GetView<OnboardingController> {
               ),
             ),
           ),
-          SvgPicture.asset(
-            'images/sally_images/Saly-splash.svg',
+          Image.asset(
+            
+            'images/sally_images/Saly-splash.png',
+            fit: BoxFit.cover,
+          ),
+          SizedBox(
+            height: 100.h,
           ),
           MaterialButton(
+            splashColor: Colors.transparent,
             child: Container(
               width: 314.w,
               height: 70.h,
@@ -58,7 +65,11 @@ class OnboardingView extends GetView<OnboardingController> {
                 ),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(
+                Routes.LOGIN,
+              );
+            },
           ),
         ],
       ),
