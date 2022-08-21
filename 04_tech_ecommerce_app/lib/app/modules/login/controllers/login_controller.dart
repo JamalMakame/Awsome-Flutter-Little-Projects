@@ -17,12 +17,10 @@ class LoginController extends GetxController {
       email: emailContr.value.text,
       password: passcodeContr.value.text,
     );
-    if (authData != null) {
+    if (authData == null) {
       Get.offAllNamed(
         Routes.HOME,
       );
-    } else{
-      debugPrint(authData);
-    }
+    } 
   }
 }
