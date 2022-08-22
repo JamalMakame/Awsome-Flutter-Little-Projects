@@ -1,6 +1,7 @@
 {
   "cmake.sourceDirectory": "${workspaceFolder}/linux",
   "cSpell.words": [
+    "Contlr",
     "passcode",
     "raleway"
   ]

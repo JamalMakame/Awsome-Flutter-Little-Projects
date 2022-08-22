@@ -19,7 +19,7 @@ class LoginController extends GetxController {
     );
     if (authData == null) {
       Get.offAllNamed(
-        Routes.HOME,
+        Routes.LANDING,
       );
     } 
   }
