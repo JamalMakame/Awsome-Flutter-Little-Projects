@@ -25,33 +25,7 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        debugPrint('Menu Icon Pressed');
-                      },
-                      child: SizedBox(
-                        height: 14.67.h,
-                        width: 22.w,
-                        child: Image.asset(
-                          'images/sally_icons/Menu.png',
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        showSearch(
-                          context: context,
-                          delegate: CustomSearchDelegate(),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.search,
-                      ),
-                    ),
-                  ],
-                ),
+                customSearchView(context),
                 SizedBox(
                   height: 55.h,
                 ),
@@ -66,9 +40,9 @@ class HomeView extends GetView<HomeController> {
               ],
             ),
           ),
-          Expanded(
+          const Expanded(
             flex: 1,
-            child: const CustomTabSectionView(),
+            child: CustomTabSectionView(),
           ),
         ],
       ),
