@@ -2,6 +2,7 @@ import 'package:calculator_app/controller/calc_controller.dart';
 import 'package:calculator_app/theme_data.dart';
 import 'package:calculator_app/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class NumPadView extends GetView<CalcController> {
@@ -35,10 +36,10 @@ class NumPadView extends GetView<CalcController> {
     return CustomScrollView(
       slivers: [
         SliverGrid(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
-            mainAxisSpacing: 25.0,
-            crossAxisSpacing: 25.0,
+            mainAxisSpacing: 25.h,
+            crossAxisSpacing: 25.w,
           ),
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {

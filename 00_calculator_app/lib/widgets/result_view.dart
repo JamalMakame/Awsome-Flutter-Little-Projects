@@ -1,6 +1,7 @@
 import 'package:calculator_app/controller/calc_controller.dart';
 import 'package:calculator_app/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,9 @@ class ResultView extends GetView<CalcController> {
             Obx(
               () => Text(
                 controller.equation,
-                style: MyColors.buttonText,
+                style: MyColors.buttonText.copyWith(
+                  fontSize: 36.sp,
+                ),
               ),
             ),
           ],
@@ -34,13 +37,14 @@ class ResultView extends GetView<CalcController> {
                 calController.result,
                 style: MyColors.buttonText.copyWith(
                   color: MyColors.resultClr,
+                  fontSize: 36.sp,
                 ),
               ),
             ),
           ],
         ),
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: 20.h,
         ),
         Row(
           children: [
@@ -51,24 +55,26 @@ class ResultView extends GetView<CalcController> {
                 color: MyColors.whiteButtonTextClr,
               ),
             ),
-            const SizedBox(
-              width: 20,
+            SizedBox(
+              width: 20.h,
             ),
             IconButton(
               onPressed: () {},
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.ruler,
                 color: MyColors.whiteButtonTextClr,
+                size: 24.sp,
               ),
             ),
-            const SizedBox(
-              width: 20,
+            SizedBox(
+              width: 20.h,
             ),
             IconButton(
               onPressed: () {},
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.squareRootVariable,
                 color: MyColors.whiteButtonTextClr,
+                size: 24.sp,
               ),
             ),
             const Spacer(),
@@ -76,9 +82,10 @@ class ResultView extends GetView<CalcController> {
               onPressed: () {
                 calController.delete();
               },
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.deleteLeft,
                 color: MyColors.whiteButtonTextClr,
+                size: 24.sp,
               ),
             ),
           ],

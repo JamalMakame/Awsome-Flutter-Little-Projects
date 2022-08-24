@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget customButton({
     required Color backgroundClr,
@@ -9,7 +10,7 @@ Widget customButton({
     return GestureDetector(
       onTap: () => callback(),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(9),
+        borderRadius: BorderRadius.circular(9.r),
         child: Container(
           color: backgroundClr,
           child: Center(
@@ -17,7 +18,7 @@ Widget customButton({
               buttonText,
               style: TextStyle(
                 color: textClr,
-                fontSize: 36,
+                fontSize: 36.sp,
               ),
             ),
           ),

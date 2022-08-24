@@ -2,8 +2,8 @@ import 'package:calculator_app/theme_data.dart';
 import 'package:calculator_app/widgets/num_pad.dart';
 import 'package:calculator_app/widgets/result_view.dart';
 import 'package:flutter/material.dart';
-
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
@@ -16,29 +16,29 @@ class MyApp extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(
-            right: 19,
-            left: 19,
+          padding: EdgeInsets.only(
+            right: 19.w,
+            left: 19.w,
           ),
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height / 4.3,
+                height: 280.h,
                 child: ResultView(),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(
-                  top: 20,
-                  bottom: 25,
+                  top: 20.h,
+                  bottom: 25.h,
                 ),
-                child: Divider(
+                child: const Divider(
                   color: MyColors.dividerClr,
                   thickness: 2,
                 ),
               ),
               Expanded(
                 child: NumPadView(),
-              )
+              ),
             ],
           ),
         ),
