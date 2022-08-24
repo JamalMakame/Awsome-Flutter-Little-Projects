@@ -13,7 +13,7 @@ import 'views/screens/upload_step_1.dart';
 void main() async {
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: false,
       builder: (context) => const MyApp(),
     ),
   );

@@ -1,16 +1,46 @@
 # calculator_app
+A very basic calculator application created with Flutter. 
 
-A new Flutter project.
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-## Getting Started
+## Thank You!
+Please ⭐️ this repo and share it with others
 
-This project is a starting point for a Flutter application.
+### Screenshot
+<img src = 'images/Frame 1.svg' alt='Calculator cover page'></img>
+### Packages used 🔧
+<ul>
+  <li>
+    <a href='https://pub.dev/packages/flutter_simple_calculator'>Flutter Simple Calculator
+    </a>
+  </li>
+  <li>
+    <a href='https://pub.dartlang.org/packages?q=font_awesome_flutter'>Font Awesome Flutter
+    </a>
+  </li>
+  <li>
+    <a href='https://pub.dartlang.org/packages?q=get'>GetX
+    </a>
+  </li>
+  <li>
+    <a href='https://pub.dartlang.org/packages?q=math_expressions'>Math Expressions
+    </a>
+  </li>
+</ul>
 
-A few resources to get you started if this is your first Flutter project:
+### Installation 🔌
+1. Press the **Fork** button (top right the page) to save copy of this project on your account.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+2. Download the repository files (project) from the download section or clone this project by typing in the bash the following command:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+       git clone https://github.com/JamalMakame/10Flutter_Projects/tree/master/00_calculator_app.git
+3. Imported it in your favorite IDE.
+4. Run the application :D
+
+
+
+### Contributing 💡
+If you want to contribute to this project and make it better with new ideas, your pull request is very welcomed.
+If you find any issue just put it in the repository issue section, thank you.
+
+
