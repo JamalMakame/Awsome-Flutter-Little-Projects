@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -23,7 +24,7 @@ class _ContentPageState extends State<ContentPage>
   List showProgressData = [];
   final TaskModel taskModel = TaskModel();
 
-  DateTime _selectedDate = DateTime.now();
+  final DateTime _selectedDate = DateTime.now();
   final TaskController _taskController = Get.put(TaskController());
 
   @override
@@ -151,274 +152,236 @@ class _ContentPageState extends State<ContentPage>
     );
   }
 
+  ChoiceChip customChip({
+    required bool isSelected,
+    required String labelText,
+  }) {
+    return ChoiceChip(
+      label: Text(
+        labelText,
+      ),
+      labelStyle: TextStyle(
+        fontFamily: 'Poppins',
+        color: const Color(0xff242736),
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      selectedColor: Colors.white,
+      backgroundColor: const Color(0xffe5eafc),
+      labelPadding: EdgeInsets.symmetric(
+        horizontal: 31.w,
+        vertical: 13.h,
+      ),
+      selected: isSelected,
+      onSelected: (bool newSelected) {
+        setState(() {
+          isSelected = !newSelected;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    PageController _pageController = PageController(viewportFraction: 0.88);
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    PageController pageController = PageController(
+      viewportFraction: 0.6,
+    );
     return SafeArea(
       child: Scaffold(
         backgroundColor: TodoColors.backGroundClr,
-        body: Container(
-          padding: const EdgeInsets.only(top: 5),
-          child: Column(
-            children: [
-              Container(
-                width: width,
-                height: 70,
-                margin: const EdgeInsets.only(left: 15, right: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: TodoColors.lightTextClr,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: Row(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                left: 54.w,
+                top: 59.h,
+                right: 54.w,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const CircleAvatar(
-                        radius: 23,
-                        backgroundColor: Colors.deepPurple,
+                      GestureDetector(
+                        onTap: () {},
+                        child: Image.asset(
+                          'assets/images/Group.png',
+                          width: 42.sp,
+                          height: 41.sp,
+                        ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Hello! Jamal',
-                            style: TextStyle(
-                              color: TodoColors.darkTextClr,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            'Have a nice day',
-                            style: TextStyle(
-                              color: TodoColors.darkTextClr,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w300,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.notifications,
-                          color: TodoColors.iconClr,
-                          size: 23,
+                      GestureDetector(
+                        onTap: () {},
+                        child: Image.asset(
+                          'assets/images/account_circle_black_24dp 1.png',
+                          width: 42.sp,
+                          height: 41.sp,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: Row(
-                  children: [
-                    const Text(
-                      "Project Overview",
-                      style: TextStyle(
-                        color: Color(0xFF1f2326),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                    const Spacer(),
-                    const Text(
-                      "Show all",
-                      style: TextStyle(
-                        color: TodoColors.darkTextClr,
-                        fontSize: 14,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 7,
-                    ),
-                    Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: TodoColors.iconClr,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: const Center(
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: TodoColors.lightTextClr,
-                            size: 13,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 160,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: 4,
-                  itemBuilder: (context, index) {
-                    return customCards(
-                      projectNumber: (index + 1).toString(),
-                      projectTitle: 'title',
-                      projectDate: 'date',
-                      projectClr: index.isEven
-                          ? Colors.deepPurple
-                          : Colors.deepPurple.shade600,
-                      context: context,
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              indicator(
-                context: context,
-                count: 4,
-                pageController: _pageController,
-              ),
-              Container(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                  top: 5,
-                ),
-                child: Row(
-                  children: [
-                    const Text(
-                      "Recent Tasks",
-                      style: TextStyle(
-                        color: Color(0xFF1f2326),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                    const Spacer(),
-                    const Text(
-                      "Show all",
-                      style: TextStyle(
-                        color: TodoColors.darkTextClr,
-                        fontSize: 14,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 7,
-                    ),
-                    Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: TodoColors.iconClr,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: const Center(
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: TodoColors.lightTextClr,
-                            size: 13,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 0,
+                  SizedBox(
+                    height: 47.h,
                   ),
-                  child: MediaQuery.removeViewPadding(
+                  Text(
+                    'Hello Jamal!',
+                    style: TextStyle(
+                      color: TodoColors.darkTextClr,
+                      fontSize: 48.sp,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    'Have a nice day',
+                    style: TextStyle(
+                      color: TodoColors.darkTextClr,
+                      fontSize: 23.sp,
+                      fontWeight: FontWeight.w300,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 52.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      customChip(
+                        labelText: 'My Tasks',
+                        isSelected: true,
+                      ),
+                      customChip(
+                        labelText: 'In-progress',
+                        isSelected: false,
+                      ),
+                      customChip(
+                        labelText: 'Completed',
+                        isSelected: false,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              height: 339.h,
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return customCard0(
+                    projectNumber: (index + 1).toString(),
+                    projectTitle: 'title',
+                    projectDate: 'October 20, 2020',
+                    projectClr: index.isEven
+                        ? Colors.deepPurple
+                        : Colors.deepPurple.shade600,
                     context: context,
-                    removeTop: true,
-                    child: Obx(
-                      () => ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: _taskController.taskModelList.length,
-                        itemBuilder: (context, index) {
-                          TaskModel taskModel =
-                              _taskController.taskModelList[index];
-                          debugPrint(taskModel.toJson());
-                          if (taskModel.date ==
-                              DateFormat('yyyy-MM-d').format(_selectedDate)) {
-                            notifyHelper.scheduledNotification(
-                                hour: int.parse(taskModel.startTime
-                                    .toString()
-                                    .split(':')[0]),
-                                minutes: int.parse(taskModel.startTime
-                                    .toString()
-                                    .split(':')[1]),
-                                taskModel: taskModel);
-                            return AnimationConfiguration.staggeredList(
-                              duration: const Duration(
-                                milliseconds: 600,
-                              ),
-                              position: index,
-                              child: SlideAnimation(
-                                child: FadeInAnimation(
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            customBottomSheet(
-                                              taskModel: _taskController
-                                                  .taskModelList[index],
-                                            );
-                                          },
-                                          child: TaskTile(
-                                            _taskController
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              height: 29.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                indicator(
+                  context: context,
+                  count: 3,
+                  pageController: pageController,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 48.h,
+            ),
+            Padding(
+              padding:  EdgeInsets.only(left: 54.w),
+              child: Text(
+                'Progress',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 32.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 0,
+                ),
+                child: MediaQuery.removeViewPadding(
+                  context: context,
+                  removeTop: true,
+                  child: Obx(
+                    () => ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: _taskController.taskModelList.length,
+                      itemBuilder: (context, index) {
+                        TaskModel taskModel =
+                            _taskController.taskModelList[index];
+                        debugPrint(taskModel.toJson());
+                        if (taskModel.date ==
+                            DateFormat('yyyy-MM-d').format(_selectedDate)) {
+                          notifyHelper.scheduledNotification(
+                              hour: int.parse(
+                                  taskModel.startTime.toString().split(':')[0]),
+                              minutes: int.parse(
+                                  taskModel.startTime.toString().split(':')[1]),
+                              taskModel: taskModel);
+                          return AnimationConfiguration.staggeredList(
+                            duration: const Duration(
+                              milliseconds: 600,
+                            ),
+                            position: index,
+                            child: SlideAnimation(
+                              child: FadeInAnimation(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          customBottomSheet(
+                                            taskModel: _taskController
                                                 .taskModelList[index],
-                                          ),
+                                          );
+                                        },
+                                        child: TaskTile(
+                                          _taskController.taskModelList[index],
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            );
-                          } else {
-                            return Container();
-                          }
-                        },
-                      ),
+                            ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
