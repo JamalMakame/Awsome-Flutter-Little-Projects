@@ -24,20 +24,3 @@ void main() {
     ),
   );
 }
-
-// DevicePreview(
-//       enabled: !kReleaseMode,
-//       builder: (context) {
-//         return ScreenUtilInit(
-//           designSize: const Size(414, 896),
-//           minTextAdapt: true,
-//           builder: (context, child) {
-//             return GetMaterialApp(
-//               title: "Application",
-//               initialRoute: AppPages.INITIAL,
-//               getPages: AppPages.routes,
-//             );
-//           },
-//         );
-//       },
-//     ),
