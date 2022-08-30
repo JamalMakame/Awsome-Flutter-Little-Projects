@@ -144,7 +144,7 @@ Widget customCard0({
                               width: 347.4952087402344,
                               height: 416.1828918457031,
                               decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.1),
+                                color: Colors.black.withOpacity(0.05),
                                 borderRadius: BorderRadius.all(
                                   Radius.elliptical(
                                     347.r,
@@ -159,17 +159,33 @@ Widget customCard0({
                                 projectDate,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
-                                    fontFamily: 'Poppins',
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.normal,
-                                    height: 1),
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.normal,
+                                  height: 1,
+                                ),
                               )),
                         ],
                       ),
                     ),
                   ]))),
+          Positioned(
+            right: 160.w,
+            top: 170.h,
+            child: Container(
+                width: 347.4952087402344,
+                height: 416.1828918457031,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.05),
+                  borderRadius: BorderRadius.all(
+                    Radius.elliptical(
+                      347.r,
+                      416.r,
+                    ),
+                  ),
+                )),
+          ),
           Positioned(
               top: 272,
               left: 37,
@@ -242,22 +258,6 @@ Widget customCard0({
                       ),
                     ),
                   ]))),
-          Positioned(
-            right: 160.w,
-            top: 170.h,
-            child: Container(
-                width: 347.4952087402344,
-                height: 416.1828918457031,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.1),
-                  borderRadius: BorderRadius.all(
-                    Radius.elliptical(
-                      347.r,
-                      416.r,
-                    ),
-                  ),
-                )),
-          ),
         ])),
   );
 }
