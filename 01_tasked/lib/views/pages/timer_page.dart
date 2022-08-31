@@ -2,6 +2,8 @@
 
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 
 class TimerPage extends StatefulWidget {
@@ -30,12 +32,17 @@ class _TimerPageState extends State<TimerPage>
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
-          'Pomodoro Timer',
-          style: TextStyle(
-            fontFamily: 'Consolas',
-            fontSize: 30,
-            color: TodoColors.iconClr,
+        title: ShaderMask(
+          shaderCallback: (bounds) {
+            return TodoColors.kPrimaryGradientClr.createShader(bounds);
+          },
+          child: Text(
+            'Pomodoro Timer',
+            style: TextStyle(
+              fontFamily: 'Consolas',
+              fontSize: 50.sp,
+              color: TodoColors.iconClr,
+            ),
           ),
         ),
       ),
@@ -43,22 +50,23 @@ class _TimerPageState extends State<TimerPage>
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+            padding: EdgeInsets.only(top: 30.h),
             child: CircularCountDownTimer(
               duration: _duration,
               initialDuration: _duration,
               controller: _controller,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 3.2,
+              width: Get.width,
+              height: Get.height / 3.2,
               ringColor: TodoColors.lightTextClr,
               fillColor: TodoColors.iconClr,
+              fillGradient: TodoColors.kPrimaryGradientClr,
               strokeWidth: 9,
               autoStart: false,
               isReverse: true,
               textFormat: CountdownTextFormat.MM_SS,
-              textStyle: const TextStyle(
+              textStyle: TextStyle(
                 fontFamily: 'Consolas',
-                fontSize: 80,
+                fontSize: 120.sp,
                 color: TodoColors.iconClr,
               ),
               onStart: () {
@@ -69,14 +77,14 @@ class _TimerPageState extends State<TimerPage>
               },
             ),
           ),
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: 30.h,
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 30,
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
+                vertical: 30.h,
               ),
               child: Column(
                 children: [
@@ -86,16 +94,16 @@ class _TimerPageState extends State<TimerPage>
                         Expanded(
                           child: Column(
                             children: [
-                              const Text(
+                              Text(
                                 'Study',
                                 style: TextStyle(
-                                  fontSize: 23,
+                                  fontSize: 63.sp,
                                   fontWeight: FontWeight.w400,
                                   color: TodoColors.darkTextClr,
                                 ),
                               ),
-                              const SizedBox(
-                                height: 20,
+                              SizedBox(
+                                height: 20.h,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -105,12 +113,18 @@ class _TimerPageState extends State<TimerPage>
                                     isStarted = false;
                                   });
                                 },
-                                child: const Text(
-                                  '25',
-                                  style: TextStyle(
-                                    color: TodoColors.iconClr,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 93,
+                                child: ShaderMask(
+                                  shaderCallback: (bounds) {
+                                    return TodoColors.kPrimaryGradientClr
+                                        .createShader(bounds);
+                                  },
+                                  child: Text(
+                                    '25',
+                                    style: TextStyle(
+                                      color: TodoColors.iconClr,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 153.sp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -120,16 +134,16 @@ class _TimerPageState extends State<TimerPage>
                         Expanded(
                           child: Column(
                             children: [
-                              const Text(
+                              Text(
                                 'Break',
                                 style: TextStyle(
-                                  fontSize: 23,
+                                  fontSize: 63.sp,
                                   fontWeight: FontWeight.w400,
                                   color: TodoColors.darkTextClr,
                                 ),
                               ),
-                              const SizedBox(
-                                height: 20,
+                              SizedBox(
+                                height: 30.h,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -139,12 +153,18 @@ class _TimerPageState extends State<TimerPage>
                                     isStarted = false;
                                   });
                                 },
-                                child: const Text(
-                                  '5',
-                                  style: TextStyle(
-                                    color: TodoColors.iconClr,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 93,
+                                child: ShaderMask(
+                                  shaderCallback: (bounds) {
+                                    return TodoColors.kPrimaryGradientClr
+                                        .createShader(bounds);
+                                  },
+                                  child: Text(
+                                    '5',
+                                    style: TextStyle(
+                                      color: TodoColors.iconClr,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 153.sp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -169,10 +189,10 @@ class _TimerPageState extends State<TimerPage>
                                   });
                                 },
                                 child: Container(
-                                  width: MediaQuery.of(context).size.width / 2,
+                                  width: Get.width / 2,
                                   height: 72,
                                   decoration: const BoxDecoration(
-                                    color: Colors.deepPurple,
+                                    gradient: TodoColors.kPrimaryGradientClr,
                                     boxShadow: [
                                       BoxShadow(
                                         color:
@@ -188,9 +208,11 @@ class _TimerPageState extends State<TimerPage>
                                   child: Center(
                                     child: Text(
                                       'Pause',
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .headline5,
+                                      style: TextStyle(
+                                        fontSize: 33.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: TodoColors.lightTextClr,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -203,10 +225,10 @@ class _TimerPageState extends State<TimerPage>
                                   });
                                 },
                                 child: Container(
-                                  width: MediaQuery.of(context).size.width / 2,
+                                  width: Get.width / 2,
                                   height: 72,
                                   decoration: const BoxDecoration(
-                                    color: Colors.deepPurple,
+                                    gradient: TodoColors.kPrimaryGradientClr,
                                     boxShadow: [
                                       BoxShadow(
                                         color:
@@ -219,12 +241,12 @@ class _TimerPageState extends State<TimerPage>
                                       Radius.circular(75),
                                     ),
                                   ),
-                                  child: const Center(
+                                  child: Center(
                                     child: Text(
                                       'Resume',
                                       style: TextStyle(
-                                        fontSize: 23,
-                                        fontWeight: FontWeight.w400,
+                                        fontSize: 33.sp,
+                                        fontWeight: FontWeight.w600,
                                         color: TodoColors.lightTextClr,
                                       ),
                                     ),

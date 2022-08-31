@@ -1,5 +1,6 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -39,22 +40,21 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
   }) {
     return Get.bottomSheet(
       Container(
-        padding: const EdgeInsets.only(top: 4),
-        height: taskModel.isCompleted == 1
-            ? MediaQuery.of(context).size.height * 0.30
-            : MediaQuery.of(context).size.height * 0.40,
+        padding: EdgeInsets.only(top: 4.h),
+        height:
+            taskModel.isCompleted == 1 ? Get.height * 0.20 : Get.height * 0.30,
         child: Column(
           children: [
             Container(
-              height: 6,
-              width: 120,
+              height: 6.h,
+              width: 120.w,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10.r),
                 color: TodoColors.darkTextClr,
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             taskModel.isCompleted == 1
                 ? Container()
@@ -68,8 +68,8 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                     title: 'Task Completed',
                     buttonClr: Colors.blueAccent,
                   ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             customBottomSheetButton(
               isClosed: false,
@@ -81,8 +81,8 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
               title: 'Delete Task',
               buttonClr: Colors.red,
             ),
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: 25.h,
             ),
             customBottomSheetButton(
               onTap: () {
@@ -110,17 +110,16 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          // vertical: 40.0,
-          horizontal: 30,
+        padding: EdgeInsets.symmetric(
+          horizontal: 30.w,
         ),
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 62,
+          width: Get.width,
+          height: 62.h,
           decoration: BoxDecoration(
             color: buttonClr,
             border: Border.all(
-              width: 2,
+              width: 2.w,
               color: isClosed == true ? Colors.grey : buttonClr,
             ),
             boxShadow: const [
@@ -130,8 +129,8 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                 blurRadius: 25,
               ),
             ],
-            borderRadius: const BorderRadius.all(
-              Radius.circular(20),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20.r),
             ),
           ),
           child: Center(
@@ -155,67 +154,71 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: MediaQuery.of(context).size.height / 3.5,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
+            height: 457.h,
+            width: Get.width,
+            decoration: BoxDecoration(
               color: TodoColors.lightTextClr,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20.r),
+                bottomRight: Radius.circular(20.r),
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 30,
+              padding: EdgeInsets.only(
+                left: 45.w,
+                right: 45.w,
+                top: 153.h,
               ),
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         DateFormat.yMMM().format(DateTime.now()),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: TodoColors.darkTextClr,
                           fontWeight: FontWeight.w400,
-                          fontSize: 30,
+                          fontSize: 47.sp,
                         ),
                       ),
-                      const Spacer(),
                       GestureDetector(
                         onTap: (() async {
                           await Get.to(() => const CreateTask());
                           _taskController.getTasks();
                         }),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 13,
-                            vertical: 13,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 32.w,
+                            vertical: 23.h,
                           ),
-                          height: 40,
-                          width: 100,
-                          decoration: const BoxDecoration(
-                            color: Colors.deepPurple,
+                          height: 70.h,
+                          width: 171.w,
+                          decoration: BoxDecoration(
+                            gradient: TodoColors.kPrimaryGradientClr,
                             borderRadius: BorderRadius.all(
-                              Radius.circular(75),
+                              Radius.circular(75.r),
                             ),
                           ),
                           child: Row(
-                            children: const [
-                              Icon(
-                                Icons.add,
-                                color: TodoColors.lightTextClr,
-                                size: 13,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Icon(
+                                  Icons.add,
+                                  color: TodoColors.lightTextClr,
+                                  size: 24.sp,
+                                ),
                               ),
                               SizedBox(
-                                width: 5,
+                                width: 5.w,
                               ),
                               Text(
                                 'Add Task',
                                 style: TextStyle(
                                   color: TodoColors.lightTextClr,
                                   fontFamily: 'Poppins',
-                                  fontSize: 16,
+                                  fontSize: 21.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -225,43 +228,41 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20,
-                    ),
-                    child: SizedBox(
-                      height: 90,
-                      child: DatePicker(
-                        DateTime.now(),
-                        width: 60,
-                        monthTextStyle: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: TodoColors.darkTextClr,
-                        ),
-                        dayTextStyle: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: TodoColors.darkTextClr,
-                        ),
-                        dateTextStyle: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400,
-                          color: TodoColors.darkTextClr,
-                        ),
-                        initialSelectedDate: _selectedDate,
-                        selectionColor: Colors.deepPurple,
-                        selectedTextColor: Colors.white70,
-                        daysCount: 60,
-                        onDateChange: (date) {
-                          setState(() {
-                            _selectedDate = date;
-                          });
-                        },
+                  SizedBox(
+                    height: 61.h,
+                  ),
+                  SizedBox(
+                    height: 123.h,
+                    child: DatePicker(
+                      DateTime.now(),
+                      width: 60.w,
+                      monthTextStyle: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 17.sp,
+                        fontWeight: FontWeight.w400,
+                        color: TodoColors.darkTextClr,
                       ),
+                      dayTextStyle: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: TodoColors.darkTextClr,
+                      ),
+                      dateTextStyle: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.w400,
+                        color: TodoColors.darkTextClr,
+                      ),
+                      initialSelectedDate: _selectedDate,
+                      selectionColor: TodoColors.buttonClr,
+                      selectedTextColor: Colors.white70,
+                      daysCount: 60,
+                      onDateChange: (date) {
+                        setState(() {
+                          _selectedDate = date;
+                        });
+                      },
                     ),
                   ),
                 ],
@@ -270,20 +271,19 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 15,
-                //horizontal: 30,
+              padding: EdgeInsets.symmetric(
+                vertical: 15.h,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 30.0),
+                  Padding(
+                    padding: EdgeInsets.only(left: 30.w),
                     child: Text(
                       'Tasks',
                       style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         color: TodoColors.darkTextClr,
                       ),
@@ -291,8 +291,8 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                        top: 10,
+                      padding: EdgeInsets.only(
+                        top: 10.h,
                       ),
                       child: MediaQuery.removeViewPadding(
                         context: context,

@@ -2,6 +2,7 @@
 
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:tasked/const/app_colors.dart';
@@ -72,16 +73,17 @@ class _CreateTaskState extends State<CreateTask> {
         'Required',
         'All fields are required !',
         colorText: Colors.red,
+        padding: const EdgeInsets.all(23),
         duration: const Duration(
           seconds: 7,
         ),
         isDismissible: true,
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.white,
-        icon: const Icon(
+        icon: Icon(
           Icons.warning_amber_rounded,
           color: Colors.red,
-          size: 32,
+          size: 62.sp,
         ),
       );
     }
@@ -93,116 +95,130 @@ class _CreateTaskState extends State<CreateTask> {
       backgroundColor: TodoColors.lightTextClr,
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: Get.height,
+          width: Get.width,
           decoration: const BoxDecoration(
-            color: Colors.deepPurple,
+            gradient: TodoColors.kPrimaryGradientClr,
           ),
           child: SafeArea(
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
                             onPressed: () {
                               Get.back();
                             },
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.arrow_back,
                               color: TodoColors.lightTextClr,
-                              size: 23,
+                              size: 44.sp,
+                            ),
+                          ),
+                          Text(
+                            'Create a Task',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.search,
+                              color: TodoColors.lightTextClr,
+                              size: 44.sp,
                             ),
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15,
-                          vertical: 5.0,
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 52.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        autofocus: false,
+                        cursorColor: Colors.grey,
+                        controller: _nameController,
+                        style: const TextStyle(
+                          color: TodoColors.lightTextClr,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20,
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextFormField(
-                              autofocus: false,
-                              cursorColor: Colors.grey,
-                              controller: _nameController,
-                              style: const TextStyle(
-                                color: TodoColors.lightTextClr,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 20,
-                              ),
-                              decoration: const InputDecoration(
-                                labelText: 'Task Title',
-                                labelStyle: TextStyle(
-                                  color: TodoColors.lightTextClr,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 23,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            DateTimePicker(
-                              type: DateTimePickerType.date,
-                              controller: _dateController,
-                              decoration: const InputDecoration(
-                                labelText: 'Task Date',
-                                labelStyle: TextStyle(
-                                  color: TodoColors.lightTextClr,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 23,
-                                ),
-                              ),
-                              firstDate: DateTime.now().subtract(
-                                const Duration(days: 3),
-                              ),
-                              lastDate: DateTime.now().add(
-                                const Duration(days: 30),
-                              ),
-                              style: const TextStyle(
-                                color: TodoColors.lightTextClr,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                              dateMask: 'MMM d, yyy',
-                              onChanged: (date) =>
-                                  setState(() => _selectedDate = date),
-                            ),
-                          ],
+                        decoration: const InputDecoration(
+                          labelText: 'Task Title',
+                          labelStyle: TextStyle(
+                            color: TodoColors.lightTextClr,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 23,
+                          ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      DateTimePicker(
+                        type: DateTimePickerType.date,
+                        controller: _dateController,
+                        decoration: const InputDecoration(
+                          labelText: 'Task Date',
+                          labelStyle: TextStyle(
+                            color: TodoColors.lightTextClr,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 23,
+                          ),
+                        ),
+                        firstDate: DateTime.now().subtract(
+                          const Duration(days: 3),
+                        ),
+                        lastDate: DateTime.now().add(
+                          const Duration(days: 30),
+                        ),
+                        style: const TextStyle(
+                          color: TodoColors.lightTextClr,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
+                        dateMask: 'MMM d, yyy',
+                        onChanged: (date) =>
+                            setState(() => _selectedDate = date),
                       ),
                     ],
                   ),
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 40,
+                    padding: EdgeInsets.only(
+                      top: 61.h,
                     ),
                     child: MediaQuery.removePadding(
                       context: context,
                       removeLeft: true,
                       removeRight: true,
                       child: Container(
-                        width: MediaQuery.of(context).size.width - 20,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: TodoColors.lightTextClr,
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
+                            topLeft: Radius.circular(40.r),
+                            topRight: Radius.circular(40.r),
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 42,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 52.w,
+                            vertical: 42.h,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -214,51 +230,51 @@ class _CreateTaskState extends State<CreateTask> {
                                       type: DateTimePickerType.time,
                                       controller: _startTimeController,
                                       timeHintText: _startTime,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         labelText: 'Start time',
                                         labelStyle: TextStyle(
                                           color: TodoColors.darkTextClr,
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 20,
+                                          fontSize: 20.sp,
                                         ),
                                       ),
                                       onChanged: (startTime) => setState(
                                           (() => _endTime = startTime)),
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         color: TodoColors.darkTextClr,
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 32,
+                                        fontSize: 32.sp,
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 20,
+                                  SizedBox(
+                                    width: 20.w,
                                   ),
                                   Expanded(
                                     child: DateTimePicker(
                                       type: DateTimePickerType.time,
                                       controller: _endTimeController,
                                       timeHintText: _endTime,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         labelText: 'End time',
                                         labelStyle: TextStyle(
                                           color: TodoColors.darkTextClr,
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 20,
+                                          fontSize: 20.sp,
                                         ),
                                       ),
                                       onChanged: (endTime) =>
                                           setState((() => _endTime = endTime)),
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         color: TodoColors.darkTextClr,
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 32,
+                                        fontSize: 32.sp,
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 15),
+                              SizedBox(height: 15.h),
                               Expanded(
                                 child: TextFormField(
                                   keyboardType: TextInputType.multiline,
@@ -266,19 +282,19 @@ class _CreateTaskState extends State<CreateTask> {
                                   autofocus: false,
                                   cursorColor: Colors.grey,
                                   controller: _descriptionController,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: TodoColors.darkTextClr,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 24,
+                                    fontSize: 24.sp,
                                   ),
-                                  decoration: const InputDecoration(
+                                  decoration: InputDecoration(
                                     labelText: 'Task Description',
                                     labelStyle: TextStyle(
                                       color: TodoColors.darkTextClr,
                                       fontWeight: FontWeight.w500,
-                                      fontSize: 20,
+                                      fontSize: 20.sp,
                                     ),
-                                    focusedBorder: UnderlineInputBorder(
+                                    focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Colors.grey,
                                         width: 0,
@@ -291,15 +307,15 @@ class _CreateTaskState extends State<CreateTask> {
                               GestureDetector(
                                 onTap: (() => _validateData()),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 38.0,
+                                  padding: EdgeInsets.only(
+                                    top: 38.h,
                                   ),
                                   child: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 62,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.deepPurple,
-                                      boxShadow: [
+                                    width: Get.width,
+                                    height: 92.h,
+                                    decoration: BoxDecoration(
+                                      gradient: TodoColors.kPrimaryGradientClr,
+                                      boxShadow: const [
                                         BoxShadow(
                                           color: Color.fromRGBO(
                                               226, 226, 226, 0.25),
@@ -308,15 +324,18 @@ class _CreateTaskState extends State<CreateTask> {
                                         ),
                                       ],
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(75),
+                                        Radius.circular(75.r),
                                       ),
                                     ),
                                     child: Center(
                                       child: Text(
                                         'Create Task',
-                                        style: Theme.of(context)
-                                            .primaryTextTheme
-                                            .headline5,
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 24.sp,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                     ),
                                   ),

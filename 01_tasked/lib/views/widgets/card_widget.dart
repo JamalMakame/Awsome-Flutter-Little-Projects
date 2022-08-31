@@ -1,88 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-Widget customCards({
-  required BuildContext context,
-  required String projectNumber,
-  required String projectTitle,
-  required String projectDate,
-  required Color projectClr,
-}) {
-  return GestureDetector(
-    onTap: () {},
-    child: Container(
-      padding: const EdgeInsets.only(left: 20, top: 20),
-      width: MediaQuery.of(context).size.width - 20,
-      margin: const EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: projectClr,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Image(
-                height: 40,
-                image: AssetImage(
-                  'assets/svg/Group 36.png',
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Project $projectNumber',
-                    style: const TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: 20,
-                      height: 1.5,
-                    ),
-                    maxLines: 1,
-                    softWrap: false,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
-            'Project $projectTitle',
-            style: const TextStyle(
-              color: Color.fromRGBO(255, 255, 255, 1),
-              fontSize: 20,
-              height: 1.5,
-            ),
-            maxLines: 1,
-            softWrap: false,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Project $projectDate',
-            style: const TextStyle(
-              color: Color.fromRGBO(255, 255, 255, 1),
-              fontSize: 20,
-              height: 1,
-            ),
-            maxLines: 1,
-            softWrap: false,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
-    ),
-  );
-}
+import 'package:tasked/const/app_colors.dart';
 
 Widget customCard0({
   required BuildContext context,
@@ -94,9 +13,10 @@ Widget customCard0({
   return GestureDetector(
     onTap: () {},
     child: SizedBox(
-        width: 341.w,
-        height: 339.h,
-        child: Stack(children: <Widget>[
+      width: 341.w,
+      height: 339.h,
+      child: Stack(
+        children: <Widget>[
           Positioned(
               top: 0.h,
               left: 0.w,
@@ -111,15 +31,7 @@ Widget customCard0({
                           borderRadius: BorderRadius.all(
                             Radius.circular(20.r),
                           ),
-                          gradient: const LinearGradient(
-                              begin: Alignment(
-                                  0.0374455489218235, 0.7739855647087097),
-                              end: Alignment(
-                                  -0.7739855647087097, 0.06429413706064224),
-                              colors: [
-                                Color.fromRGBO(156, 44, 243, 1),
-                                Color.fromRGBO(58, 72, 248, 1)
-                              ]),
+                          gradient: TodoColors.kPrimaryGradientClr,
                         )),
                     Positioned(
                         top: 125.h,
@@ -258,6 +170,8 @@ Widget customCard0({
                       ),
                     ),
                   ]))),
-        ])),
+        ],
+      ),
+    ),
   );
 }

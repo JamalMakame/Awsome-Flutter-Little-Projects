@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/model/task_model.dart';
 
@@ -10,15 +12,14 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      width: MediaQuery.of(context).size.width,
-      height: 110,
-      margin: const EdgeInsets.only(bottom: 5),
+      padding: EdgeInsets.symmetric(horizontal: 53.w),
+      width: Get.width,
+      height: 143.h,
+      margin: EdgeInsets.only(bottom: 5.h),
       child: Container(
         padding: const EdgeInsets.all(16),
-        //  width: SizeConfig.screenWidth * 0.78,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           color: TodoColors.lightTextClr,
         ),
         child: Row(
@@ -27,24 +28,28 @@ class TaskTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 60.96,
-                  width: 60.96,
-                  decoration: const BoxDecoration(
+                  height: 61.h,
+                  width: 61.w,
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
+                      Radius.circular(20.r),
                     ),
-                    color: Colors.deepPurple,
+                    gradient: TodoColors.kPrimaryGradientClr,
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Image(
-                      image: AssetImage('assets/svg/to-do-list 1 (Traced).png'),
+                      image: const AssetImage(
+                        'assets/svg/to-do-list 1 (Traced).png',
+                      ),
+                      width: 25.sp,
+                      height: 30.sp,
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(
-              width: 15,
+             SizedBox(
+              width: 15.w,
             ),
             Expanded(
               child: Column(
@@ -53,15 +58,15 @@ class TaskTile extends StatelessWidget {
                 children: [
                   Text(
                     taskModel!.name ?? "",
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 16,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
                       color: TodoColors.darkTextClr,
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
+                   SizedBox(
+                    height: 5.h,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,26 +74,26 @@ class TaskTile extends StatelessWidget {
                       Icon(
                         Icons.access_time_rounded,
                         color: Colors.grey[900],
-                        size: 18,
+                        size: 18.sp,
                       ),
-                      const SizedBox(width: 4),
+                       SizedBox(width: 4.w),
                       Text(
                         "${taskModel!.startTime} - ${taskModel!.endTime}",
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
                           color: TodoColors.darkTextClr,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                   SizedBox(height: 4.h),
                   Text(
                     taskModel!.description ?? "",
-                    style: const TextStyle(
+                    style:  TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                       color: TodoColors.darkTextClr,
                     ),
@@ -97,8 +102,8 @@ class TaskTile extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              height: 60,
+              margin:  EdgeInsets.symmetric(horizontal: 10.w),
+              height: 60.h,
               width: 0.5,
               color: Colors.grey[900]!.withOpacity(0.7),
             ),
@@ -106,9 +111,9 @@ class TaskTile extends StatelessWidget {
               quarterTurns: 3,
               child: Text(
                 taskModel!.isCompleted == 1 ? "COMPLETED" : "TODO",
-                style: const TextStyle(
+                style:  TextStyle(
                   fontFamily: 'Poppins',
-                  fontSize: 16,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                   color: TodoColors.darkTextClr,
                 ),

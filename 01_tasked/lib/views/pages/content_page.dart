@@ -49,28 +49,27 @@ class _ContentPageState extends State<ContentPage>
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          // vertical: 40.0,
-          horizontal: 30,
+        padding:  EdgeInsets.symmetric(
+          horizontal: 30.h,
         ),
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 82,
+          width: Get.width,
+          height: 82.h,
           decoration: BoxDecoration(
             color: buttonClr,
             border: Border.all(
-              width: 2,
+              width: 2.w,
               color: isClosed == true ? Colors.grey : buttonClr,
             ),
-            boxShadow: const [
+            boxShadow:  [
               BoxShadow(
-                color: Color.fromRGBO(226, 226, 226, 0.25),
-                offset: Offset(17, 26),
-                blurRadius: 25,
+                color: const Color.fromRGBO(226, 226, 226, 0.25),
+                offset: const Offset(17, 26),
+                blurRadius: 25.r,
               ),
             ],
-            borderRadius: const BorderRadius.all(
-              Radius.circular(20),
+            borderRadius:  BorderRadius.all(
+              Radius.circular(20.r),
             ),
           ),
           child: Center(
@@ -91,22 +90,22 @@ class _ContentPageState extends State<ContentPage>
   }) {
     return Get.bottomSheet(
       Container(
-        padding: const EdgeInsets.only(top: 4),
+        padding:  EdgeInsets.only(top: 4.h),
         height: taskModel.isCompleted == 1
-            ? MediaQuery.of(context).size.height * 0.24
-            : MediaQuery.of(context).size.height * 0.32,
+            ? Get.height * 0.24
+            : Get.height * 0.32,
         child: Column(
           children: [
             Container(
-              height: 6,
-              width: 120,
+              height: 6.h,
+              width: 120.w,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10.r),
                 color: TodoColors.darkTextClr,
               ),
             ),
-            const SizedBox(
-              height: 20,
+             SizedBox(
+              height: 20.h,
             ),
             taskModel.isCompleted == 1
                 ? Container()
@@ -120,8 +119,8 @@ class _ContentPageState extends State<ContentPage>
                     title: 'Task Completed',
                     buttonClr: Colors.blueAccent,
                   ),
-            const SizedBox(
-              height: 20,
+             SizedBox(
+              height: 20.h,
             ),
             customBottomSheetButton(
               isClosed: false,
@@ -133,8 +132,8 @@ class _ContentPageState extends State<ContentPage>
               title: 'Delete Task',
               buttonClr: Colors.red,
             ),
-            const SizedBox(
-              height: 25,
+             SizedBox(
+              height: 25.h,
             ),
             customBottomSheetButton(
               onTap: () {
@@ -319,7 +318,7 @@ class _ContentPageState extends State<ContentPage>
               ),
             ),
             SizedBox(
-              height: 10.h,
+              height: 37.h,
             ),
             Expanded(
               child: Padding(

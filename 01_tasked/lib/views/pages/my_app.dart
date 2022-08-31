@@ -1,6 +1,5 @@
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/const/app_theme.dart';
 import 'package:tasked/views/pages/content_page.dart';
@@ -49,32 +48,69 @@ class _MyAppState extends State<MyApp> {
           physics: const NeverScrollableScrollPhysics(),
           children: _list,
         ),
-        bottomNavigationBar: FloatingNavbar(
+        bottomNavigationBar: BottomNavigationBar(
           currentIndex: _index,
           backgroundColor: TodoColors.backGroundClr,
-          selectedItemColor: TodoColors.iconClr,
-          unselectedItemColor: Colors.deepPurple[200],
-          iconSize: 23,
-          fontSize: 10,
-          items: [
-            FloatingNavbarItem(
-              icon: (Icons.home),
-            ),
-            FloatingNavbarItem(
-              icon: (Icons.calendar_month),
-            ),
-            FloatingNavbarItem(
-              icon: (Icons.timer),
-            ),
-          ],
+          elevation: 0,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           onTap: (int val) {
             setState(() {
               _index = val;
               _pageController.jumpToPage(_index);
             });
           },
+          items: [
+            BottomNavigationBarItem(
+              icon: _index == 0
+                  ? Image.asset(
+                      'assets/navigationBar/coolicon.png',
+                      height: 56.h,
+                      width: 56.w,
+                    )
+                  : Icon(
+                      Icons.home,
+                      size: 46.sp,
+                    ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: _index == 1
+                  ? Image.asset(
+                      'assets/navigationBar/calender.png',
+                      height: 56.h,
+                      width: 56.w,
+                    )
+                  : Icon(
+                      Icons.calendar_month,
+                      size: 46.sp,
+                    ),
+              label: 'Calendar',
+            ),
+            BottomNavigationBarItem(
+              icon: _index == 2
+                  ? ShaderMask(
+                    blendMode: BlendMode.srcATop,
+                      shaderCallback: (Rect bounds) {
+                        return TodoColors.kPrimaryGradientClr
+                            .createShader(bounds);
+                      },
+                      child: Icon(
+                        Icons.timer,
+                        size: 56.sp,
+                      ),
+                    )
+                  : Icon(
+                      Icons.timer_outlined,
+                      size: 46.sp,
+                    ),
+              label: 'Timer',
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+
