@@ -8,7 +8,6 @@ Widget customCard0({
   required String projectNumber,
   required String projectTitle,
   required String projectDate,
-  required Color projectClr,
 }) {
   return GestureDetector(
     onTap: () {},
@@ -18,70 +17,74 @@ Widget customCard0({
       child: Stack(
         children: <Widget>[
           Positioned(
-              top: 0.h,
-              left: 0.w,
-              child: SizedBox(
-                  width: 341.w,
-                  height: 339.h,
-                  child: Stack(children: <Widget>[
-                    Container(
-                        width: 341.w,
-                        height: 338.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20.r),
-                          ),
-                          gradient: TodoColors.kPrimaryGradientClr,
-                        )),
-                    Positioned(
-                        top: 125.h,
-                        left: 37.w,
-                        child: Text(
-                          'Front-End \nDevelopment',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontFamily: 'Poppins',
-                              fontSize: 33.sp,
-                              fontWeight: FontWeight.normal,
-                              height: 1.5 /*PERCENT not supported*/
+            top: 0.h,
+            left: 0.w,
+            child: SizedBox(
+              width: 341.w,
+              height: 339.h,
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                      width: 341.w,
+                      height: 338.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20.r),
+                        ),
+                        gradient: TodoColors.kPrimaryGradientClr,
+                      )),
+                  Positioned(
+                      top: 125.h,
+                      left: 37.w,
+                      child: Text(
+                        projectTitle,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontFamily: 'Poppins',
+                            fontSize: 33.sp,
+                            fontWeight: FontWeight.normal,
+                            height: 1.5),
+                      )),
+                  Positioned(
+                    left: 130.w,
+                    bottom: 130.h,
+                    child: Stack(
+                      children: [
+                        Container(
+                            width: 347.w,
+                            height: 416.h,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.05),
+                              borderRadius: BorderRadius.all(
+                                Radius.elliptical(
+                                  347.r,
+                                  416.r,
+                                ),
                               ),
-                        )),
-                    Positioned(
-                      left: 130.w,
-                      bottom: 130.h,
-                      child: Stack(
-                        children: [
-                          Container(
-                              width: 347.4952087402344,
-                              height: 416.1828918457031,
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.05),
-                                borderRadius: BorderRadius.all(
-                                  Radius.elliptical(
-                                    347.r,
-                                    416.r,
-                                  ),
-                                ),
-                              )),
-                          Positioned(
-                              top: 272,
-                              left: 37,
-                              child: Text(
-                                projectDate,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                  fontFamily: 'Poppins',
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.normal,
-                                  height: 1,
-                                ),
-                              )),
-                        ],
-                      ),
+                            )),
+                      ],
                     ),
-                  ]))),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            top: 272.h,
+            left: 37.w,
+            child: Text(
+              projectDate,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: const Color.fromRGBO(255, 255, 255, 1),
+                fontFamily: 'Poppins',
+                fontSize: 20.sp,
+                fontWeight: FontWeight.normal,
+                height: 1,
+              ),
+            ),
+          ),
           Positioned(
             right: 160.w,
             top: 170.h,

@@ -18,12 +18,12 @@ class CreateTask extends StatefulWidget {
 
 class _CreateTaskState extends State<CreateTask> {
   List<String> categoryList = [
-    'School',
-    'Discussion',
-    'Preps',
-    'Shopping',
-    'Praying',
-    'Darsa',
+    'Design',
+    'Meeting',
+    'Coding',
+    'BCE',
+    'Testing',
+    'Quick call',
   ];
 
   final TextEditingController _dateController = TextEditingController();
@@ -53,7 +53,6 @@ class _CreateTaskState extends State<CreateTask> {
         startTime: _startTimeController.text,
       ),
     );
-    debugPrint('My id is $value');
   }
 
   _validateData() {
@@ -89,6 +88,45 @@ class _CreateTaskState extends State<CreateTask> {
     }
   }
 
+  Widget _buildChips() {
+    List<Widget> chips = [];
+
+    for (int i = 0; i < categoryList.length; i++) {
+      ChoiceChip choiceChip = ChoiceChip(
+        selected: _selectedColor == i,
+        label: Text(
+          categoryList[i],
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: TodoColors.buttonClr,
+        selectedColor: Colors.blue,
+        onSelected: (bool selected) {
+          setState(() {
+            if (selected) {
+              _selectedColor = i;
+            }
+          });
+        },
+      );
+
+      chips.add(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          child: choiceChip,
+        ),
+      );
+    }
+
+    return Wrap(
+      children: chips,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +136,14 @@ class _CreateTaskState extends State<CreateTask> {
           height: Get.height,
           width: Get.width,
           decoration: const BoxDecoration(
-            gradient: TodoColors.kPrimaryGradientClr,
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(156, 44, 243, 1),
+                Color.fromRGBO(58, 72, 248, 1),
+              ],
+            ),
           ),
           child: SafeArea(
             child: Column(
@@ -233,9 +278,10 @@ class _CreateTaskState extends State<CreateTask> {
                                       decoration: InputDecoration(
                                         labelText: 'Start time',
                                         labelStyle: TextStyle(
-                                          color: TodoColors.darkTextClr,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 20.sp,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 22.sp,
+                                          fontWeight: FontWeight.w600,
+                                          color: const Color(0XFFBFC8E8),
                                         ),
                                       ),
                                       onChanged: (startTime) => setState(
@@ -258,9 +304,10 @@ class _CreateTaskState extends State<CreateTask> {
                                       decoration: InputDecoration(
                                         labelText: 'End time',
                                         labelStyle: TextStyle(
-                                          color: TodoColors.darkTextClr,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 20.sp,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 22.sp,
+                                          fontWeight: FontWeight.w600,
+                                          color: const Color(0XFFBFC8E8),
                                         ),
                                       ),
                                       onChanged: (endTime) =>
@@ -274,7 +321,7 @@ class _CreateTaskState extends State<CreateTask> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 15.h),
+                              SizedBox(height: 20.h),
                               Expanded(
                                 child: TextFormField(
                                   keyboardType: TextInputType.multiline,
@@ -288,11 +335,12 @@ class _CreateTaskState extends State<CreateTask> {
                                     fontSize: 24.sp,
                                   ),
                                   decoration: InputDecoration(
-                                    labelText: 'Task Description',
+                                    labelText: 'Description',
                                     labelStyle: TextStyle(
-                                      color: TodoColors.darkTextClr,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 20.sp,
+                                      fontFamily: 'Poppins',
+                                      fontSize: 22.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: const Color(0XFFBFC8E8),
                                     ),
                                     focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -303,7 +351,21 @@ class _CreateTaskState extends State<CreateTask> {
                                   ),
                                 ),
                               ),
-                              const Spacer(),
+                              SizedBox(
+                                height: 220.h,
+                                child: Column(children: [
+                                  Text(
+                                    'Category',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 22.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: const Color(0XFFBFC8E8),
+                                    ),
+                                  ),
+                                  _buildChips(),
+                                ]),
+                              ),
                               GestureDetector(
                                 onTap: (() => _validateData()),
                                 child: Padding(

@@ -26,6 +26,24 @@ class _ContentPageState extends State<ContentPage>
 
   final DateTime _selectedDate = DateTime.now();
   final TaskController _taskController = Get.put(TaskController());
+  List<Map<String, String>> cardData = [
+    {
+      'title': 'Data Models',
+      'date': 'October 11,2020',
+    },
+    {
+      'title': 'UI/UX \nDesigning',
+      'date': 'October 20,2020',
+    },
+    {
+      'title': 'Front-End \nDevelopment',
+      'date': 'October 24,2020',
+    },
+    {
+      'title': 'Back-End \nDevelopment',
+      'date': 'October 27,2020',
+    },
+  ];
 
   @override
   void initState() {
@@ -49,7 +67,7 @@ class _ContentPageState extends State<ContentPage>
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding:  EdgeInsets.symmetric(
+        padding: EdgeInsets.symmetric(
           horizontal: 30.h,
         ),
         child: Container(
@@ -61,14 +79,14 @@ class _ContentPageState extends State<ContentPage>
               width: 2.w,
               color: isClosed == true ? Colors.grey : buttonClr,
             ),
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
                 color: const Color.fromRGBO(226, 226, 226, 0.25),
                 offset: const Offset(17, 26),
                 blurRadius: 25.r,
               ),
             ],
-            borderRadius:  BorderRadius.all(
+            borderRadius: BorderRadius.all(
               Radius.circular(20.r),
             ),
           ),
@@ -90,10 +108,9 @@ class _ContentPageState extends State<ContentPage>
   }) {
     return Get.bottomSheet(
       Container(
-        padding:  EdgeInsets.only(top: 4.h),
-        height: taskModel.isCompleted == 1
-            ? Get.height * 0.24
-            : Get.height * 0.32,
+        padding: EdgeInsets.only(top: 4.h),
+        height:
+            taskModel.isCompleted == 1 ? Get.height * 0.24 : Get.height * 0.32,
         child: Column(
           children: [
             Container(
@@ -104,7 +121,7 @@ class _ContentPageState extends State<ContentPage>
                 color: TodoColors.darkTextClr,
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: 20.h,
             ),
             taskModel.isCompleted == 1
@@ -119,7 +136,7 @@ class _ContentPageState extends State<ContentPage>
                     title: 'Task Completed',
                     buttonClr: Colors.blueAccent,
                   ),
-             SizedBox(
+            SizedBox(
               height: 20.h,
             ),
             customBottomSheetButton(
@@ -132,7 +149,7 @@ class _ContentPageState extends State<ContentPage>
               title: 'Delete Task',
               buttonClr: Colors.red,
             ),
-             SizedBox(
+            SizedBox(
               height: 25.h,
             ),
             customBottomSheetButton(
@@ -151,32 +168,51 @@ class _ContentPageState extends State<ContentPage>
     );
   }
 
-  ChoiceChip customChip({
-    required bool isSelected,
-    required String labelText,
-  }) {
-    return ChoiceChip(
-      label: Text(
-        labelText,
-      ),
-      labelStyle: TextStyle(
-        fontFamily: 'Poppins',
-        color: const Color(0xff242736),
-        fontSize: 16.sp,
-        fontWeight: FontWeight.w600,
-      ),
-      selectedColor: Colors.white,
-      backgroundColor: const Color(0xffe5eafc),
-      labelPadding: EdgeInsets.symmetric(
-        horizontal: 31.w,
-        vertical: 13.h,
-      ),
-      selected: isSelected,
-      onSelected: (bool newSelected) {
-        setState(() {
-          isSelected = !newSelected;
-        });
-      },
+  int _selectedIndex = 0;
+  final List<String> _options = const [
+    'My Tasks',
+    'In-Progress',
+    'Completed',
+  ];
+
+  Widget _buildChips() {
+    List<Widget> chips = [];
+
+    for (int i = 0; i < _options.length; i++) {
+      ChoiceChip choiceChip = ChoiceChip(
+        selected: _selectedIndex == i,
+        label: Text(
+          _options[i],
+        ),
+        labelStyle: TextStyle(
+          fontFamily: 'Poppins',
+          color: const Color(0xff242736),
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w600,
+        ),
+        labelPadding: EdgeInsets.symmetric(
+          horizontal: 37.w,
+          vertical: 23.h,
+        ),
+        backgroundColor: const Color(0xffe5eafc),
+        selectedColor: Colors.white,
+        onSelected: (bool selected) {
+          setState(() {
+            if (selected) {
+              _selectedIndex = i;
+            }
+          });
+        },
+      );
+
+      chips.add(
+        choiceChip,
+      );
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: chips,
     );
   }
 
@@ -249,42 +285,30 @@ class _ContentPageState extends State<ContentPage>
                   SizedBox(
                     height: 52.h,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      customChip(
-                        labelText: 'My Tasks',
-                        isSelected: true,
-                      ),
-                      customChip(
-                        labelText: 'In-progress',
-                        isSelected: false,
-                      ),
-                      customChip(
-                        labelText: 'Completed',
-                        isSelected: false,
-                      ),
-                    ],
-                  )
+                  SizedBox(
+                    height: 100.h,
+                    width: Get.width,
+                    child: _buildChips(),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             SizedBox(
               height: 339.h,
               child: PageView.builder(
                 controller: pageController,
-                itemCount: 3,
+                itemCount: cardData.length,
                 itemBuilder: (context, index) {
                   return customCard0(
                     projectNumber: (index + 1).toString(),
-                    projectTitle: 'title',
-                    projectDate: 'October 20, 2020',
-                    projectClr: index.isEven
-                        ? Colors.deepPurple
-                        : Colors.deepPurple.shade600,
+                    projectTitle: cardData[index]['title'].toString(),
+                    projectDate: cardData[index]['date'].toString(),
                     context: context,
                   );
                 },
@@ -298,7 +322,7 @@ class _ContentPageState extends State<ContentPage>
               children: [
                 indicator(
                   context: context,
-                  count: 3,
+                  count: cardData.length,
                   pageController: pageController,
                 ),
               ],
@@ -307,7 +331,7 @@ class _ContentPageState extends State<ContentPage>
               height: 48.h,
             ),
             Padding(
-              padding:  EdgeInsets.only(left: 54.w),
+              padding: EdgeInsets.only(left: 54.w),
               child: Text(
                 'Progress',
                 style: TextStyle(

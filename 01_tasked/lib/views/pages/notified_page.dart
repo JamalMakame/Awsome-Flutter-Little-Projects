@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tasked/const/app_colors.dart';
 
@@ -17,119 +18,166 @@ class NotifiedPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 32,
-            color: TodoColors.iconClr,
+        leading: ShaderMask(
+          blendMode: BlendMode.srcATop,
+          shaderCallback: ((bounds) {
+            return TodoColors.kPrimaryGradientClr.createShader(bounds);
+          }),
+          child: IconButton(
+            onPressed: () => Get.back(),
+            icon: Icon(
+              Icons.arrow_back,
+              size: 32.sp,
+            ),
           ),
         ),
       ),
       body: Center(
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(
-                top: 20,
+                top: 20.h,
               ),
-              child: Text(
-                'Hello, Jamal',
+              child: ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) {
+                  return TodoColors.kPrimaryGradientClr.createShader(bounds);
+                },
+                child: Text(
+                  'Hello, Jamal',
+                  style: TextStyle(
+                    fontSize: 33.sp,
+                    fontWeight: FontWeight.w400,
+                    color: TodoColors.lightTextClr,
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(
+              height: 20.h,
+            ),
+            ShaderMask(
+              blendMode: BlendMode.srcATop,
+              shaderCallback: ((bounds) {
+                return TodoColors.kPrimaryGradientClr.createShader(bounds);
+              }),
+              child:  Text(
+                'You have a new reminder',
                 style: TextStyle(
-                  fontSize: 23,
+                  fontSize: 30.sp,
                   fontWeight: FontWeight.w400,
                   color: TodoColors.lightTextClr,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Text(
-              'You have a new reminder',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                color: TodoColors.lightTextClr,
-              ),
-            ),
-            const SizedBox(
-              height: 30,
+             SizedBox(
+              height: 30.h,
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.62,
-              width: MediaQuery.of(context).size.width * 0.85,
+              height: Get.height * 0.62,
+              width: Get.width * 0.85,
               decoration: BoxDecoration(
-                color: Colors.deepPurple,
-                borderRadius: BorderRadius.circular(40),
+                gradient: TodoColors.kPrimaryGradientClr,
+                borderRadius: BorderRadius.circular(40.r),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 40,
+                padding:  EdgeInsets.symmetric(
+                  horizontal: 30.w,
+                  vertical: 40.h,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListTile(
-                      leading: const Icon(
+                      leading:  Icon(
                         Icons.account_balance,
                         color: Colors.white,
-                        size: 42,
+                        size: 42.sp,
                       ),
                       title: Text(
                         'Title',
-                        style: Theme.of(context).primaryTextTheme.headline5,
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 37.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white
+                        ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 25,
+                     SizedBox(
+                      height: 25.h,
                     ),
                     Text(
                       label.toString().split('|')[0],
-                      style: Theme.of(context).primaryTextTheme.headline5,
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 37.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white
+                      ),
                     ),
-                    const SizedBox(
-                      height: 25,
+                     SizedBox(
+                      height: 25.h,
                     ),
                     ListTile(
-                      leading: const Icon(
+                      leading:  Icon(
                         Icons.assignment,
                         color: Colors.white,
-                        size: 42,
+                        size: 42.sp,
                       ),
                       title: Text(
                         'Description',
-                        style: Theme.of(context).primaryTextTheme.headline5,
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 37.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white
+                        ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 25,
+                     SizedBox(
+                      height: 25.h,
                     ),
                     Text(
                       label.toString().split('|')[1],
-                      style: Theme.of(context).primaryTextTheme.headline5,
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 37.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white
+                      ),
                     ),
-                    const SizedBox(
-                      height: 25,
+                     SizedBox(
+                      height: 25.h,
                     ),
                     ListTile(
-                      leading: const Icon(
+                      leading:  Icon(
                         Icons.alarm,
                         color: Colors.white,
-                        size: 42,
+                        size: 42.sp,
                       ),
                       title: Text(
                         'Time',
-                        style: Theme.of(context).primaryTextTheme.headline5,
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 37.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white
+                        ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 25,
+                     SizedBox(
+                      height: 25.h,
                     ),
                     Text(
                       label.toString().split('|')[2],
-                      style: Theme.of(context).primaryTextTheme.headline5,
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 37.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white
+                      ),
                     ),
                   ],
                 ),
