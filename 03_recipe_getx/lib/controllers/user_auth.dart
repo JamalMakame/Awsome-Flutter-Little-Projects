@@ -42,19 +42,48 @@ Future loginUser({
 }
 
 Future signInUser({
-  required this.name,
-  required this.email,
-  required this.password,
-  required this.confirmPassword,
+  required name,
+  required email,
+  required password,
+  required confirmPassword,
 }) async {
   try {
-    final body = <String, dynamic>{
-      'name' : name,
-      'email' : email,
-      'password' password,
-      'confirmPassword' : confirmPassword,
-    };
+    // create user
+    final user = await client.users.create(body: {
+      'email': email,
+      'password': password,
+      'passwordConfirm': confirmPassword,
+    });
 
-final record = await client.records.create('demo', body: body);
-  } catch (error) {}
+// set user profile data
+    final updatedProfile = await client.records.update(
+      'profiles',
+      user.profile!.id,
+      body: {
+        'name': name,
+      },
+    );
+
+// send verification email
+    await client.users.requestVerification(user.email);
+    
+  } on SocketException {
+    Get.snackbar(
+      'Socket Exception Raised',
+      'There is a problem connecting to the server',
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  } on HttpException {
+    Get.snackbar(
+      'HTTP Exception Raised',
+      'There is a problem reaching the server',
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  } on ClientException {
+    Get.snackbar(
+      'Client Exception Raised',
+      'There is a problem reaching the server',
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  }
 }

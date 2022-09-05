@@ -46,15 +46,17 @@ class SingInManager extends GetxController {
 
   Future<String?> onSignUp(SignUpData? signUPData) async {
     DialogBuilder().showLoadingDialog();
-    await Future.delayed(const Duration(seconds: 2))
-        .then(
-          (value) => Get.back(),
-        )
-        .then(
-          (value) => Get.to(
-            () => const VerifyScreen(),
-          ),
-        );
+    // await Future.delayed(const Duration(seconds: 2))
+    //     .then(
+    //       (value) => Get.back(),
+    //     )
+    //     .then(
+    //       (value) => Get.to(
+    //         () => const VerifyScreen(),
+    //       ),
+    //     );
+
+    
 
     return null;
   }
