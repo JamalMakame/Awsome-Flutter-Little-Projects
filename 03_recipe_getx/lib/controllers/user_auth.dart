@@ -40,3 +40,21 @@ Future loginUser({
     );
   }
 }
+
+Future signInUser({
+  required this.name,
+  required this.email,
+  required this.password,
+  required this.confirmPassword,
+}) async {
+  try {
+    final body = <String, dynamic>{
+      'name' : name,
+      'email' : email,
+      'password' password,
+      'confirmPassword' : confirmPassword,
+    };
+
+final record = await client.records.create('demo', body: body);
+  } catch (error) {}
+}

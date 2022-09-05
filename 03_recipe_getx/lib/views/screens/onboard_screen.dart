@@ -13,6 +13,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -24,7 +25,7 @@ class OnBoardingScreen extends StatelessWidget {
                   height: 406,
                   fit: BoxFit.contain,
                   image: AssetImage(
-                    'assets/Onboarding.png',
+                    'assets/loading/Onboarding.png',
                   ),
                 ),
               ),

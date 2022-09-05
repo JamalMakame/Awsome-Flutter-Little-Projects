@@ -17,6 +17,7 @@ class LoginController extends GetxController {
       email: emailContr.value.text,
       password: passcodeContr.value.text,
     );
+    debugPrint(authData);
     if (authData == null) {
       Get.offAllNamed(
         Routes.LANDING,

@@ -61,15 +61,15 @@ class LoginScreen extends GetView<SingInManager> {
   List<SocialLogin> _socialLogins() => <SocialLogin>[
         SocialLogin(
           callback: () async => controller.socialLogin('Google'),
-          iconPath: 'assets/google.png',
+          iconPath: 'assets/loading/google.png',
         ),
         SocialLogin(
           callback: () async => controller.socialLogin('Facebook'),
-          iconPath: 'assets/facebook.png',
+          iconPath: 'assets/loading/facebook.png',
         ),
         SocialLogin(
           callback: () => controller.socialLogin('Linkedin'),
-          iconPath: 'assets/linkedin.png',
+          iconPath: 'assets/loading/linkedin.png',
         ),
       ];
 
