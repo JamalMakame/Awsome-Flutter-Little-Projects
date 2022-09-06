@@ -10,6 +10,7 @@ import 'package:recipe_getx/views/screens/onboard_screen.dart';
 import 'views/screens/my_profile_screen.dart';
 import 'views/screens/notification_screen.dart';
 import 'views/screens/upload_step_1.dart';
+import 'views/screens/verification_screen.dart';
 
 void main() async {
   runApp(
@@ -25,7 +26,7 @@ void main() async {
         ) =>
             const GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: OnBoardingScreen(),
+          home: VerifyScreen(),
         ),
       ),
     ),
