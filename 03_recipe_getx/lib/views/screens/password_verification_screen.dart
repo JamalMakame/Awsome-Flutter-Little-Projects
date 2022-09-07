@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:recipe_getx/components/constants.dart';
 import 'package:recipe_getx/views/screens/new_password_screen.dart';
 import 'package:recipe_getx/views/widgets/buttons.dart';
-import 'package:recipe_getx/components/otp.dart';
 
 class PasswordVerificationScreen extends StatelessWidget {
   const PasswordVerificationScreen({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class PasswordVerificationScreen extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                const OtpForm(),
+                //const OtpForm(),
                 const SizedBox(
                   height: 48,
                 ),
