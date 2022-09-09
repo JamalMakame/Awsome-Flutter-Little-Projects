@@ -4,21 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe_getx/controllers/opt_controller.dart';
 import 'package:recipe_getx/controllers/user_auth.dart';
+import 'package:recipe_getx/main.dart';
 import 'package:recipe_getx/views/screens/password_recovery_screen.dart';
 import 'package:recipe_getx/views/screens/verification_screen.dart';
 import 'package:recipe_getx/views/widgets/dialog_builder.dart';
 
 class SingInManager extends GetxController {
   var currentMode = AuthMode.login.obs;
-  TextEditingController emailController = TextEditingController();
+  var emailController = TextEditingController().obs;
   var emailValidation = false.obs;
-  TextEditingController nameController = TextEditingController();
+  var nameController = TextEditingController().obs;
   var passWordValidation = false.obs;
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController textController = TextEditingController();
+  var passwordController = TextEditingController().obs;
+  var textController = TextEditingController().obs;
+  UserAuth userAuth = UserAuth();
 
   static SingInManager get i => Get.find();
-  UserAuth userAuth = UserAuth();
 
   void authModeChange(AuthMode newMode) {
     currentMode.value = newMode;
@@ -39,11 +40,22 @@ class SingInManager extends GetxController {
     DialogBuilder().showLoadingDialog();
     await Future.delayed(const Duration(seconds: 2))
         .then(
-          (value) => Get.back(),
-        )
+      (value) => Get.back(),
+    )
         .then(
-          (value) => DialogBuilder().showResultDialog('Successful Login.'),
+      (value) async {
+        var loginRes = await userAuth.loginUser(
+          email: loginData!.email,
+          password: loginData.password,
         );
+        if (loginRes.token.isNotEmpty) {
+          DialogBuilder().showResultDialog('Login Successful');
+          return Get.to(
+            () => const MyApp(),
+          );
+        }
+      },
+    );
     return null;
   }
 
@@ -62,7 +74,7 @@ class SingInManager extends GetxController {
           password: signUPData.password,
         );
 
-        if (response != null) {
+        if (response.id.isNotEmpty) {
           DialogBuilder().showResultDialog('Signing in successful');
           return Get.to(
             () => const VerifyScreen(),
@@ -75,7 +87,7 @@ class SingInManager extends GetxController {
             ),
           );
         } else {
-          DialogBuilder().showResultDialog('Signing in failed');
+          DialogBuilder().showResultDialog(response.data.email.message);
           return null;
         }
       },

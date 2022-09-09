@@ -15,10 +15,11 @@ class UserAuth {
     required String password,
   }) async {
     try {
-      await client.users.authViaEmail(
+      var response = await client.users.authViaEmail(
         email,
         password,
       );
+      return response;
     } on SocketException {
       Get.snackbar(
         'Socket Exception Raised',
@@ -56,19 +57,20 @@ class UserAuth {
         'passwordConfirm': confirmPassword,
       });
 
-      debugPrint(user.toString());
-      if (user.verified == false) {
-        // set user profile data
-        // await client.records.update(
-        //   'profiles',
-        //   user.profile!.id,
-        //   body: {
-        //     'name': name,
-        //   },
-        // );
-        // send verification email
-        await client.users.requestVerification(user.email);
-      }
+      return user;
+
+      // if (user.verified == false) {
+      //   // set user profile data
+      //   // await client.records.update(
+      //   //   'profiles',
+      //   //   user.profile!.id,
+      //   //   body: {
+      //   //     'name': name,
+      //   //   },
+      //   // );
+      //   // send verification email
+      //   await client.users.requestVerification(user.email);
+      // }
     } catch (error) {
       debugPrint('\n${error.toString()}');
       Get.snackbar(

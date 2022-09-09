@@ -5,6 +5,7 @@ import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:recipe_getx/components/constants.dart';
 import 'package:recipe_getx/views/widgets/buttons.dart';
@@ -44,12 +45,15 @@ class _VerifyScreenState extends State<VerifyScreen> {
       });
     });
 
+    sendOTP();
+
     super.initState();
   }
 
   void resend() {
     setState(() {
       _isResendAgain = true;
+      sendOTP();
     });
 
     const oneSec = Duration(seconds: 1);
@@ -90,15 +94,22 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
   sendOTP() async {
     myauth.setConfig(
-        appEmail: "makamej@tapel-halal.cyou",
-        appName: "Recipe App",
-        userEmail: /*email!.value ??*/ '',
-        otpLength: 6,
-        otpType: OTPType.digitsOnly);
+      appEmail: "makamej@tapel-halal.cyou",
+      appName: "Recipe App",
+      userEmail: '${Get.arguments['emailClr']}',
+      otpLength: 4,
+      otpType: OTPType.digitsOnly,
+    );
     if (await myauth.sendOTP() == true) {
-      DialogBuilder().showResultDialog("OTP has been sent");
+      DialogBuilder()
+          .showResultDialog("OTP has been sent")
+          .then((value) => const Duration(seconds: 3))
+          .then((value) => Get.back());
     } else {
-      DialogBuilder().showResultDialog("Oops, OTP send failed");
+      DialogBuilder()
+          .showResultDialog("Oops, OTP send failed")
+          .then((value) => const Duration(seconds: 3))
+          .then((value) => Get.back());
     }
   }
 

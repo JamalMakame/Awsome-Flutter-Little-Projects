@@ -26,7 +26,7 @@ void main() async {
         ) =>
             const GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: VerifyScreen(),
+          home: OnBoardingScreen(),
         ),
       ),
     ),

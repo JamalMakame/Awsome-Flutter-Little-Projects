@@ -76,11 +76,11 @@ class LoginScreen extends GetView<SingInManager> {
   @override
   Widget build(BuildContext context) {
     return AnimatedLogin(
-      emailController: controller.emailController,
+      emailController: controller.emailController.value,
       emailValidator: ValidatorModel(
         customValidator: (value) => controller.validateEmail(value!),
       ),
-      passwordController: controller.passwordController,
+      passwordController: controller.passwordController.value,
       passwordValidator: const ValidatorModel(
         length: 6,
         checkNumber: true,
@@ -91,6 +91,9 @@ class LoginScreen extends GetView<SingInManager> {
           (_) {
             Get.to(
               () => const VerifyScreen(),
+              arguments: {
+                'emailClr': controller.emailController.value,
+              }
             );
           },
         );
