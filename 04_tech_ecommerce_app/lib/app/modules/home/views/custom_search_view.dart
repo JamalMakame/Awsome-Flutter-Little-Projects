@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tech_ecommerce_app/app/routes/app_pages.dart';
 
 import '../../../constants/app_colors.dart';
 
@@ -10,7 +12,7 @@ customSearchView(BuildContext context) {
     children: [
       GestureDetector(
         onTap: () {
-          debugPrint('Menu Icon Pressed');
+          Get.toNamed(Routes.MENU);
         },
         child: SizedBox(
           height: 14.67.h,
@@ -31,14 +33,14 @@ customSearchView(BuildContext context) {
             decoration: InputDecoration(
               prefixIcon: InkWell(
                 onTap: () {},
-                child:  Image.asset(
+                child: Image.asset(
                   'images/sally_icons/Search.png',
-                    height: 24.sp,
-                    width: 24.sp,
+                  height: 24.sp,
+                  width: 24.sp,
                 ),
               ),
-              contentPadding:  EdgeInsets.only(top: 18.h,left: 21.w),
-              border:  OutlineInputBorder(
+              contentPadding: EdgeInsets.only(top: 18.h, left: 21.w),
+              border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(30.r),
                 ),
@@ -46,7 +48,7 @@ customSearchView(BuildContext context) {
                   color: kPrimaryClr,
                 ),
               ),
-              enabledBorder:  OutlineInputBorder(
+              enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(30.r),
                 ),
