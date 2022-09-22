@@ -41,6 +41,7 @@ of conduct, and the process for submitting pull requests to us.
 
 
 ## Authors
+<a>Jamal Makame</a>
     [Jamal Makame](https://github.com/JamalMakame)
 
 See also the list of
