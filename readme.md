@@ -41,12 +41,10 @@ of conduct, and the process for submitting pull requests to us.
 
 
 ## Authors
-
-  - **Jamal Makame
-    [PurpleBooth](https://github.com/JamalMakame)
+    [Jamal Makame](https://github.com/JamalMakame)
 
 See also the list of
-[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
+[contributors](https://github.com/JamalMakame/contributors)
 who participated in this project.
 
 ## License
