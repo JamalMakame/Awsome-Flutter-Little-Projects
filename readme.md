@@ -1,4 +1,4 @@
-# 10 Flutter-Projects
+# Awsome Flutter Little Projects
 
 This Project is the collection of App ideas from differenct sources that are meant to impliment basic flutter functionality.
 <br>
