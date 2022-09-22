@@ -1,47 +1,62 @@
- <div>
-  <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p>
- </div>
-<div>
- 
- <!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
- 
- <p align="center">
-  These Projects are collection of Project Ideas from different places. They are meant to implement basic flutter concepts. Welcome to contribute and improve them.
- </p>
-</div>
-<p align="center">Each of this project has it own description and Pictures....</p>
+# 10 Flutter-Projects
+
+This Project is the collection of App ideas from differenct sources that are meant to impliment basic flutter functionality.
+<br>
+In this Project that is yet to complete you will find each project description on the project folder.
+<br>
+Feel free to enjoy and contribute.
+
+
+## Getting Started
+
+These instructions will give you a copy of the project up and running on
+your local machine for development and testing purposes. See deployment
+for notes on deploying the project on a live system.
+
+## Deployment
+
+```bash
+# Clone this repository
+$ git clone https://github.com/JamalMakame/10Flutter_Projects/Project-Name
+
+# Go into the repository
+$ cd Project-Folder
+
+# Install dependencies
+$ flutter pub get
+
+```
+
+## Built With
+
+  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
+    for the Code of Conduct
+  - [Creative Commons](https://creativecommons.org/) - Used to choose
+    the license
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
+of conduct, and the process for submitting pull requests to us.
+
+
+## Authors
+
+  - **Jamal Makame
+    [PurpleBooth](https://github.com/JamalMakame)
+
+See also the list of
+[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
+who participated in this project.
+
+## License
+
+This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
+Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
+details
+
+## Acknowledgments
+
+  - Hat tip to anyone whose code is used
+  - Inspiration
+  - etc
