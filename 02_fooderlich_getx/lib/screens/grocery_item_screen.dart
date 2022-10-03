@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class GroceryItemScreen extends StatefulWidget {
-  GroceryItemScreen({
+  const GroceryItemScreen({
     Key? key,
     required this.onCreate,
     required this.onUpdate,

@@ -44,40 +44,41 @@ class ResultView extends GetView<CalcController> {
           ],
         ),
         SizedBox(
-          height: 20.h,
+          height: 18.h,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            IconButton(
-              onPressed: () {},
-              icon: const FaIcon(
-                FontAwesomeIcons.clockRotateLeft,
-                color: MyColors.whiteButtonTextClr,
-              ),
-            ),
-            SizedBox(
-              width: 20.h,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: FaIcon(
-                FontAwesomeIcons.ruler,
-                color: MyColors.whiteButtonTextClr,
-                size: 24.sp,
-              ),
-            ),
-            SizedBox(
-              width: 20.h,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: FaIcon(
-                FontAwesomeIcons.squareRootVariable,
-                color: MyColors.whiteButtonTextClr,
-                size: 24.sp,
-              ),
-            ),
-            const Spacer(),
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: const FaIcon(
+            //     FontAwesomeIcons.clockRotateLeft,
+            //     color: MyColors.whiteButtonTextClr,
+            //   ),
+            // ),
+            // SizedBox(
+            //   width: 20.h,
+            // ),
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: FaIcon(
+            //     FontAwesomeIcons.ruler,
+            //     color: MyColors.whiteButtonTextClr,
+            //     size: 24.sp,
+            //   ),
+            // ),
+            // SizedBox(
+            //   width: 20.h,
+            // ),
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: FaIcon(
+            //     FontAwesomeIcons.squareRootVariable,
+            //     color: MyColors.whiteButtonTextClr,
+            //     size: 24.sp,
+            //   ),
+            // ),
+            // const Spacer(),
             IconButton(
               onPressed: () {
                 calController.delete();

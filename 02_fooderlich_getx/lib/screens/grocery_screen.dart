@@ -16,7 +16,7 @@ class GroceryScreen extends GetView<GroceryManager> {
         child: const Icon(Icons.add),
         onPressed: () {
           Get.to(
-            GroceryItemScreen(
+            () => GroceryItemScreen(
               onCreate: (item) {
                 controller.addItem(item);
                 Get.back();

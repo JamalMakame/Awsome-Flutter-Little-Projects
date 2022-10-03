@@ -56,13 +56,11 @@ class NumPadView extends GetView<CalcController> {
                   } else if (buttons[index] == '()') {
                     calController.addBrackets();
                   } else if (buttons[index] == '+/-') {
-                    //calController.negateResult();
-                    debugPrint('To be implemented');
+                    calController.negateResult();
                   } else if (buttons[index] == '=') {
                     calController.equals();
                   } else if (buttons[index] == '%') {
-                    //calController.percentResult();
-                    debugPrint('To be implemented');
+                    calController.percentResult();
                   } else {
                     calController.append(buttons[index]);
                   }

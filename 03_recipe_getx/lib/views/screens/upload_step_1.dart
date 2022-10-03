@@ -116,11 +116,11 @@ class _UploadScreenState extends State<UploadScreen> {
                 ),
               ),
               FlutterInputField(
-                labelTextStyle: GoogleFonts.inter(
-                  color: kMainTextClr,
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+                // labelTextStyle: GoogleFonts.inter(
+                //   color: kMainTextClr,
+                //   fontSize: 17.sp,
+                //   fontWeight: FontWeight.bold,
+                // ),
                 hintText: 'Enter food name',
                 onChange: () {},
                 filledColor: Colors.white,
@@ -131,11 +131,11 @@ class _UploadScreenState extends State<UploadScreen> {
                 labelText: 'Food Name',
               ),
               FlutterInputField(
-                labelTextStyle: GoogleFonts.inter(
-                  color: kMainTextClr,
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+                // labelTextStyle: GoogleFonts.inter(
+                //   color: kMainTextClr,
+                //   fontSize: 17.sp,
+                //   fontWeight: FontWeight.bold,
+                // ),
                 hintText: 'Tell a little about your food',
                 onChange: () {},
                 filledColor: Colors.white,
