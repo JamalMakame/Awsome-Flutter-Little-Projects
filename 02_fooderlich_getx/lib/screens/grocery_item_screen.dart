@@ -239,7 +239,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             ),
           ],
         ),
-        Text('${_timeOfDay.format(context)}'),
+        Text(_timeOfDay.format(context)),
       ],
     );
   }
