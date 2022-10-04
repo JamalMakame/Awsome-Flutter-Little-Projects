@@ -24,7 +24,7 @@ class SplashScreen extends GetView<AppStateManager> {
           ),
           logo: Image.asset('assets/fooderlich_assets/rw_logo.png'),
           backgroundColor: Get.isDarkMode ? Colors.grey[900]! : Colors.white,
-          logoSize: 100.0,
+          logoWidth: 100.0,
           loaderColor: Get.isDarkMode ? Colors.white : Colors.deepPurple[900]!,
         ),
       ),
