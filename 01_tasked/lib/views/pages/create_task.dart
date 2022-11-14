@@ -175,13 +175,10 @@ class _CreateTaskState extends State<CreateTask> {
                               color: Colors.white,
                             ),
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.search,
-                              color: TodoColors.lightTextClr,
-                              size: 44.sp,
-                            ),
+                          Icon(
+                            null,
+                            color: TodoColors.lightTextClr,
+                            size: 44.sp,
                           ),
                         ],
                       ),

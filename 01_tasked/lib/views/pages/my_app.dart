@@ -63,34 +63,46 @@ class _MyAppState extends State<MyApp> {
           items: [
             BottomNavigationBarItem(
               icon: _index == 0
-                  ? Image.asset(
-                      'assets/navigationBar/coolicon.png',
-                      height: 56.h,
-                      width: 56.w,
+                  ? ShaderMask(
+                      blendMode: BlendMode.srcATop,
+                      shaderCallback: (Rect bounds) {
+                        return TodoColors.kPrimaryGradientClr
+                            .createShader(bounds);
+                      },
+                      child: Icon(
+                        Icons.home,
+                        size: 56.sp,
+                      ),
                     )
                   : Icon(
                       Icons.home,
                       size: 46.sp,
                     ),
-              label: 'Home',
+              label: 'Timer',
             ),
             BottomNavigationBarItem(
               icon: _index == 1
-                  ? Image.asset(
-                      'assets/navigationBar/calender.png',
-                      height: 56.h,
-                      width: 56.w,
+                  ? ShaderMask(
+                      blendMode: BlendMode.srcATop,
+                      shaderCallback: (Rect bounds) {
+                        return TodoColors.kPrimaryGradientClr
+                            .createShader(bounds);
+                      },
+                      child: Icon(
+                        Icons.calendar_month,
+                        size: 56.sp,
+                      ),
                     )
                   : Icon(
                       Icons.calendar_month,
                       size: 46.sp,
                     ),
-              label: 'Calendar',
+              label: 'Calender',
             ),
             BottomNavigationBarItem(
               icon: _index == 2
                   ? ShaderMask(
-                    blendMode: BlendMode.srcATop,
+                      blendMode: BlendMode.srcATop,
                       shaderCallback: (Rect bounds) {
                         return TodoColors.kPrimaryGradientClr
                             .createShader(bounds);
@@ -112,5 +124,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-

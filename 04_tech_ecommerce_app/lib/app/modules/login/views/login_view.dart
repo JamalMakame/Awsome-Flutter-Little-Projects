@@ -22,7 +22,7 @@ class LoginView extends GetView<LoginController> {
             hasScrollBody: false,
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   width: 443.w,
                   height: 305.h,
                   child: Stack(

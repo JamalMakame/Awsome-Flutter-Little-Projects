@@ -34,7 +34,6 @@ class OnboardingView extends GetView<OnboardingController> {
             ),
           ),
           Image.asset(
-            
             'images/sally_images/Saly-splash.png',
             fit: BoxFit.cover,
           ),

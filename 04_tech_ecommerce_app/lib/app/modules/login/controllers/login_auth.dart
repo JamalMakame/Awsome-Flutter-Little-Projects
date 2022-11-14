@@ -42,7 +42,6 @@ class UserAuth {
         'passwordConfirm': confirmPassword,
       });
       if (signInResponse.id.isNotEmpty) {
-        
         // set user profile data
         await client.records.update(
           'profiles',
