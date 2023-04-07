@@ -18,13 +18,15 @@ class DBHelper {
         version: _version,
         onCreate: (db, version) {
           debugPrint('Creating a new one');
-          return db.execute('''
+          return db.execute(
+            '''
               CREATE TABLE $_tableName (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               name STRING, description STRING, date STRING, 
               startTime STRING, endTime STRING, color INTEGER, 
               isCompleted INTEGER)
-            ''');
+            ''',
+          );
         },
       );
     } catch (e) {

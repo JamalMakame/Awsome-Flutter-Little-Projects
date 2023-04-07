@@ -7,8 +7,6 @@ import 'package:tasked/const/app_colors.dart';
 import 'package:tasked/controllers/task_controller.dart';
 import 'package:tasked/model/task_model.dart';
 import 'package:tasked/services/notification_services.dart';
-import 'package:tasked/views/widgets/card_widget.dart';
-import 'package:tasked/views/widgets/indicator_widget.dart';
 import 'package:tasked/views/widgets/task_tile.dart';
 
 class ContentPage extends StatefulWidget {
@@ -175,47 +173,6 @@ class _ContentPageState extends State<ContentPage>
     'Completed',
   ];
 
-  Widget _buildChips() {
-    List<Widget> chips = [];
-
-    for (int i = 0; i < _options.length; i++) {
-      ChoiceChip choiceChip = ChoiceChip(
-        selected: _selectedIndex == i,
-        label: Text(
-          _options[i],
-        ),
-        labelStyle: TextStyle(
-          fontFamily: 'Poppins',
-          color: const Color(0xff242736),
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w600,
-        ),
-        labelPadding: EdgeInsets.symmetric(
-          horizontal: 37.w,
-          vertical: 23.h,
-        ),
-        backgroundColor: const Color(0xffe5eafc),
-        selectedColor: Colors.white,
-        onSelected: (bool selected) {
-          setState(() {
-            if (selected) {
-              _selectedIndex = i;
-            }
-          });
-        },
-      );
-
-      chips.add(
-        choiceChip,
-      );
-    }
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: chips,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -228,105 +185,6 @@ class _ContentPageState extends State<ContentPage>
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: 54.w,
-                top: 59.h,
-                right: 54.w,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Image.asset(
-                          'assets/images/Group.png',
-                          width: 42.sp,
-                          height: 41.sp,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Image.asset(
-                          'assets/images/account_circle_black_24dp 1.png',
-                          width: 42.sp,
-                          height: 41.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 47.h,
-                  ),
-                  Text(
-                    'Hello Jamal!',
-                    style: TextStyle(
-                      color: TodoColors.darkTextClr,
-                      fontSize: 48.sp,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Text(
-                    'Have a nice day',
-                    style: TextStyle(
-                      color: TodoColors.darkTextClr,
-                      fontSize: 23.sp,
-                      fontWeight: FontWeight.w300,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 52.h,
-                  ),
-                  SizedBox(
-                    height: 100.h,
-                    width: Get.width,
-                    child: _buildChips(),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            SizedBox(
-              height: 339.h,
-              child: PageView.builder(
-                controller: pageController,
-                itemCount: cardData.length,
-                itemBuilder: (context, index) {
-                  return customCard0(
-                    projectNumber: (index + 1).toString(),
-                    projectTitle: cardData[index]['title'].toString(),
-                    projectDate: cardData[index]['date'].toString(),
-                    context: context,
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 29.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                indicator(
-                  context: context,
-                  count: cardData.length,
-                  pageController: pageController,
-                ),
-              ],
-            ),
             SizedBox(
               height: 48.h,
             ),
